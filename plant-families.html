@@ -265,6 +265,17 @@
 
     /* hover hint */
     .hint{text-align:center;font-size:.8rem;color:#b39ddb;margin-top:6px;font-style:italic}
+
+    /* ═══════════════ FLORAL DIAGRAMS ═══════════════ */
+    .fd-wrap{margin-top:24px;padding-top:20px;border-top:2px dashed rgba(0,0,0,.12)}
+    .fd-title{font-family:'Nunito',sans-serif;font-size:.98rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+    .fd-flex{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+    .fd-svg-box{text-align:center;flex-shrink:0}
+    .fd-caption{font-size:.76rem;font-weight:700;color:#555;margin-top:6px;font-family:'Courier New',monospace;letter-spacing:.03em}
+    .fd-legend{display:flex;flex-direction:column;gap:7px;padding-top:8px}
+    .fd-key{display:flex;align-items:center;gap:9px;font-size:.81rem;font-weight:600;color:#333;line-height:1.4}
+    .fd-swatch{width:16px;height:13px;border-radius:3px;flex-shrink:0;border:1.5px solid rgba(0,0,0,.22)}
+    .fd-note{font-size:.78rem;font-style:italic;color:#888;margin-top:8px;line-height:1.5}
   </style>
 </head>
 <body>
@@ -481,6 +492,64 @@
       <span class="ep">⚗️ <em>Aconitum</em></span>
       <span class="ep">🖤 <em>Nigella sativa</em></span>
     </div>
+
+    <!-- FLORAL DIAGRAM: Ranunculaceae -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram <span style="font-size:.8rem;font-weight:600;opacity:.65">— cross-sectional view from above</span></div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#fffde7" stroke="#e0e0e0" stroke-width="1"/>
+            <!-- Axis (mother axis) -->
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <!-- Bract -->
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- K5: 5 free sepals at 0,72,144,216,288° -->
+            <g transform="rotate(0,100,100)">  <ellipse cx="100" cy="33" rx="10" ry="24" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/></g>
+            <g transform="rotate(72,100,100)"> <ellipse cx="100" cy="33" rx="10" ry="24" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/></g>
+            <g transform="rotate(144,100,100)"><ellipse cx="100" cy="33" rx="10" ry="24" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/></g>
+            <g transform="rotate(216,100,100)"><ellipse cx="100" cy="33" rx="10" ry="24" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/></g>
+            <g transform="rotate(288,100,100)"><ellipse cx="100" cy="33" rx="10" ry="24" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/></g>
+            <!-- C5: 5 free petals alternating at 36,108,180,252,324° -->
+            <g transform="rotate(36,100,100)"> <ellipse cx="100" cy="44" rx="13" ry="21" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/></g>
+            <g transform="rotate(108,100,100)"><ellipse cx="100" cy="44" rx="13" ry="21" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/></g>
+            <g transform="rotate(180,100,100)"><ellipse cx="100" cy="44" rx="13" ry="21" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/></g>
+            <g transform="rotate(252,100,100)"><ellipse cx="100" cy="44" rx="13" ry="21" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/></g>
+            <g transform="rotate(324,100,100)"><ellipse cx="100" cy="44" rx="13" ry="21" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/></g>
+            <!-- A∞: 12 stamens (filament + anther), every 30° at r=38 -->
+            <g transform="rotate(0,100,100)">  <line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(30,100,100)"> <line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(60,100,100)"> <line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(90,100,100)"> <line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(120,100,100)"><line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(150,100,100)"><line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(180,100,100)"><line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(210,100,100)"><line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(240,100,100)"><line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(270,100,100)"><line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(300,100,100)"><line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(330,100,100)"><line x1="100" y1="100" x2="100" y2="67" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="63" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <!-- G∞ apocarpous: 6 separate small carpel circles at center -->
+            <circle cx="100" cy="86" r="6" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+            <circle cx="113" cy="93" r="6" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+            <circle cx="108" cy="108" r="6" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+            <circle cx="100" cy="114" r="6" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+            <circle cx="87" cy="93"  r="6" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+            <circle cx="92" cy="108" r="6" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+          </svg>
+          <div class="fd-caption">⊕ K5 C5 A∞ G∞</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:#c8e6c9;border-color:#388e3c"></span>K5 — Sepals, 5, free, green</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#fff9c4;border-color:#f9a825"></span>C5 — Petals, 5, free, yellow</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffee58;border-color:#e65100"></span>A∞ — Stamens, many, polyandrous</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcdd2;border-color:#e53935"></span>G∞ — Carpels, many, <em>free</em> (apocarpous)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#212121;border-color:#212121"></span>● Mother axis (top)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#2e7d32;border-color:#1b5e20"></span>▼ Bract (bottom)</div>
+          <p class="fd-note">Apocarpous gynoecium is the most diagnostic feature — each carpel is separate and produces its own achene or follicle.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ══ 2. BRASSICACEAE ══ -->
@@ -537,6 +606,59 @@
       <span class="ep">🥕 <em>Raphanus sativus</em></span>
       <span class="ep">🌸 <em>Alyssum</em></span>
       <span class="ep">🧬 <em>Arabidopsis</em></span>
+    </div>
+
+    <!-- FLORAL DIAGRAM: Brassicaceae -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram</div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#f9fbe7" stroke="#e0e0e0" stroke-width="1"/>
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- K2+2: 2 median sepals (darker) + 2 lateral (lighter) -->
+            <g transform="rotate(0,100,100)">  <ellipse cx="100" cy="33" rx="9" ry="23" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.5"/></g>
+            <g transform="rotate(180,100,100)"><ellipse cx="100" cy="33" rx="9" ry="23" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.5"/></g>
+            <g transform="rotate(90,100,100)"> <ellipse cx="100" cy="33" rx="9" ry="23" fill="#dcedc8" stroke="#558b2f" stroke-width="1.5" stroke-dasharray="3,2"/></g>
+            <g transform="rotate(270,100,100)"><ellipse cx="100" cy="33" rx="9" ry="23" fill="#dcedc8" stroke="#558b2f" stroke-width="1.5" stroke-dasharray="3,2"/></g>
+            <!-- C4: 4 petals cruciform at 45,135,225,315° -->
+            <g transform="rotate(45,100,100)"> <ellipse cx="100" cy="43" rx="13" ry="21" fill="#fffde7" stroke="#f9a825" stroke-width="1.5"/></g>
+            <g transform="rotate(135,100,100)"><ellipse cx="100" cy="43" rx="13" ry="21" fill="#fffde7" stroke="#f9a825" stroke-width="1.5"/></g>
+            <g transform="rotate(225,100,100)"><ellipse cx="100" cy="43" rx="13" ry="21" fill="#fffde7" stroke="#f9a825" stroke-width="1.5"/></g>
+            <g transform="rotate(315,100,100)"><ellipse cx="100" cy="43" rx="13" ry="21" fill="#fffde7" stroke="#f9a825" stroke-width="1.5"/></g>
+            <!-- A2+4 tetradynamous: 4 long inner + 2 short outer lateral -->
+            <!-- 4 long: 2 pairs near median plane -->
+            <line x1="95" y1="100" x2="95" y2="65" stroke="#bdbdbd" stroke-width="1"/>
+            <ellipse cx="95" cy="61" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <line x1="105" y1="100" x2="105" y2="65" stroke="#bdbdbd" stroke-width="1"/>
+            <ellipse cx="105" cy="61" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <line x1="95" y1="100" x2="95" y2="135" stroke="#bdbdbd" stroke-width="1"/>
+            <ellipse cx="95" cy="139" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <line x1="105" y1="100" x2="105" y2="135" stroke="#bdbdbd" stroke-width="1"/>
+            <ellipse cx="105" cy="139" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <!-- 2 short lateral -->
+            <line x1="100" y1="100" x2="66" y2="100" stroke="#bdbdbd" stroke-width="1"/>
+            <ellipse cx="62" cy="100" rx="4" ry="5" fill="#ffe082" stroke="#e65100" stroke-width="1"/>
+            <line x1="100" y1="100" x2="134" y2="100" stroke="#bdbdbd" stroke-width="1"/>
+            <ellipse cx="138" cy="100" rx="4" ry="5" fill="#ffe082" stroke="#e65100" stroke-width="1"/>
+            <!-- G(2) syncarpous with replum (false septum) -->
+            <ellipse cx="100" cy="100" rx="19" ry="14" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+            <line x1="100" y1="86" x2="100" y2="114" stroke="#c62828" stroke-width="2"/>
+            <circle cx="90" cy="100" r="3.5" fill="#fff9c4"/>
+            <circle cx="110" cy="100" r="3.5" fill="#fff9c4"/>
+          </svg>
+          <div class="fd-caption">⊕ K2+2 C4 A2+4 G(2)</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:#c8e6c9;border-color:#2e7d32"></span>K2+2 — 4 sepals (2 median solid + 2 lateral dashed)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#fffde7;border-color:#f9a825"></span>C4 — Petals, cruciform (cross-shaped), free</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffee58;border-color:#e65100"></span>A2+4 — Tetradynamous: 4 long + 2 short (lateral)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcdd2;border-color:#e53935"></span>G(2) — Bicarpellary syncarpous; line = replum</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#fff9c4;border-color:#aaa"></span>○ Ovules (1 per locule shown)</div>
+          <p class="fd-note">Tetradynamous stamens (4 long + 2 short) and fruit = siliqua/silicula are the hallmark of Brassicaceae.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -596,6 +718,58 @@
       <span class="ep">🌺 <em>Hibiscus</em></span>
       <span class="ep">🌸 <em>Althaea</em></span>
       <span class="ep">🌿 <em>Abutilon</em></span>
+    </div>
+
+    <!-- FLORAL DIAGRAM: Malvaceae -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram</div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#fff0f5" stroke="#e0e0e0" stroke-width="1"/>
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- Epicalyx: 3 pointed bracts at r=83, at 0,120,240° -->
+            <g transform="rotate(0,100,100)">  <polygon points="100,17 95,32 105,32" fill="#a5d6a7" stroke="#388e3c" stroke-width="1"/></g>
+            <g transform="rotate(120,100,100)"><polygon points="100,17 95,32 105,32" fill="#a5d6a7" stroke="#388e3c" stroke-width="1"/></g>
+            <g transform="rotate(240,100,100)"><polygon points="100,17 95,32 105,32" fill="#a5d6a7" stroke="#388e3c" stroke-width="1"/></g>
+            <!-- K(5) fused sepals: shown as connected arc ring -->
+            <circle cx="100" cy="100" r="62" fill="none" stroke="#66bb6a" stroke-width="5" stroke-dasharray="20,18"/>
+            <!-- C5: 5 petals (pink) at 36° offset, large -->
+            <g transform="rotate(36,100,100)"> <ellipse cx="100" cy="40" rx="15" ry="24" fill="#f8bbd0" stroke="#e91e63" stroke-width="1.5"/></g>
+            <g transform="rotate(108,100,100)"><ellipse cx="100" cy="40" rx="15" ry="24" fill="#f8bbd0" stroke="#e91e63" stroke-width="1.5"/></g>
+            <g transform="rotate(180,100,100)"><ellipse cx="100" cy="40" rx="15" ry="24" fill="#f8bbd0" stroke="#e91e63" stroke-width="1.5"/></g>
+            <g transform="rotate(252,100,100)"><ellipse cx="100" cy="40" rx="15" ry="24" fill="#f8bbd0" stroke="#e91e63" stroke-width="1.5"/></g>
+            <g transform="rotate(324,100,100)"><ellipse cx="100" cy="40" rx="15" ry="24" fill="#f8bbd0" stroke="#e91e63" stroke-width="1.5"/></g>
+            <!-- A(∞) monadelphous: staminal tube ring + radiating anthers -->
+            <circle cx="100" cy="100" r="20" fill="none" stroke="#ff8a65" stroke-width="3"/>
+            <g transform="rotate(0,100,100)">  <line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(36,100,100)"> <line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(72,100,100)"> <line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(108,100,100)"><line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(144,100,100)"><line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(180,100,100)"><line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(216,100,100)"><line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(252,100,100)"><line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(288,100,100)"><line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(324,100,100)"><line x1="100" y1="80" x2="100" y2="68" stroke="#ff8a65" stroke-width="1.5"/><ellipse cx="100" cy="65" rx="5" ry="3.5" fill="#ffcc80" stroke="#e65100" stroke-width="1"/></g>
+            <!-- G(5) syncarpous: 5 sections in star pattern -->
+            <circle cx="100" cy="100" r="14" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+            <line x1="100" y1="86" x2="100" y2="114" stroke="#c62828" stroke-width="1"/>
+            <line x1="87" y1="93" x2="113" y2="107" stroke="#c62828" stroke-width="1"/>
+            <line x1="87" y1="107" x2="113" y2="93" stroke="#c62828" stroke-width="1"/>
+          </svg>
+          <div class="fd-caption">⊕ Epicalyx K(5) C5 A(∞) G(5)</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:#a5d6a7;border-color:#388e3c"></span>Epicalyx — extra whorl of 3 bracts outside calyx</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#66bb6a;border-color:#2e7d32"></span>K(5) — 5 fused sepals (gamosepalous, dashed ring)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#f8bbd0;border-color:#e91e63"></span>C5 — 5 free petals, pink/red, contorted aestivation</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcc80;border-color:#e65100"></span>A(∞) — Many stamens, <em>monadelphous</em> (fused tube)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcdd2;border-color:#e53935"></span>G(5) — 5 carpels, syncarpous; lines = septa</div>
+          <p class="fd-note">Monadelphous staminal tube wrapped around the style is the hallmark of Malvaceae.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -658,6 +832,58 @@
       <span class="ep">🪵 <em>Dalbergia</em></span>
       <span class="ep">💙 <em>Indigofera</em></span>
     </div>
+
+    <!-- FLORAL DIAGRAM: Leguminosae (papilionaceous) -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram <span style="font-size:.8rem;font-weight:600;opacity:.65">— zygomorphic (bilateral symmetry)</span></div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#f3e5f5" stroke="#e0e0e0" stroke-width="1"/>
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- Plane of symmetry: vertical dashed line -->
+            <line x1="100" y1="14" x2="100" y2="186" stroke="#9575cd" stroke-width="1" stroke-dasharray="4,3" opacity=".5"/>
+            <!-- K(5) fused sepals: 5 pointed lobes on ring -->
+            <circle cx="100" cy="100" r="62" fill="none" stroke="#8d6e63" stroke-width="4" stroke-dasharray="15,24.5"/>
+            <!-- C: Vexillum (standard) - large petal at top -->
+            <ellipse cx="100" cy="30" rx="22" ry="26" fill="#ce93d8" stroke="#7b1fa2" stroke-width="2"/>
+            <!-- C: 2 wings (lateral) -->
+            <ellipse cx="60" cy="92" rx="18" ry="13" fill="#ba68c8" stroke="#7b1fa2" stroke-width="1.5" transform="rotate(-20,60,92)"/>
+            <ellipse cx="140" cy="92" rx="18" ry="13" fill="#ba68c8" stroke="#7b1fa2" stroke-width="1.5" transform="rotate(20,140,92)"/>
+            <!-- C: 2 keel petals fused at bottom -->
+            <ellipse cx="100" cy="146" rx="14" ry="10" fill="#9c27b0" stroke="#4a148c" stroke-width="1.5"/>
+            <!-- A(9)+1 diadelphous: 9 curved arc + 1 separate -->
+            <!-- 9 stamens forming arc (bottom half) -->
+            <path d="M68,118 Q80,138 100,142 Q120,138 132,118" fill="none" stroke="#bdbdbd" stroke-width="2"/>
+            <ellipse cx="68" cy="116" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1" transform="rotate(-40,68,116)"/>
+            <ellipse cx="77" cy="128" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1" transform="rotate(-20,77,128)"/>
+            <ellipse cx="89" cy="135" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <ellipse cx="100" cy="138" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <ellipse cx="111" cy="135" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <ellipse cx="123" cy="128" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1" transform="rotate(20,123,128)"/>
+            <ellipse cx="132" cy="116" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1" transform="rotate(40,132,116)"/>
+            <ellipse cx="74" cy="108" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <ellipse cx="126" cy="108" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <!-- 1 free stamen (top, separate) -->
+            <line x1="100" y1="100" x2="100" y2="68" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="3,2"/>
+            <ellipse cx="100" cy="64" rx="5" ry="4" fill="#ffe082" stroke="#e65100" stroke-width="1"/>
+            <!-- G1 monocarpellary: elongated oval slightly offset -->
+            <ellipse cx="100" cy="100" rx="8" ry="15" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+          </svg>
+          <div class="fd-caption">↑ K(5) C1+2+(2) A(9)+1 G1</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:#8d6e63;border-color:#5d4037"></span>K(5) — 5 fused sepals (gamosepalous)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ce93d8;border-color:#7b1fa2"></span>C — Vexillum (1 large standard petal, top)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ba68c8;border-color:#7b1fa2"></span>C — Wings (2 lateral petals)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#9c27b0;border-color:#4a148c"></span>C — Keel (2 fused lower petals)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffee58;border-color:#e65100"></span>A(9)+1 — Diadelphous stamens (9 fused + 1 free)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcdd2;border-color:#e53935"></span>G1 — Monocarpellary superior ovary</div>
+          <p class="fd-note">↑ = Zygomorphic (bilateral). Dashed line = plane of symmetry. Papilionaceous corolla is the key diagnostic feature.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ══ 5. LAMIACEAE ══ -->
@@ -716,6 +942,55 @@
       <span class="ep">🌸 <em>Salvia</em></span>
       <span class="ep">🌿 <em>Thymus</em></span>
       <span class="ep">🌺 <em>Rosmarinus</em></span>
+    </div>
+
+    <!-- FLORAL DIAGRAM: Lamiaceae -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram <span style="font-size:.8rem;font-weight:600;opacity:.65">— zygomorphic, bilabiate</span></div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#ede7f6" stroke="#e0e0e0" stroke-width="1"/>
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- Symmetry plane -->
+            <line x1="100" y1="14" x2="100" y2="186" stroke="#9575cd" stroke-width="1" stroke-dasharray="4,3" opacity=".4"/>
+            <!-- K(5) fused, bilabiate calyx -->
+            <circle cx="100" cy="100" r="62" fill="none" stroke="#8d6e63" stroke-width="4" stroke-dasharray="18,22"/>
+            <!-- C(2+3) bilabiate corolla: upper lip 2 lobes, lower lip 3 lobes -->
+            <!-- Upper lip (2 fused petals at top) -->
+            <ellipse cx="88" cy="44" rx="14" ry="18" fill="#b39ddb" stroke="#512da8" stroke-width="1.5"/>
+            <ellipse cx="112" cy="44" rx="14" ry="18" fill="#b39ddb" stroke="#512da8" stroke-width="1.5"/>
+            <!-- Lower lip (3 lobes at bottom) -->
+            <ellipse cx="75" cy="152" rx="14" ry="12" fill="#9575cd" stroke="#512da8" stroke-width="1.5"/>
+            <ellipse cx="100" cy="158" rx="16" ry="14" fill="#9575cd" stroke="#512da8" stroke-width="1.5"/>
+            <ellipse cx="125" cy="152" rx="14" ry="12" fill="#9575cd" stroke="#512da8" stroke-width="1.5"/>
+            <!-- A4 didynamous: 2 long + 2 short -->
+            <!-- 2 long (near centre top) -->
+            <line x1="93" y1="100" x2="93" y2="63" stroke="#bdbdbd" stroke-width="1.5"/>
+            <ellipse cx="93" cy="59" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <line x1="107" y1="100" x2="107" y2="63" stroke="#bdbdbd" stroke-width="1.5"/>
+            <ellipse cx="107" cy="59" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/>
+            <!-- 2 short -->
+            <line x1="80" y1="100" x2="80" y2="72" stroke="#bdbdbd" stroke-width="1"/>
+            <ellipse cx="80" cy="69" rx="4.5" ry="3.5" fill="#ffe082" stroke="#e65100" stroke-width="1"/>
+            <line x1="120" y1="100" x2="120" y2="72" stroke="#bdbdbd" stroke-width="1"/>
+            <ellipse cx="120" cy="69" rx="4.5" ry="3.5" fill="#ffe082" stroke="#e65100" stroke-width="1"/>
+            <!-- G(2) 4-lobed ovary: cross/plus shape at centre -->
+            <rect x="90" y="90" width="10" height="20" rx="3" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+            <rect x="85" y="95" width="30" height="10" rx="3" fill="#ffcdd2" stroke="#e53935" stroke-width="1.5"/>
+          </svg>
+          <div class="fd-caption">↑ K(5) C(2+3) A4 G(2)</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:#8d6e63;border-color:#5d4037"></span>K(5) — 5 fused sepals, bilabiate (2+3)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#b39ddb;border-color:#512da8"></span>C(2) — Upper lip: 2 fused petals</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#9575cd;border-color:#512da8"></span>C(3) — Lower lip: 3 fused petals</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffee58;border-color:#e65100"></span>A4 — Didynamous (2 long + 2 short stamens)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcdd2;border-color:#e53935"></span>G(2) — 4-lobed superior ovary (cross-shaped in section)</div>
+          <p class="fd-note">4-lobed ovary and didynamous stamens are key diagnostic features. Square stem is a vegetative character.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -777,6 +1052,50 @@
       <span class="ep">⚗️ <em>Datura</em></span>
       <span class="ep">🌸 <em>Petunia</em></span>
       <span class="ep">🚬 <em>Nicotiana</em></span>
+    </div>
+
+    <!-- FLORAL DIAGRAM: Solanaceae -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram</div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#e8eaf6" stroke="#e0e0e0" stroke-width="1"/>
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- K(5) fused sepals ring -->
+            <circle cx="100" cy="100" r="62" fill="none" stroke="#8d6e63" stroke-width="4" stroke-dasharray="16,22.6"/>
+            <!-- C(5) fused rotate corolla: 5 lobes alternating -->
+            <g transform="rotate(36,100,100)"> <ellipse cx="100" cy="40" rx="16" ry="22" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/></g>
+            <g transform="rotate(108,100,100)"><ellipse cx="100" cy="40" rx="16" ry="22" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/></g>
+            <g transform="rotate(180,100,100)"><ellipse cx="100" cy="40" rx="16" ry="22" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/></g>
+            <g transform="rotate(252,100,100)"><ellipse cx="100" cy="40" rx="16" ry="22" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/></g>
+            <g transform="rotate(324,100,100)"><ellipse cx="100" cy="40" rx="16" ry="22" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/></g>
+            <!-- Fused petal base ring -->
+            <circle cx="100" cy="100" r="42" fill="#c5cae9" stroke="#3949ab" stroke-width="1.5"/>
+            <!-- A5 epipetalous: stamens at same angles as petals (epipetalous = ON petals) -->
+            <g transform="rotate(36,100,100)"> <line x1="100" y1="100" x2="100" y2="66" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="62" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(108,100,100)"><line x1="100" y1="100" x2="100" y2="66" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="62" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(180,100,100)"><line x1="100" y1="100" x2="100" y2="66" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="62" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(252,100,100)"><line x1="100" y1="100" x2="100" y2="66" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="62" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(324,100,100)"><line x1="100" y1="100" x2="100" y2="66" stroke="#bdbdbd" stroke-width="1"/><ellipse cx="100" cy="62" rx="5" ry="4" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <!-- G(2) bilocular, slightly oblique ovary -->
+            <ellipse cx="101" cy="100" rx="16" ry="13" fill="#ffcdd2" stroke="#e53935" stroke-width="2" transform="rotate(10,101,100)"/>
+            <line x1="101" y1="87" x2="101" y2="113" stroke="#c62828" stroke-width="1.5" transform="rotate(10,101,100)"/>
+            <circle cx="93" cy="100" r="3.5" fill="#fff9c4"/>
+            <circle cx="110" cy="100" r="3.5" fill="#fff9c4"/>
+          </svg>
+          <div class="fd-caption">⊕ K(5) C(5) A5 G(2)</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:#8d6e63;border-color:#5d4037"></span>K(5) — 5 fused sepals (persistent)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#c5cae9;border-color:#3949ab"></span>C(5) — 5 fused petals (gamopetalous, rotate/stellate)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffee58;border-color:#e65100"></span>A5 — Epipetalous stamens (attached to corolla tube)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcdd2;border-color:#e53935"></span>G(2) — Bicarpellary, bilocular, oblique placement</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#fff9c4;border-color:#aaa"></span>○ Ovules (many per locule)</div>
+          <p class="fd-note">Oblique ovary (at 45° to floral axis) and epipetalous stamens are key. Fruit = berry or capsule.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -840,6 +1159,49 @@
       <span class="ep">⚕️ <em>Artemisia</em></span>
       <span class="ep">🌸 <em>Chrysanthemum</em></span>
     </div>
+
+    <!-- FLORAL DIAGRAM: Asteraceae (disc floret) -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram <span style="font-size:.8rem;font-weight:600;opacity:.65">— disc floret (inferior ovary shown as outer ring)</span></div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#fff8e1" stroke="#e0e0e0" stroke-width="1"/>
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- Inferior ovary = large central hatched oval -->
+            <ellipse cx="100" cy="100" rx="30" ry="30" fill="#ffe0b2" stroke="#e65100" stroke-width="2.5"/>
+            <ellipse cx="100" cy="100" rx="30" ry="30" fill="none" stroke="#ffb74d" stroke-width="1" stroke-dasharray="4,4"/>
+            <!-- G(2) inferior bilocular ovary divided -->
+            <line x1="100" y1="70" x2="100" y2="130" stroke="#e65100" stroke-width="1.5"/>
+            <!-- K: pappus bristles (5 radiating thin lines at r=42) -->
+            <g transform="rotate(0,100,100)">  <line x1="100" y1="58" x2="100" y2="34" stroke="#795548" stroke-width="1.5"/><circle cx="100" cy="31" r="2" fill="#795548"/></g>
+            <g transform="rotate(72,100,100)"> <line x1="100" y1="58" x2="100" y2="34" stroke="#795548" stroke-width="1.5"/><circle cx="100" cy="31" r="2" fill="#795548"/></g>
+            <g transform="rotate(144,100,100)"><line x1="100" y1="58" x2="100" y2="34" stroke="#795548" stroke-width="1.5"/><circle cx="100" cy="31" r="2" fill="#795548"/></g>
+            <g transform="rotate(216,100,100)"><line x1="100" y1="58" x2="100" y2="34" stroke="#795548" stroke-width="1.5"/><circle cx="100" cy="31" r="2" fill="#795548"/></g>
+            <g transform="rotate(288,100,100)"><line x1="100" y1="58" x2="100" y2="34" stroke="#795548" stroke-width="1.5"/><circle cx="100" cy="31" r="2" fill="#795548"/></g>
+            <!-- C(5) fused tubular corolla: 5 tiny lobes at r=47 -->
+            <g transform="rotate(36,100,100)"> <ellipse cx="100" cy="50" rx="8" ry="10" fill="#fdd835" stroke="#f57f17" stroke-width="1.5"/></g>
+            <g transform="rotate(108,100,100)"><ellipse cx="100" cy="50" rx="8" ry="10" fill="#fdd835" stroke="#f57f17" stroke-width="1.5"/></g>
+            <g transform="rotate(180,100,100)"><ellipse cx="100" cy="50" rx="8" ry="10" fill="#fdd835" stroke="#f57f17" stroke-width="1.5"/></g>
+            <g transform="rotate(252,100,100)"><ellipse cx="100" cy="50" rx="8" ry="10" fill="#fdd835" stroke="#f57f17" stroke-width="1.5"/></g>
+            <g transform="rotate(324,100,100)"><ellipse cx="100" cy="50" rx="8" ry="10" fill="#fdd835" stroke="#f57f17" stroke-width="1.5"/></g>
+            <!-- Corolla tube ring -->
+            <circle cx="100" cy="100" r="18" fill="#fff9c4" stroke="#f57f17" stroke-width="1.5"/>
+            <!-- A(5) syngenesious: connected anther ring -->
+            <circle cx="100" cy="100" r="12" fill="none" stroke="#ff8f00" stroke-width="3.5"/>
+          </svg>
+          <div class="fd-caption">⊕ K(pappus) C(5) A(5) G(2) inferior</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:#795548;border-color:#4e342e"></span>K — Pappus (modified bristle-like calyx for dispersal)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#fdd835;border-color:#f57f17"></span>C(5) — 5 fused petals, tubular (disc floret)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ff8f00;border-color:#e65100"></span>A(5) — Syngenesious anthers (fused anther ring)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffe0b2;border-color:#e65100"></span>G(2) — Inferior ovary (large outer oval = hatched)</div>
+          <p class="fd-note">Inferior ovary is shown as the large outer ring. Syngenesious anthers (forming a tube through which the style pushes pollen) are the key feature.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ══ 8. LILIACEAE ══ -->
@@ -899,6 +1261,53 @@
       <span class="ep">🌸 <em>Lilium</em></span>
       <span class="ep">💊 <em>Aloe vera</em></span>
       <span class="ep">🌿 <em>Asparagus</em></span>
+    </div>
+
+    <!-- FLORAL DIAGRAM: Liliaceae -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram</div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#fff3e0" stroke="#e0e0e0" stroke-width="1"/>
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- P(3): outer 3 tepals (sepal-like, orange) at 0,120,240° -->
+            <g transform="rotate(0,100,100)">  <ellipse cx="100" cy="32" rx="12" ry="26" fill="#ffcc80" stroke="#e65100" stroke-width="1.5"/></g>
+            <g transform="rotate(120,100,100)"><ellipse cx="100" cy="32" rx="12" ry="26" fill="#ffcc80" stroke="#e65100" stroke-width="1.5"/></g>
+            <g transform="rotate(240,100,100)"><ellipse cx="100" cy="32" rx="12" ry="26" fill="#ffcc80" stroke="#e65100" stroke-width="1.5"/></g>
+            <!-- P(3): inner 3 tepals (petal-like, pink) at 60,180,300° -->
+            <g transform="rotate(60,100,100)"> <ellipse cx="100" cy="38" rx="14" ry="22" fill="#f8bbd0" stroke="#e91e63" stroke-width="1.5"/></g>
+            <g transform="rotate(180,100,100)"><ellipse cx="100" cy="38" rx="14" ry="22" fill="#f8bbd0" stroke="#e91e63" stroke-width="1.5"/></g>
+            <g transform="rotate(300,100,100)"><ellipse cx="100" cy="38" rx="14" ry="22" fill="#f8bbd0" stroke="#e91e63" stroke-width="1.5"/></g>
+            <!-- A3: outer stamens opposite outer tepals at 0,120,240°, r=44 -->
+            <g transform="rotate(0,100,100)">  <line x1="100" y1="100" x2="100" y2="64" stroke="#bdbdbd" stroke-width="1.5"/><ellipse cx="100" cy="60" rx="6" ry="4.5" fill="#a5d6a7" stroke="#2e7d32" stroke-width="1"/></g>
+            <g transform="rotate(120,100,100)"><line x1="100" y1="100" x2="100" y2="64" stroke="#bdbdbd" stroke-width="1.5"/><ellipse cx="100" cy="60" rx="6" ry="4.5" fill="#a5d6a7" stroke="#2e7d32" stroke-width="1"/></g>
+            <g transform="rotate(240,100,100)"><line x1="100" y1="100" x2="100" y2="64" stroke="#bdbdbd" stroke-width="1.5"/><ellipse cx="100" cy="60" rx="6" ry="4.5" fill="#a5d6a7" stroke="#2e7d32" stroke-width="1"/></g>
+            <!-- A3: inner stamens opposite inner tepals at 60,180,300°, r=36 -->
+            <g transform="rotate(60,100,100)"> <line x1="100" y1="100" x2="100" y2="70" stroke="#bdbdbd" stroke-width="1.5"/><ellipse cx="100" cy="66" rx="6" ry="4.5" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(180,100,100)"><line x1="100" y1="100" x2="100" y2="70" stroke="#bdbdbd" stroke-width="1.5"/><ellipse cx="100" cy="66" rx="6" ry="4.5" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <g transform="rotate(300,100,100)"><line x1="100" y1="100" x2="100" y2="70" stroke="#bdbdbd" stroke-width="1.5"/><ellipse cx="100" cy="66" rx="6" ry="4.5" fill="#ffee58" stroke="#e65100" stroke-width="1"/></g>
+            <!-- G(3) trilocular syncarpous ovary: triangle with 3 locules -->
+            <circle cx="100" cy="100" r="18" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+            <line x1="100" y1="82" x2="100" y2="118" stroke="#c62828" stroke-width="1"/>
+            <line x1="100" y1="100" x2="118" y2="109" stroke="#c62828" stroke-width="1"/>
+            <line x1="100" y1="100" x2="82" y2="109" stroke="#c62828" stroke-width="1"/>
+            <circle cx="100" cy="90" r="3" fill="#fff"/>
+            <circle cx="109" cy="106" r="3" fill="#fff"/>
+            <circle cx="91" cy="106" r="3" fill="#fff"/>
+          </svg>
+          <div class="fd-caption">⊕ P(3+3) A3+3 G(3)</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcc80;border-color:#e65100"></span>P3 (outer) — 3 outer tepals (sepal-like, orange)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#f8bbd0;border-color:#e91e63"></span>P3 (inner) — 3 inner tepals (petal-like, pink), alternating</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#a5d6a7;border-color:#2e7d32"></span>A3 (outer) — 3 outer stamens, opposite outer tepals</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffee58;border-color:#e65100"></span>A3 (inner) — 3 inner stamens, opposite inner tepals</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcdd2;border-color:#e53935"></span>G(3) — Tricarpellary syncarpous; 3 locules (lines = septa)</div>
+          <p class="fd-note">No distinction between sepals and petals → called tepals (P). Superior ovary with axile placentation and 3 locules.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -960,6 +1369,51 @@
       <span class="ep">🍬 <em>Saccharum</em></span>
       <span class="ep">🎋 <em>Bambusa</em></span>
       <span class="ep">🍺 <em>Hordeum</em> (Barley)</span>
+    </div>
+
+    <!-- FLORAL DIAGRAM: Poaceae -->
+    <div class="fd-wrap">
+      <div class="fd-title">📊 Floral Diagram <span style="font-size:.8rem;font-weight:600;opacity:.65">— highly reduced grass floret</span></div>
+      <div class="fd-flex">
+        <div class="fd-svg-box">
+          <svg viewBox="0 0 200 200" width="170" height="170" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="100" cy="100" r="94" fill="#e8f5e9" stroke="#e0e0e0" stroke-width="1"/>
+            <circle cx="100" cy="8" r="5" fill="#212121"/>
+            <polygon points="100,182 92,196 108,196" fill="#2e7d32"/>
+            <!-- Lemma (lower enclosing bract): large outer oval -->
+            <ellipse cx="100" cy="100" rx="75" ry="82" fill="none" stroke="#795548" stroke-width="3"/>
+            <text x="30" y="55" font-size="10" fill="#795548" font-weight="bold">Lemma</text>
+            <!-- Palea (upper bract): inner oval -->
+            <ellipse cx="100" cy="100" rx="56" ry="64" fill="none" stroke="#a1887f" stroke-width="2" stroke-dasharray="5,3"/>
+            <text x="140" y="148" font-size="10" fill="#a1887f" font-weight="bold">Palea</text>
+            <!-- P2 lodicules (2 small triangles at base of flower) -->
+            <polygon points="86,140 94,125 78,125" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/>
+            <polygon points="114,140 106,125 122,125" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5"/>
+            <!-- A3: 3 stamens with large anthers at 0,120,240°, r=38 -->
+            <line x1="100" y1="100" x2="100" y2="62" stroke="#bdbdbd" stroke-width="1.5"/>
+            <rect x="93" y="54" width="14" height="10" rx="3" fill="#ffee58" stroke="#e65100" stroke-width="1.5"/>
+            <line x1="100" y1="100" x2="133" y2="119" stroke="#bdbdbd" stroke-width="1.5"/>
+            <rect x="129" y="120" width="14" height="10" rx="3" fill="#ffee58" stroke="#e65100" stroke-width="1.5" transform="rotate(60,136,125)"/>
+            <line x1="100" y1="100" x2="67" y2="119" stroke="#bdbdbd" stroke-width="1.5"/>
+            <rect x="57" y="120" width="14" height="10" rx="3" fill="#ffee58" stroke="#e65100" stroke-width="1.5" transform="rotate(-60,64,125)"/>
+            <!-- G1 monocarpellary ovary at centre -->
+            <ellipse cx="100" cy="100" rx="12" ry="16" fill="#ffcdd2" stroke="#e53935" stroke-width="2"/>
+            <!-- Feathery stigmas shown as lines from top of ovary -->
+            <line x1="97" y1="84" x2="90" y2="70" stroke="#9c27b0" stroke-width="1.5"/>
+            <line x1="103" y1="84" x2="110" y2="70" stroke="#9c27b0" stroke-width="1.5"/>
+          </svg>
+          <div class="fd-caption">↑ Lemma+Palea · P2(lodicules) · A3 · G1</div>
+        </div>
+        <div class="fd-legend">
+          <div class="fd-key"><span class="fd-swatch" style="background:none;border-color:#795548"></span>Lemma — lower enclosing bract (outer oval)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:none;border-color:#a1887f"></span>Palea — upper bract (inner dashed oval)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#c8e6c9;border-color:#388e3c"></span>P2 — 2 lodicules (highly reduced perianth, cause anthesis)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffee58;border-color:#e65100"></span>A3 — 3 stamens with large versatile anthers (rectangular)</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#ffcdd2;border-color:#e53935"></span>G1 — Monocarpellary superior ovary</div>
+          <div class="fd-key"><span class="fd-swatch" style="background:#9c27b0;border-color:#6a1b9a"></span>— Feathery stigmas (2, for wind-pollination)</div>
+          <p class="fd-note">Highly reduced, wind-pollinated flower enclosed in lemma + palea. Lodicules swell to open the floret for anthesis. Fruit = caryopsis (pericarp fused to seed).</p>
+        </div>
+      </div>
     </div>
   </div>
 
