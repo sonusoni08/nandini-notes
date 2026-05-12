@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌿 Plant Taxonomy - Study Notes 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+    :root {
+      --pink:   #ffb7c5;
+      --lavender: #d4b8e0;
+      --mint:   #b5ead7;
+      --yellow: #ffeaa7;
+      --peach:  #ffcba4;
+      --blue:   #b8d8f8;
+      --dark:   #4a3f55;
+      --card-bg:#fff9fc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 30%, #e8f5e9 60%, #e3f2fd 100%);
+      min-height: 100vh;
+      color: var(--dark);
+      padding-bottom: 60px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      text-align: center;
+      padding: 50px 20px 30px;
+      background: linear-gradient(135deg, #f8a5c2 0%, #c39bd3 50%, #82c8a0 100%);
+      clip-path: ellipse(100% 85% at 50% 0%);
+      padding-bottom: 70px;
+      margin-bottom: -30px;
+    }
+    header h1 {
+      font-family: 'Nunito', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      color: white;
+      text-shadow: 0 3px 10px rgba(0,0,0,.18);
+      letter-spacing: 1px;
+    }
+    header p {
+      color: rgba(255,255,255,.9);
+      margin-top: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    /* ── CONTAINER ── */
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px 0;
+    }
+
+    /* ── SECTION CARD ── */
+    .card {
+      background: var(--card-bg);
+      border-radius: 28px;
+      padding: 36px 38px;
+      margin-bottom: 36px;
+      box-shadow: 0 8px 30px rgba(180,130,200,.15);
+      border: 2.5px solid transparent;
+      position: relative;
+      overflow: hidden;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 40px rgba(180,130,200,.25);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      border-radius: 28px 28px 0 0;
+    }
+    .card.pink::before   { background: linear-gradient(90deg,#ff8fab,#ffb3c6); }
+    .card.purple::before { background: linear-gradient(90deg,#b39ddb,#ce93d8); }
+    .card.mint::before   { background: linear-gradient(90deg,#80cbc4,#a5d6a7); }
+    .card.yellow::before { background: linear-gradient(90deg,#ffe082,#ffcc80); }
+    .card.blue::before   { background: linear-gradient(90deg,#90caf9,#80deea); }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .card-icon {
+      font-size: 2.4rem;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,.1));
+    }
+    .card h2 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 800;
+      line-height: 1.3;
+    }
+    .card.pink h2   { color: #c2185b; }
+    .card.purple h2 { color: #7b1fa2; }
+    .card.mint h2   { color: #2e7d32; }
+    .card.yellow h2 { color: #e65100; }
+    .card.blue h2   { color: #1565c0; }
+
+    /* ── TEXT ── */
+    p { line-height: 1.75; font-size: 1.01rem; margin-bottom: 14px; }
+
+    /* ── SUBHEADINGS ── */
+    h3 {
+      font-family: 'Nunito', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 22px 0 10px;
+    }
+    .card.pink h3   { color: #e91e63; }
+    .card.purple h3 { color: #9c27b0; }
+    .card.mint h3   { color: #388e3c; }
+    .card.yellow h3 { color: #f57c00; }
+    .card.blue h3   { color: #1976d2; }
+
+    /* ── EXAMPLE BOX ── */
+    .example {
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: .97rem;
+    }
+    .card.pink .example   { background: #fce4ec; border-left: 4px solid #f48fb1; }
+    .card.purple .example { background: #f3e5f5; border-left: 4px solid #ce93d8; }
+    .card.mint .example   { background: #e8f5e9; border-left: 4px solid #a5d6a7; }
+    .card.yellow .example { background: #fff8e1; border-left: 4px solid #ffe082; }
+    .card.blue .example   { background: #e3f2fd; border-left: 4px solid #90caf9; }
+
+    .example strong { display: block; margin-bottom: 6px; font-weight: 700; }
+
+    /* ── PILL LIST ── */
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0;
+    }
+    .pill {
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+    .card.pink .pill   { background: #ffcdd2; color: #b71c1c; }
+    .card.purple .pill { background: #e1bee7; color: #4a148c; }
+    .card.mint .pill   { background: #c8e6c9; color: #1b5e20; }
+    .card.yellow .pill { background: #ffe0b2; color: #bf360c; }
+    .card.blue .pill   { background: #bbdefb; color: #0d47a1; }
+
+    /* ── COMPARISON TABLE ── */
+    .table-wrap { overflow-x: auto; margin: 14px 0; border-radius: 14px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .95rem;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    th {
+      padding: 12px 16px;
+      text-align: left;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      color: white;
+    }
+    .card.pink th   { background: #f06292; }
+    .card.purple th { background: #ba68c8; }
+    .card.mint th   { background: #66bb6a; }
+    .card.yellow th { background: #ffa726; }
+    .card.blue th   { background: #42a5f5; }
+
+    td { padding: 11px 16px; vertical-align: top; }
+    tr:nth-child(even) td { background: rgba(0,0,0,.025); }
+    tr:nth-child(odd) td  { background: rgba(255,255,255,.6); }
+
+    /* ── RULE LIST ── */
+    .rule-list { list-style: none; padding: 0; }
+    .rule-list li {
+      padding: 10px 14px 10px 40px;
+      border-radius: 12px;
+      margin-bottom: 9px;
+      position: relative;
+      font-size: .98rem;
+      line-height: 1.6;
+    }
+    .rule-list li::before {
+      position: absolute;
+      left: 12px;
+      font-size: 1.1rem;
+    }
+    .card.pink .rule-list li   { background: #fff0f3; }
+    .card.purple .rule-list li { background: #f8f0fc; }
+    .card.mint .rule-list li   { background: #f0faf0; }
+    .card.yellow .rule-list li { background: #fffbf0; }
+    .card.blue .rule-list li   { background: #f0f7ff; }
+
+    /* ── CUTE DIVIDER ── */
+    .divider {
+      text-align: center;
+      font-size: 1.6rem;
+      letter-spacing: 8px;
+      margin: 6px 0 30px;
+      opacity: .55;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: .95rem;
+      color: #9c6ea0;
+      font-weight: 600;
+    }
+
+    /* ── HIGHLIGHT ── */
+    mark {
+      border-radius: 4px;
+      padding: 1px 4px;
+      font-weight: 600;
+    }
+    .card.pink mark   { background: #ffcdd2; color: #b71c1c; }
+    .card.purple mark { background: #e1bee7; color: #4a148c; }
+    .card.mint mark   { background: #c8e6c9; color: #1b5e20; }
+    .card.yellow mark { background: #ffe0b2; color: #bf360c; }
+    .card.blue mark   { background: #bbdefb; color: #0d47a1; }
+
+    /* italic scientific name */
+    .sci { font-style: italic; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<header>
+  <h1>🌿 Plant Taxonomy Notes 🌸</h1>
+  <p>✨ cute lil study guide for my pookie botanists ✨</p>
+</header>
+
+<div class="container">
+
+  <!-- ══════════════════════════════════════════
+       CARD 1 — BOTANICAL NOMENCLATURE & ICBN
+  ══════════════════════════════════════════ -->
+  <div class="card pink">
+    <div class="card-header">
+      <span class="card-icon">🏷️</span>
+      <h2>Botanical Nomenclature &amp; Major Rules of ICBN 🌺</h2>
+    </div>
+
+    <p>
+      <strong>Botanical nomenclature</strong> is the formal scientific naming of plants so that every
+      plant has one universally accepted name — no confusion across countries or languages! 🌍
+      The rules are set by the <mark>International Code of Botanical Nomenclature (ICBN)</mark>,
+      now called the <strong>International Code of Nomenclature for Algae, Fungi &amp; Plants (ICN)</strong>.
+    </p>
+
+    <h3>🌸 Why Do We Need Nomenclature?</h3>
+    <p>
+      Common names vary wildly — "daisy" means different plants in different countries!
+      Scientific names give every species one unique, stable, Latin-based identity understood by
+      botanists worldwide. 💕
+    </p>
+    <div class="example">
+      <strong>🌼 Example</strong>
+      The "Indian lotus" is called <span class="sci">Nelumbo nucifera</span> everywhere — whether
+      you're in India, Japan, or Germany. No mix-ups, pookie! 🪷
+    </div>
+
+    <h3>📜 Major Rules of ICBN (ICN)</h3>
+    <ul class="rule-list">
+      <li style="--icon:'1️⃣'">
+        <strong>Binomial Nomenclature (Linnaeus, 1753):</strong>
+        Every plant gets a two-part Latin name — <em>Genus + species epithet</em>.
+        E.g., <span class="sci">Mangifera indica</span> (Mango) 🥭
+      </li>
+      <li style="--icon:'2️⃣'">
+        <strong>Priority Rule:</strong>
+        The <em>earliest validly published</em> name is the accepted name. The very first
+        published name wins — even if a prettier one comes along later! 🥇
+      </li>
+      <li style="--icon:'3️⃣'">
+        <strong>Latin (or Latinised) Names:</strong>
+        All names must be in Latin or Latinised form and written in italics
+        (or underlined when handwritten). ✍️
+      </li>
+      <li style="--icon:'4️⃣'">
+        <strong>Author Citation:</strong>
+        The name of the person who first described the plant is added after the species name.
+        E.g., <span class="sci">Mangifera indica</span> L. — "L." stands for Linnaeus 💌
+      </li>
+      <li style="--icon:'5️⃣'">
+        <strong>Type Specimen (Nomenclatural Type):</strong>
+        Each name must be tied to a preserved specimen (herbarium sheet) kept in a museum,
+        called the <em>Type specimen</em>. It's like the official ID card for the plant! 🪴
+      </li>
+      <li style="--icon:'6️⃣'">
+        <strong>Effective &amp; Valid Publication:</strong>
+        A name is only accepted if it is published in a recognised scientific journal/book
+        with a proper Latin description (before 2012) or a description in any language + Latin
+        diagnosis (post-2012). 📖
+      </li>
+      <li style="--icon:'7️⃣'">
+        <strong>Rejection of Names (Nomina Rejicienda):</strong>
+        A name can be officially rejected if it causes serious confusion, even if published first. 🚫
+      </li>
+      <li style="--icon:'8️⃣'">
+        <strong>One Name per Taxon:</strong>
+        A plant species can have <em>only one</em> correct scientific name at any given time.
+        Multiple names (synonyms) may exist historically, but only one is current! 🎀
+      </li>
+    </ul>
+
+    <h3>🌹 Ranks in Plant Taxonomy</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Rank</th><th>Example (Mango)</th></tr>
+        <tr><td>Kingdom</td><td>Plantae</td></tr>
+        <tr><td>Division (Phylum)</td><td>Magnoliophyta</td></tr>
+        <tr><td>Class</td><td>Magnoliopsida</td></tr>
+        <tr><td>Order</td><td>Sapindales</td></tr>
+        <tr><td>Family</td><td>Anacardiaceae</td></tr>
+        <tr><td>Genus</td><td><span class="sci">Mangifera</span></td></tr>
+        <tr><td>Species</td><td><span class="sci">Mangifera indica</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider">🌸 ✿ 🌸 ✿ 🌸</div>
+
+  <!-- ══════════════════════════════════════════
+       CARD 2 — KEYS TO IDENTIFICATION
+  ══════════════════════════════════════════ -->
+  <div class="card purple">
+    <div class="card-header">
+      <span class="card-icon">🔑</span>
+      <h2>Keys to Identification of Plants 🔎🌿</h2>
+    </div>
+
+    <p>
+      A <mark>taxonomic key</mark> is a tool that helps you identify an unknown plant step-by-step
+      by asking a series of contrasting questions about its features. Think of it like a botanical
+      choose-your-own-adventure! 💜
+    </p>
+
+    <h3>💜 Types of Keys</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+        <tr>
+          <td><strong>Dichotomous Key</strong></td>
+          <td>Most common type — each step gives you exactly <em>two</em> contrasting choices (a &amp; b). Follow the matching choice onward.</td>
+          <td>"Leaves simple" vs "Leaves compound"</td>
+        </tr>
+        <tr>
+          <td><strong>Polyclave (Multi-access) Key</strong></td>
+          <td>Multiple characters can be used in any order — great for incomplete specimens. 🌟</td>
+          <td>Computer-based interactive keys</td>
+        </tr>
+        <tr>
+          <td><strong>Synoptic Key</strong></td>
+          <td>A summary-style key that lists characters of major groups.</td>
+          <td>Keys in flora manuals</td>
+        </tr>
+        <tr>
+          <td><strong>Bracketed (Indented) Key</strong></td>
+          <td>Contrasting pairs are shown side by side with bracket numbers.</td>
+          <td>1a ... 1b ... 2a ... 2b ...</td>
+        </tr>
+      </table>
+    </div>
+
+    <h3>💡 How a Dichotomous Key Works</h3>
+    <div class="example">
+      <strong>🌺 Mini Example Key — Identify a Flower</strong>
+      <p style="margin-top:8px;">
+        <strong>1a.</strong> Petals fused (joined together) .............. go to <strong>2</strong><br>
+        <strong>1b.</strong> Petals free (separate) ........................ go to <strong>3</strong><br><br>
+        <strong>2a.</strong> Flower tubular, 5 stamens ................... <em>Family Solanaceae</em> 🍅<br>
+        <strong>2b.</strong> Flower bell-shaped, 4 stamens ............. <em>Family Convolvulaceae</em> 🌸<br><br>
+        <strong>3a.</strong> Petals 4, cruciform ........................... <em>Family Brassicaceae</em> 🥦<br>
+        <strong>3b.</strong> Petals 5, zygomorphic ........................ <em>Family Fabaceae</em> 🫛
+      </p>
+    </div>
+
+    <h3>✅ Features Used in Plant Keys</h3>
+    <div class="pill-list">
+      <span class="pill">Leaf shape &amp; arrangement</span>
+      <span class="pill">Flower symmetry</span>
+      <span class="pill">Number of petals/sepals</span>
+      <span class="pill">Fruit/seed type</span>
+      <span class="pill">Stem type (woody/herbaceous)</span>
+      <span class="pill">Presence of stipules</span>
+      <span class="pill">Inflorescence type</span>
+      <span class="pill">Root system</span>
+    </div>
+
+    <h3>💜 Merits &amp; Demerits</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Merits ✅</th><th>Demerits ❌</th></tr>
+        <tr>
+          <td>Quick &amp; easy to use in the field 🌿</td>
+          <td>Works best only when the specimen is complete</td>
+        </tr>
+        <tr>
+          <td>Requires no special equipment</td>
+          <td>One wrong choice leads you astray! 😬</td>
+        </tr>
+        <tr>
+          <td>Universally applicable</td>
+          <td>Does not show evolutionary relationships</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider">🍀 ✿ 🍀 ✿ 🍀</div>
+
+  <!-- ══════════════════════════════════════════
+       CARD 3 — HERBARIA, BOTANICAL GARDENS, FLORAS, MONOGRAPHS & JOURNALS
+  ══════════════════════════════════════════ -->
+  <div class="card mint">
+    <div class="card-header">
+      <span class="card-icon">📚</span>
+      <h2>Herbaria, Botanical Gardens, Floras, Monographs &amp; Journals 🌱</h2>
+    </div>
+
+    <p>
+      Taxonomists use several tools to <mark>document, preserve, and share</mark> knowledge about
+      plants. These resources form the backbone of botanical science — let's explore them! 🌿💚
+    </p>
+
+    <!-- HERBARIA -->
+    <h3>🗂️ Herbaria (Singular: Herbarium)</h3>
+    <p>
+      A <strong>herbarium</strong> is a collection of preserved, dried, and pressed plant specimens
+      mounted on sheets, properly labelled, and stored systematically for reference and research. 🌿
+    </p>
+    <div class="example">
+      <strong>📋 What's on a Herbarium Sheet?</strong>
+      Plant specimen (dried &amp; pressed) | Collector's name | Date of collection |
+      Location (locality, altitude) | Habitat description | Local/scientific name
+    </div>
+    <p><strong>🌍 Famous Herbaria of the World:</strong></p>
+    <div class="pill-list">
+      <span class="pill">Royal Botanic Gardens, Kew (UK) 🇬🇧</span>
+      <span class="pill">Natural History Museum, Paris 🇫🇷</span>
+      <span class="pill">Botanical Survey of India (BSI) 🇮🇳</span>
+      <span class="pill">Smithsonian Institution (USA) 🇺🇸</span>
+    </div>
+    <p><strong>Importance:</strong> Herbaria serve as permanent records (type specimens!), help in
+    re-examination of species, assist in studying biodiversity, and aid climate change research. 💚</p>
+
+    <!-- BOTANICAL GARDENS -->
+    <h3>🌳 Botanical Gardens</h3>
+    <p>
+      A <strong>botanical garden</strong> is a curated garden where living plant collections are
+      maintained for scientific study, conservation, and education. Plants are labelled with their
+      scientific names and families. 🌺
+    </p>
+    <div class="example">
+      <strong>🌸 Famous Botanical Gardens</strong>
+      🇬🇧 Royal Botanic Gardens, Kew, London — world's largest living plant collection<br>
+      🇮🇳 Indian Botanic Garden, Howrah (Kolkata) — home to the famous 250-year-old "Big Banyan Tree"<br>
+      🇮🇳 Lal Bagh, Bangalore — oldest botanical garden in India<br>
+      🇳🇱 Hortus Botanicus, Leiden — one of the world's oldest (founded 1590)
+    </div>
+    <p><strong>Functions:</strong> Conservation of rare/endangered species 🌱 | Public education |
+    Research on plant physiology &amp; genetics | Introduction of economically important plants</p>
+
+    <!-- FLORAS -->
+    <h3>📖 Floras</h3>
+    <p>
+      A <strong>flora</strong> is a scientific publication that lists and describes all plants found
+      in a particular geographical area, complete with identification keys, descriptions, and
+      distribution details. 🗺️
+    </p>
+    <div class="example">
+      <strong>📚 Examples of Important Floras</strong>
+      • <em>Flora Indica</em> — Hooker &amp; Thomson (1855): plants of Indian subcontinent<br>
+      • <em>Flora of British India</em> — J. D. Hooker (1872–1897): 7 volumes, ~17,500 species<br>
+      • <em>Flora of Maharashtra</em> — regional flora of Maharashtra state, India<br>
+      • <em>Flora Europaea</em> — covers all flowering plants of Europe
+    </div>
+
+    <!-- MONOGRAPHS -->
+    <h3>🔬 Monographs</h3>
+    <p>
+      A <strong>monograph</strong> is an in-depth, comprehensive account of a single plant taxon
+      (one genus or family) covering all known species worldwide — their morphology, distribution,
+      ecology, uses, and evolutionary history. 💜
+    </p>
+    <div class="example">
+      <strong>📝 Example</strong>
+      A monograph on the genus <span class="sci">Rosa</span> (roses) would include every species
+      of rose on Earth, their descriptions, differences, keys, and distribution maps. 🌹
+    </div>
+
+    <!-- JOURNALS -->
+    <h3>📰 Botanical Journals</h3>
+    <p>
+      <strong>Journals</strong> publish new research findings, descriptions of new species, and
+      taxonomic revisions. They are essential for keeping the scientific community updated! 🌐
+    </p>
+    <div class="pill-list">
+      <span class="pill">Taxon (IAPT)</span>
+      <span class="pill">Botanical Journal of the Linnean Society</span>
+      <span class="pill">American Journal of Botany</span>
+      <span class="pill">Kew Bulletin</span>
+      <span class="pill">Journal of the Botanical Survey of India</span>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <h3>📊 Quick Comparison</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Resource</th><th>Nature</th><th>Scope</th></tr>
+        <tr><td>Herbarium</td><td>Preserved physical specimens</td><td>Any geographic area</td></tr>
+        <tr><td>Botanical Garden</td><td>Living plant collection</td><td>Any geographic area</td></tr>
+        <tr><td>Flora</td><td>Published book/list</td><td>Specific region</td></tr>
+        <tr><td>Monograph</td><td>Published book</td><td>Single taxon, worldwide</td></tr>
+        <tr><td>Journal</td><td>Periodical publication</td><td>Any topic in botany</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider">🌻 ✿ 🌻 ✿ 🌻</div>
+
+  <!-- ══════════════════════════════════════════
+       CARD 4 — CYTOTAXONOMY & CHEMOTAXONOMY
+  ══════════════════════════════════════════ -->
+  <div class="card yellow">
+    <div class="card-header">
+      <span class="card-icon">🔬</span>
+      <h2>Cytotaxonomy &amp; Chemotaxonomy 🧬🧪</h2>
+    </div>
+
+    <p>
+      Classical taxonomy relied on <em>morphology alone</em>. Modern taxonomy uses additional
+      evidence from <mark>chromosomes (cytotaxonomy)</mark> and <mark>chemical compounds
+      (chemotaxonomy)</mark> to understand plant relationships more accurately. 🔥
+    </p>
+
+    <!-- CYTOTAXONOMY -->
+    <h3>🧬 Cytotaxonomy</h3>
+    <p>
+      <strong>Cytotaxonomy</strong> is the branch that uses <em>chromosome characteristics</em> —
+      number, size, shape, and behaviour — to classify and establish relationships among plants. 🌼
+    </p>
+
+    <h3>Key Chromosomal Features Studied:</h3>
+    <ul class="rule-list">
+      <li><strong>Chromosome number (2n):</strong> The total number of chromosomes in somatic cells. A constant feature within a species — great for identification! 🔢</li>
+      <li><strong>Karyotype:</strong> The overall appearance of the chromosome set — size, shape, centromere position, secondary constrictions. Like a fingerprint for each species! 🖐️</li>
+      <li><strong>Polyploidy:</strong> Having multiple sets of chromosomes. Polyploidy has driven speciation in plants — especially in crop plants! 🌾</li>
+      <li><strong>Chromosome pairing (meiosis):</strong> During hybridisation studies, chromosome pairing reveals genetic closeness between species.</li>
+    </ul>
+
+    <div class="example">
+      <strong>🌾 Cytotaxonomy Example — Wheat</strong>
+      Einkorn wheat <span class="sci">Triticum monococcum</span>: 2n = 14 (diploid, genome AA)<br>
+      Emmer wheat <span class="sci">Triticum dicoccum</span>: 2n = 28 (tetraploid, genome AABB)<br>
+      Bread wheat <span class="sci">Triticum aestivum</span>: 2n = 42 (hexaploid, genome AABBDD)<br>
+      <br>
+      The chromosome data reveals the evolutionary polyploidy series in wheat — beautiful, right? 🥐💛
+    </div>
+
+    <div class="example">
+      <strong>🌸 Another Example — Brassica Triangle</strong>
+      <span class="sci">Brassica nigra</span> (2n=16, BB) + <span class="sci">B. oleracea</span> (2n=18, CC) →
+      <span class="sci">B. carinata</span> (2n=34, BBCC). Chromosome numbers proved this hybrid origin! 🥦
+    </div>
+
+    <h3>Importance of Cytotaxonomy:</h3>
+    <div class="pill-list">
+      <span class="pill">Confirms species boundaries 🌿</span>
+      <span class="pill">Reveals polyploidy &amp; evolution</span>
+      <span class="pill">Explains speciation mechanisms</span>
+      <span class="pill">Useful in plant breeding 🌾</span>
+      <span class="pill">Resolves disputed classifications</span>
+    </div>
+
+    <!-- CHEMOTAXONOMY -->
+    <h3>🧪 Chemotaxonomy (Chemical Taxonomy)</h3>
+    <p>
+      <strong>Chemotaxonomy</strong> uses the <em>chemical constituents</em> of plants — such as
+      alkaloids, flavonoids, terpenes, proteins, and DNA sequences — as taxonomic characters to
+      classify and understand plant relationships. 💛
+    </p>
+
+    <h3>Types of Chemical Characters Used:</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Chemical</th><th>Example in Taxonomy</th></tr>
+        <tr><td>Alkaloids</td><td>Presence of nicotine in Solanaceae; caffeine in Rubiaceae</td></tr>
+        <tr><td>Flavonoids</td><td>Patterns of flavonoids distinguish genera within families</td></tr>
+        <tr><td>Essential oils / Terpenes</td><td>Monoterpene composition separates Lamiaceae genera</td></tr>
+        <tr><td>Proteins (Serology)</td><td>Serum reactions show degree of relationship between species</td></tr>
+        <tr><td>DNA sequences</td><td>Molecular systematics — most powerful modern tool! 🧬</td></tr>
+        <tr><td>Glucosinolates</td><td>Characteristic of family Brassicaceae</td></tr>
+      </table>
+    </div>
+
+    <div class="example">
+      <strong>🌿 Chemotaxonomy Example</strong>
+      The presence of <em>glucosinolates</em> (mustard oil glucosides) is found only in members of
+      the family Brassicaceae (mustard family). This chemical marker is used to confirm family
+      membership even when morphology is confusing! 🥗
+      <br><br>
+      Similarly, <em>betalains</em> (red/yellow pigments) occur only in the order Caryophyllales
+      — and NOT in any other flowering plant order. This is a powerful chemotaxonomic marker! 🌹
+    </div>
+
+    <h3>Importance of Chemotaxonomy:</h3>
+    <div class="pill-list">
+      <span class="pill">Objective, measurable evidence 🔬</span>
+      <span class="pill">Identifies medicinal compounds 💊</span>
+      <span class="pill">Resolves morphologically similar taxa</span>
+      <span class="pill">Reveals convergent evolution</span>
+      <span class="pill">Supports molecular phylogenetics 🧬</span>
+    </div>
+  </div>
+
+  <div class="divider">🌈 ✿ 🌈 ✿ 🌈</div>
+
+  <!-- ══════════════════════════════════════════
+       CARD 5 — NUMERICAL TAXONOMY
+  ══════════════════════════════════════════ -->
+  <div class="card blue">
+    <div class="card-header">
+      <span class="card-icon">📊</span>
+      <h2>Numerical Taxonomy 🔢💙</h2>
+    </div>
+
+    <p>
+      <strong>Numerical taxonomy</strong> (also called <mark>phenetics</mark> or
+      <mark>taximetrics</mark>) is an approach to classification that uses <em>mathematical and
+      statistical methods</em> to group organisms based on a large number of observable characters,
+      all given equal weight. Pioneered by <strong>Sokal &amp; Sneath</strong> (1963). 💙
+    </p>
+
+    <h3>💙 Core Principles</h3>
+    <ul class="rule-list">
+      <li><strong>Many characters:</strong> Uses a large number (50–100+) of morphological,
+      anatomical, chemical, or molecular characters simultaneously. More data = more reliable! 📈</li>
+      <li><strong>Equal weighting:</strong> Every character is given equal importance — unlike
+      classical taxonomy, where certain characters are considered more "important." ⚖️</li>
+      <li><strong>Phenetic similarity:</strong> Groups are formed based on overall similarity,
+      not evolutionary history. Similar-looking organisms are grouped together! 👯</li>
+      <li><strong>Objectivity:</strong> By using computers and statistics, human bias is reduced. 🤖</li>
+    </ul>
+
+    <h3>🔢 How Numerical Taxonomy Works — Step by Step</h3>
+    <div class="example">
+      <strong>📋 The Process</strong>
+      <p style="margin-top:8px;">
+        <strong>Step 1:</strong> Select OTUs (Operational Taxonomic Units) — the species/specimens to compare 🌿<br>
+        <strong>Step 2:</strong> Select characters (morphological, biochemical, etc.) and score them
+        (0 = absent, 1 = present) 📊<br>
+        <strong>Step 3:</strong> Calculate <em>similarity coefficients</em> between all pairs of OTUs 🔢<br>
+        <strong>Step 4:</strong> Arrange data in a similarity matrix 📐<br>
+        <strong>Step 5:</strong> Use clustering algorithms (e.g., UPGMA) to form groups 🖥️<br>
+        <strong>Step 6:</strong> Represent results as a <strong>Phenogram</strong> (a tree-like diagram) 🌳
+      </p>
+    </div>
+
+    <h3>📊 Similarity Coefficient Example</h3>
+    <div class="example">
+      <strong>🌸 Simple Example</strong>
+      Compare Plant A and Plant B across 10 characters:<br><br>
+      Characters shared by both: 7<br>
+      Characters in A only: 2<br>
+      Characters in B only: 1<br>
+      Characters in neither: 0<br><br>
+      <strong>Jaccard Similarity = 7 / (7+2+1) = 7/10 = 0.70 (70% similar)</strong> 💕<br><br>
+      A 70% similarity means A and B are fairly closely related by phenetic standards! 🌿
+    </div>
+
+    <h3>🌳 Phenogram vs. Cladogram</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Feature</th><th>Phenogram (Numerical Taxonomy)</th><th>Cladogram (Cladistics)</th></tr>
+        <tr><td>Basis</td><td>Overall similarity of characters</td><td>Shared derived characters (synapomorphies)</td></tr>
+        <tr><td>Evolution</td><td>Not considered</td><td>Central focus 🧬</td></tr>
+        <tr><td>Characters</td><td>All, equally weighted</td><td>Only derived states counted</td></tr>
+        <tr><td>Result</td><td>Phenogram</td><td>Cladogram</td></tr>
+        <tr><td>Goal</td><td>Groups by similarity</td><td>Groups by ancestry</td></tr>
+      </table>
+    </div>
+
+    <h3>✅ Merits of Numerical Taxonomy</h3>
+    <div class="pill-list">
+      <span class="pill">Objective &amp; reproducible 🤖</span>
+      <span class="pill">Uses many characters</span>
+      <span class="pill">Handles large datasets easily</span>
+      <span class="pill">No character weighting bias</span>
+      <span class="pill">Computer-assisted speed 💻</span>
+    </div>
+
+    <h3>❌ Demerits</h3>
+    <div class="pill-list">
+      <span class="pill">Ignores evolutionary history 🚫</span>
+      <span class="pill">Convergent evolution can mislead</span>
+      <span class="pill">Large data collection is tedious</span>
+      <span class="pill">Phenogram ≠ true phylogeny</span>
+    </div>
+
+    <div class="example">
+      <strong>💙 Real-World Application</strong>
+      Numerical taxonomy was used to classify <em>bacteria</em> (where morphological characters are
+      limited) into meaningful groups long before DNA sequencing became affordable. It's also used
+      in soil science to group soil types! 🌍
+    </div>
+  </div>
+
+  <div class="divider">🌿 ✨ 🌸 ✨ 🌿</div>
+
+  <!-- ══════════════════════════════════════════
+       QUICK SUMMARY BOX
+  ══════════════════════════════════════════ -->
+  <div class="card pink" style="background:linear-gradient(135deg,#fff0f5,#f5f0ff,#f0fff5); border:2.5px solid #ffb3c6;">
+    <div class="card-header">
+      <span class="card-icon">🎀</span>
+      <h2 style="color:#8e24aa;">Quick Summary — All Topics at a Glance ✨</h2>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <tr style="">
+          <th style="background:linear-gradient(90deg,#f48fb1,#ce93d8);">Topic</th>
+          <th style="background:linear-gradient(90deg,#ce93d8,#80cbc4);">What it is</th>
+          <th style="background:linear-gradient(90deg,#80cbc4,#ffe082);">Key Example</th>
+        </tr>
+        <tr>
+          <td>🏷️ <strong>ICBN</strong></td>
+          <td>Rules for naming plants scientifically</td>
+          <td><span class="sci">Mangifera indica</span> L. 🥭</td>
+        </tr>
+        <tr>
+          <td>🔑 <strong>Keys</strong></td>
+          <td>Step-by-step identification tools</td>
+          <td>Dichotomous key — 2 choices per step</td>
+        </tr>
+        <tr>
+          <td>🗂️ <strong>Herbarium</strong></td>
+          <td>Preserved dried plant specimens</td>
+          <td>Kew Herbarium, BSI Herbarium</td>
+        </tr>
+        <tr>
+          <td>🌳 <strong>Botanical Garden</strong></td>
+          <td>Living plant collections for research</td>
+          <td>Kew Gardens, Lal Bagh 🌺</td>
+        </tr>
+        <tr>
+          <td>📖 <strong>Flora</strong></td>
+          <td>Regional plant inventory book</td>
+          <td><em>Flora of British India</em></td>
+        </tr>
+        <tr>
+          <td>📕 <strong>Monograph</strong></td>
+          <td>Comprehensive study of one taxon</td>
+          <td>Monograph on <span class="sci">Rosa</span> 🌹</td>
+        </tr>
+        <tr>
+          <td>🧬 <strong>Cytotaxonomy</strong></td>
+          <td>Classification using chromosome data</td>
+          <td>Wheat polyploidy series 🌾</td>
+        </tr>
+        <tr>
+          <td>🧪 <strong>Chemotaxonomy</strong></td>
+          <td>Classification using chemical compounds</td>
+          <td>Glucosinolates → Brassicaceae 🥦</td>
+        </tr>
+        <tr>
+          <td>📊 <strong>Numerical Taxonomy</strong></td>
+          <td>Statistical, objective classification</td>
+          <td>Similarity coefficients &amp; phenograms 🌳</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>Made with 💕 for my pookie botanists 🌸 | Study hard, you've got this bestie! ✨🌿</p>
+  <p style="margin-top:8px; font-size:.85rem; opacity:.7;">Based on ICBN / Plant Taxonomy syllabus 🌺</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌸 Plant Classification & Families</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Quicksand',sans-serif;background:linear-gradient(135deg,#fdf6ff 0%,#f0fff4 50%,#fff5f7 100%);color:#3d2c5e;overflow-x:hidden}
+
+    /* HEADER */
+    header{background:linear-gradient(135deg,#b39ddb 0%,#f48fb1 50%,#80cbc4 100%);padding:60px 24px 90px;text-align:center;position:relative;clip-path:ellipse(110% 90% at 50% 0%);margin-bottom:-50px;overflow:hidden}
+    header h1{font-family:'Nunito',sans-serif;font-size:clamp(1.8rem,5vw,3.2rem);font-weight:900;color:#fff;text-shadow:0 3px 15px rgba(0,0,0,.2)}
+    header p{color:rgba(255,255,255,.9);font-size:1.05rem;margin-top:10px;font-weight:600}
+    .bg-f{position:absolute;font-size:2rem;opacity:.18;animation:floatUp linear infinite;pointer-events:none}
+    @keyframes floatUp{0%{transform:translateY(0) rotate(0);opacity:.18}100%{transform:translateY(-140px) rotate(45deg);opacity:0}}
+
+    /* CONTAINER */
+    .container{max-width:1080px;margin:0 auto;padding:70px 20px 40px}
+
+    /* SECTION TITLE */
+    .sec-title{font-family:'Nunito',sans-serif;font-size:1.85rem;font-weight:900;text-align:center;margin:50px 0 24px;color:#6d3b8a}
+    .sec-title::after{content:'';display:block;width:70px;height:4px;border-radius:4px;background:linear-gradient(90deg,#f48fb1,#ce93d8,#80cbc4);margin:8px auto 0}
+
+    /* BENTO STICKERS */
+    .sticker-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:18px 0}
+    .sticker{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 16px;border-radius:18px;font-size:.85rem;font-weight:700;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.09),0 1px 3px rgba(0,0,0,.06);min-width:82px;cursor:default;transition:transform .2s,box-shadow .2s}
+    .sticker:hover{transform:rotate(-4deg) scale(1.1);box-shadow:0 8px 20px rgba(0,0,0,.14)}
+    .sticker .em{font-size:1.7rem;margin-bottom:4px}
+    .sp{background:#ffeef5;border:2.5px solid #ffb3d1;color:#a0295a}
+    .su{background:#f5f0ff;border:2.5px solid #c8b4f5;color:#5b2d9e}
+    .sm{background:#edfff7;border:2.5px solid #90e0b8;color:#1a6b42}
+    .sy{background:#fffaed;border:2.5px solid #ffd166;color:#7a4f00}
+    .sb{background:#edf5ff;border:2.5px solid #90c2f5;color:#1a3d7a}
+    .sc{background:#fff3ee;border:2.5px solid #ffb899;color:#7a2e00}
+    .sg{background:#edfffe;border:2.5px solid #80d8d4;color:#0e5c58}
+    .sr{background:#fff0f3;border:2.5px solid #ffa8b8;color:#8c1a30}
+    .sl{background:#f3ffe0;border:2.5px solid #b4e880;color:#2d5e00}
+    .so{background:#fff8ed;border:2.5px solid #ffcc80;color:#7a3d00}
+
+    /* CLASSIFICATION CARDS */
+    .class-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin:20px 0}
+    .cc{border-radius:24px;padding:26px 24px;box-shadow:0 6px 24px rgba(0,0,0,.08);border-top:5px solid transparent;transition:transform .2s}
+    .cc:hover{transform:translateY(-5px)}
+    .cc h3{font-family:'Nunito',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:10px}
+    .cc p,.cc li{font-size:.93rem;line-height:1.72}
+    .cc ul{padding-left:18px;margin-top:8px}
+    .cc li{margin-bottom:5px}
+    .cc-art{background:#fff0f6;border-top-color:#f06292}.cc-art h3{color:#c2185b}
+    .cc-nat{background:#f0fff6;border-top-color:#66bb6a}.cc-nat h3{color:#2e7d32}
+    .cc-phy{background:#f0f4ff;border-top-color:#7986cb}.cc-phy h3{color:#283593}
+
+    /* TABLE */
+    .tw{overflow-x:auto;border-radius:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin:18px 0}
+    table{width:100%;border-collapse:collapse;font-size:.91rem}
+    th{padding:13px 16px;text-align:left;font-family:'Nunito',sans-serif;font-weight:800;color:#fff}
+    td{padding:11px 16px;vertical-align:top;line-height:1.65}
+    tr:nth-child(even) td{background:rgba(0,0,0,.025)}
+    tr:nth-child(odd) td{background:rgba(255,255,255,.7)}
+
+    /* BENTHAM & HOOKER BOX */
+    .bh-box{background:linear-gradient(135deg,#f8f4ff,#fff4fa);border:2.5px solid #d4b8f0;border-radius:28px;padding:32px 34px;margin:20px 0;box-shadow:0 8px 30px rgba(160,120,220,.13)}
+    .bh-box h3{font-family:'Nunito',sans-serif;font-size:1.3rem;font-weight:800;color:#6d3b8a;margin-bottom:14px}
+    .bh-box p{font-size:.95rem;line-height:1.75;margin-bottom:12px}
+    .bh-tree{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+    @media(max-width:640px){.bh-tree{grid-template-columns:1fr}}
+    .bh-branch{background:#fff;border-radius:18px;padding:18px 20px;border-left:5px solid;box-shadow:0 3px 12px rgba(0,0,0,.07)}
+    .bh-branch h4{font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;margin-bottom:10px}
+    .bh-branch.d{border-left-color:#f06292}.bh-branch.d h4{color:#c2185b}
+    .bh-branch.m{border-left-color:#42a5f5}.bh-branch.m h4{color:#1565c0}
+    .series-item{padding:7px 12px;border-radius:10px;margin-bottom:6px;font-size:.85rem;font-weight:600;line-height:1.5}
+    .si1{background:#fce4ec;color:#880e4f}
+    .si2{background:#f3e5f5;color:#4a148c}
+    .si3{background:#ede7f6;color:#311b92}
+    .si4{background:#e3f2fd;color:#0d47a1}
+    .si5{background:#e8f5e9;color:#1b5e20}
+    .si6{background:#fff8e1;color:#e65100}
+    .si7{background:#fbe9e7;color:#bf360c}
+
+    /* FAMILY CARDS */
+    .fam-card{border-radius:28px;padding:34px 36px;margin-bottom:40px;box-shadow:0 10px 40px rgba(0,0,0,.1);position:relative;overflow:hidden;transition:transform .2s}
+    .fam-card:hover{transform:translateY(-3px)}
+    .fam-card::before{content:'';position:absolute;top:0;left:0;right:0;height:7px;border-radius:28px 28px 0 0}
+    .fam-head{display:grid;grid-template-columns:170px 1fr;gap:26px;align-items:center;margin-bottom:22px}
+    @media(max-width:600px){.fam-head{grid-template-columns:1fr}.fam-head .flower-scene{margin-bottom:16px}}
+    .fam-info h2{font-family:'Nunito',sans-serif;font-size:1.55rem;font-weight:900;margin-bottom:5px}
+    .fam-info .sub{font-size:.92rem;opacity:.68;margin-bottom:10px}
+    .ff{display:inline-block;padding:7px 16px;border-radius:50px;font-family:'Courier New',monospace;font-size:.87rem;font-weight:700;margin-top:6px}
+    .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
+    @media(max-width:580px){.feat-grid{grid-template-columns:1fr}}
+    .fb{border-radius:18px;padding:17px 18px}
+    .fb h4{font-family:'Nunito',sans-serif;font-size:.98rem;font-weight:800;margin-bottom:9px}
+    .fb ul{list-style:none;padding:0}
+    .fb li{padding:3px 0 3px 20px;position:relative;font-size:.9rem;line-height:1.65}
+    .fb li::before{content:'✦';position:absolute;left:0;font-size:.72rem;top:6px}
+    .ex-row{display:flex;flex-wrap:wrap;gap:9px;margin:12px 0}
+    .ep{padding:5px 14px;border-radius:50px;font-size:.87rem;font-weight:700}
+    .divider{text-align:center;font-size:1.5rem;letter-spacing:8px;margin:6px 0 30px;opacity:.38}
+    @media(max-width:600px){.fam-card{padding:22px 16px}}
+
+    /* ══════════════════════════════════════
+       3D FLOWER ENGINE
+    ══════════════════════════════════════ */
+    .flower-scene{width:155px;height:155px;perspective:480px;margin:0 auto;cursor:pointer}
+    .flower-3d{width:100%;height:100%;transform-style:preserve-3d;position:relative;animation:spin3d 9s ease-in-out infinite}
+    .flower-scene:hover .flower-3d{animation-duration:2.5s}
+    @keyframes spin3d{
+      0%  {transform:rotateX(18deg) rotateY(0deg)}
+      25% {transform:rotateX(-8deg) rotateY(90deg)}
+      50% {transform:rotateX(22deg) rotateY(180deg)}
+      75% {transform:rotateX(-6deg) rotateY(270deg)}
+      100%{transform:rotateX(18deg) rotateY(360deg)}
+    }
+    /* petal base */
+    .pt{position:absolute;top:50%;left:50%;transform-origin:50% 100%;transform-style:preserve-3d;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;box-shadow:inset 0 -4px 12px rgba(255,255,255,.45),inset 0 4px 8px rgba(0,0,0,.07)}
+    .disc{position:absolute;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+
+    /* ── RANUNCULACEAE – yellow 5-petal ── */
+    .fl-ran .pt{width:36px;height:60px;margin:-60px 0 0 -18px;background:radial-gradient(ellipse at 50% 25%,#fff9c4,#fdd835 60%,#f9a825)}
+    .fl-ran .p1{transform:rotateZ(0deg)   rotateX(26deg)}
+    .fl-ran .p2{transform:rotateZ(72deg)  rotateX(26deg)}
+    .fl-ran .p3{transform:rotateZ(144deg) rotateX(26deg)}
+    .fl-ran .p4{transform:rotateZ(216deg) rotateX(26deg)}
+    .fl-ran .p5{transform:rotateZ(288deg) rotateX(26deg)}
+    .fl-ran .disc{width:38px;height:38px;background:radial-gradient(circle,#fff176,#ffab00)}
+
+    /* ── BRASSICACEAE – yellow 4-petal cross ── */
+    .fl-bra .pt{width:30px;height:56px;margin:-56px 0 0 -15px;background:radial-gradient(ellipse at 50% 22%,#fffde7,#ffee58 58%,#f9a825)}
+    .fl-bra .p1{transform:rotateZ(0deg)   rotateX(28deg)}
+    .fl-bra .p2{transform:rotateZ(90deg)  rotateX(28deg)}
+    .fl-bra .p3{transform:rotateZ(180deg) rotateX(28deg)}
+    .fl-bra .p4{transform:rotateZ(270deg) rotateX(28deg)}
+    .fl-bra .disc{width:28px;height:28px;background:radial-gradient(circle,#fff9c4,#f9a825)}
+
+    /* ── MALVACEAE – pink hibiscus 5-petal ── */
+    .fl-mal .pt{width:40px;height:66px;margin:-66px 0 0 -20px;border-radius:55% 55% 45% 45%/65% 65% 35% 35%;background:radial-gradient(ellipse at 40% 22%,#fce4ec,#e91e63 55%,#880e4f)}
+    .fl-mal .p1{transform:rotateZ(0deg)   rotateX(22deg)}
+    .fl-mal .p2{transform:rotateZ(72deg)  rotateX(22deg)}
+    .fl-mal .p3{transform:rotateZ(144deg) rotateX(22deg)}
+    .fl-mal .p4{transform:rotateZ(216deg) rotateX(22deg)}
+    .fl-mal .p5{transform:rotateZ(288deg) rotateX(22deg)}
+    .fl-mal .stcol{position:absolute;width:6px;height:42px;background:linear-gradient(#ff8a65,#bf360c);border-radius:3px;top:50%;left:50%;margin:-42px 0 0 -3px;z-index:5}
+    .fl-mal .disc{width:18px;height:18px;background:#ff8a65;z-index:12}
+
+    /* ── LEGUMINOSAE – papilionaceous purple ── */
+    .fl-leg .vex{position:absolute;width:54px;height:50px;background:radial-gradient(ellipse at 50% 28%,#f3e5f5,#9c27b0 65%,#4a148c);border-radius:50% 50% 45% 45%/60% 60% 40% 40%;top:50%;left:50%;margin:-62px 0 0 -27px;transform-origin:50% 100%;transform:rotateX(16deg)}
+    .fl-leg .wg{position:absolute;width:34px;height:44px;background:radial-gradient(ellipse at 50% 28%,#e8d5f0,#7b1fa2);border-radius:50% 50% 45% 45%/60% 60% 40% 40%;top:50%;left:50%;margin:-42px 0 0 -17px;transform-origin:50% 100%}
+    .fl-leg .w1{transform:rotateZ(-32deg) rotateX(20deg)}
+    .fl-leg .w2{transform:rotateZ(32deg)  rotateX(20deg)}
+    .fl-leg .keel{position:absolute;width:28px;height:36px;background:radial-gradient(ellipse,#ce93d8,#4a148c);border-radius:50% 50% 55% 55%/40% 40% 60% 60%;top:50%;left:50%;margin:-18px 0 0 -14px;transform:rotateX(-12deg)}
+    .fl-leg .disc{width:16px;height:16px;background:#ffcc80;z-index:20}
+
+    /* ── LAMIACEAE – bilabiate lavender ── */
+    .fl-lam .upper{position:absolute;width:46px;height:26px;background:radial-gradient(ellipse at 50% 28%,#ede7f6,#7e57c2);border-radius:50% 50% 30% 30%/70% 70% 30% 30%;top:50%;left:50%;margin:-33px 0 0 -23px;transform:rotateX(14deg)}
+    .fl-lam .ll{position:absolute;width:26px;height:20px;background:radial-gradient(ellipse,#d1c4e9,#5e35b1);border-radius:40% 40% 50% 50%/50% 50% 60% 60%;top:50%;left:50%;margin:-3px 0 0 -30px;transform:rotateZ(-22deg) rotateX(14deg)}
+    .fl-lam .lr{position:absolute;width:26px;height:20px;background:radial-gradient(ellipse,#d1c4e9,#5e35b1);border-radius:40% 40% 50% 50%/50% 50% 60% 60%;top:50%;left:50%;margin:-3px 0 0 4px;transform:rotateZ(22deg) rotateX(14deg)}
+    .fl-lam .lc{position:absolute;width:32px;height:24px;background:radial-gradient(ellipse,#b39ddb,#4527a0);border-radius:30% 30% 60% 60%/30% 30% 60% 60%;top:50%;left:50%;margin:9px 0 0 -16px;transform:rotateX(-10deg)}
+    .fl-lam .disc{width:18px;height:18px;background:#fffde7;z-index:20}
+
+    /* ── SOLANACEAE – white/purple star 5-petal ── */
+    .fl-sol .pt{width:30px;height:52px;margin:-52px 0 0 -15px;background:radial-gradient(ellipse at 50% 18%,#fff,#e8eaf6 50%,#9fa8da);border:1.5px solid #c5cae9}
+    .fl-sol .p1{transform:rotateZ(0deg)   rotateX(27deg)}
+    .fl-sol .p2{transform:rotateZ(72deg)  rotateX(27deg)}
+    .fl-sol .p3{transform:rotateZ(144deg) rotateX(27deg)}
+    .fl-sol .p4{transform:rotateZ(216deg) rotateX(27deg)}
+    .fl-sol .p5{transform:rotateZ(288deg) rotateX(27deg)}
+    .fl-sol .sta{position:absolute;width:7px;height:28px;background:#ffee58;border-radius:4px 4px 2px 2px;top:50%;left:50%;transform-origin:50% 100%}
+    .fl-sol .s1{margin:-28px 0 0 -3.5px;transform:rotateZ(0deg)}
+    .fl-sol .s2{margin:-28px 0 0 -3.5px;transform:rotateZ(72deg)}
+    .fl-sol .s3{margin:-28px 0 0 -3.5px;transform:rotateZ(144deg)}
+    .fl-sol .s4{margin:-28px 0 0 -3.5px;transform:rotateZ(216deg)}
+    .fl-sol .s5{margin:-28px 0 0 -3.5px;transform:rotateZ(288deg)}
+    .fl-sol .disc{width:22px;height:22px;background:radial-gradient(circle,#fff176,#ff9800);z-index:15}
+
+    /* ── ASTERACEAE – sunflower composite ── */
+    .fl-ast .ray{position:absolute;width:14px;height:46px;background:linear-gradient(#fff9c4,#fdd835);border-radius:50% 50% 45% 45%/60% 60% 40% 40%;top:50%;left:50%;margin:-46px 0 0 -7px;transform-origin:50% 100%}
+    .fl-ast .r1 {transform:rotateZ(0deg)     rotateX(18deg)}
+    .fl-ast .r2 {transform:rotateZ(25.7deg)  rotateX(18deg)}
+    .fl-ast .r3 {transform:rotateZ(51.4deg)  rotateX(18deg)}
+    .fl-ast .r4 {transform:rotateZ(77.1deg)  rotateX(18deg)}
+    .fl-ast .r5 {transform:rotateZ(102.8deg) rotateX(18deg)}
+    .fl-ast .r6 {transform:rotateZ(128.5deg) rotateX(18deg)}
+    .fl-ast .r7 {transform:rotateZ(154.2deg) rotateX(18deg)}
+    .fl-ast .r8 {transform:rotateZ(180deg)   rotateX(18deg)}
+    .fl-ast .r9 {transform:rotateZ(205.7deg) rotateX(18deg)}
+    .fl-ast .r10{transform:rotateZ(231.4deg) rotateX(18deg)}
+    .fl-ast .r11{transform:rotateZ(257.1deg) rotateX(18deg)}
+    .fl-ast .r12{transform:rotateZ(282.8deg) rotateX(18deg)}
+    .fl-ast .r13{transform:rotateZ(308.5deg) rotateX(18deg)}
+    .fl-ast .r14{transform:rotateZ(334.2deg) rotateX(18deg)}
+    .fl-ast .disc{width:60px;height:60px;background:radial-gradient(circle,#4e342e 30%,#6d4c41 60%,#795548);z-index:10;font-size:.55rem;color:#ffcc80;letter-spacing:.5px}
+
+    /* ── LILIACEAE – lily 6 tepals ── */
+    .fl-lil .tp{position:absolute;width:30px;height:64px;border-radius:50% 50% 45% 45%/65% 65% 35% 35%;top:50%;left:50%;margin:-64px 0 0 -15px;transform-origin:50% 100%}
+    .fl-lil .t1{transform:rotateZ(0deg)   rotateX(22deg);background:radial-gradient(ellipse at 40% 22%,#fff3e0,#ff7043 48%,#bf360c)}
+    .fl-lil .t2{transform:rotateZ(60deg)  rotateX(22deg);background:radial-gradient(ellipse at 40% 22%,#fce4ec,#e91e63 48%,#880e4f)}
+    .fl-lil .t3{transform:rotateZ(120deg) rotateX(22deg);background:radial-gradient(ellipse at 40% 22%,#fff3e0,#ff7043 48%,#bf360c)}
+    .fl-lil .t4{transform:rotateZ(180deg) rotateX(22deg);background:radial-gradient(ellipse at 40% 22%,#fce4ec,#e91e63 48%,#880e4f)}
+    .fl-lil .t5{transform:rotateZ(240deg) rotateX(22deg);background:radial-gradient(ellipse at 40% 22%,#fff3e0,#ff7043 48%,#bf360c)}
+    .fl-lil .t6{transform:rotateZ(300deg) rotateX(22deg);background:radial-gradient(ellipse at 40% 22%,#fce4ec,#e91e63 48%,#880e4f)}
+    .fl-lil .fil{position:absolute;width:4px;height:30px;border-radius:2px;background:#a5d6a7;top:50%;left:50%;transform-origin:50% 100%}
+    .fl-lil .f1{margin:-30px 0 0 -2px;transform:rotateZ(0deg)}
+    .fl-lil .f2{margin:-30px 0 0 -2px;transform:rotateZ(60deg)}
+    .fl-lil .f3{margin:-30px 0 0 -2px;transform:rotateZ(120deg)}
+    .fl-lil .f4{margin:-30px 0 0 -2px;transform:rotateZ(180deg)}
+    .fl-lil .f5{margin:-30px 0 0 -2px;transform:rotateZ(240deg)}
+    .fl-lil .f6{margin:-30px 0 0 -2px;transform:rotateZ(300deg)}
+    .fl-lil .disc{width:20px;height:20px;background:radial-gradient(circle,#c8e6c9,#66bb6a);z-index:15}
+
+    /* ── POACEAE – grass spikelet ── */
+    .fl-poa{animation:grassSway 4s ease-in-out infinite}
+    @keyframes grassSway{0%,100%{transform:rotateX(15deg) rotateZ(-8deg)}50%{transform:rotateX(15deg) rotateZ(8deg)}}
+    .fl-poa .culm{position:absolute;width:7px;height:90px;background:linear-gradient(#81c784,#2e7d32);border-radius:4px;top:50%;left:50%;margin:-75px 0 0 -3.5px}
+    .fl-poa .spk{position:absolute;width:18px;height:28px;background:radial-gradient(ellipse,#c8e6c9,#388e3c);border-radius:50% 50% 45% 45%/60% 60% 40% 40%;top:50%;left:50%}
+    .fl-poa .sk1{margin:-88px 0 0 -9px;transform:rotateZ(-22deg)}
+    .fl-poa .sk2{margin:-72px 0 0 -1px;transform:rotateZ(5deg)}
+    .fl-poa .sk3{margin:-60px 0 0 -15px;transform:rotateZ(-14deg)}
+    .fl-poa .sk4{margin:-50px 0 0 -2px;transform:rotateZ(10deg)}
+    .fl-poa .sk5{margin:-40px 0 0 -13px;transform:rotateZ(-8deg)}
+    .fl-poa .lf{position:absolute;width:12px;height:52px;background:linear-gradient(#a5d6a7,#2e7d32);border-radius:30% 70% 70% 30%/30% 30% 70% 70%;top:50%;left:50%;margin:-10px 0 0 6px;transform:rotateZ(35deg)}
+    .fl-poa .disc{display:none}
+
+    /* ══ FAMILY COLOUR THEMES ══ */
+    /* Ranunculaceae */
+    .f-ran{background:linear-gradient(135deg,#fffde7,#fff8e1)}.f-ran::before{background:linear-gradient(90deg,#fdd835,#f9a825)}
+    .f-ran .fam-info h2{color:#f57f17}.f-ran .ff{background:#fff9c4;color:#f57f17}
+    .f-ran .fb{background:#fffde7}.f-ran .fb h4{color:#e65100}.f-ran .fb li::before{color:#fdd835}.f-ran .ep{background:#fff9c4;color:#e65100}
+    /* Brassicaceae */
+    .f-bra{background:linear-gradient(135deg,#f9fbe7,#f1f8e9)}.f-bra::before{background:linear-gradient(90deg,#aed581,#7cb342)}
+    .f-bra .fam-info h2{color:#33691e}.f-bra .ff{background:#f1f8e9;color:#33691e}
+    .f-bra .fb{background:#f9fbe7}.f-bra .fb h4{color:#33691e}.f-bra .fb li::before{color:#8bc34a}.f-bra .ep{background:#dcedc8;color:#1b5e20}
+    /* Malvaceae */
+    .f-mal{background:linear-gradient(135deg,#fce4ec,#fff0f5)}.f-mal::before{background:linear-gradient(90deg,#f06292,#e91e63)}
+    .f-mal .fam-info h2{color:#880e4f}.f-mal .ff{background:#fce4ec;color:#880e4f}
+    .f-mal .fb{background:#fce4ec}.f-mal .fb h4{color:#880e4f}.f-mal .fb li::before{color:#f06292}.f-mal .ep{background:#f8bbd0;color:#880e4f}
+    /* Leguminosae */
+    .f-leg{background:linear-gradient(135deg,#f3e5f5,#ede7f6)}.f-leg::before{background:linear-gradient(90deg,#ce93d8,#9c27b0)}
+    .f-leg .fam-info h2{color:#4a148c}.f-leg .ff{background:#f3e5f5;color:#4a148c}
+    .f-leg .fb{background:#ede7f6}.f-leg .fb h4{color:#4a148c}.f-leg .fb li::before{color:#ab47bc}.f-leg .ep{background:#e1bee7;color:#4a148c}
+    /* Lamiaceae */
+    .f-lam{background:linear-gradient(135deg,#ede7f6,#e8eaf6)}.f-lam::before{background:linear-gradient(90deg,#9575cd,#5c35b1)}
+    .f-lam .fam-info h2{color:#311b92}.f-lam .ff{background:#ede7f6;color:#311b92}
+    .f-lam .fb{background:#ede7f6}.f-lam .fb h4{color:#311b92}.f-lam .fb li::before{color:#9575cd}.f-lam .ep{background:#d1c4e9;color:#311b92}
+    /* Solanaceae */
+    .f-sol{background:linear-gradient(135deg,#e3f2fd,#ede7f6)}.f-sol::before{background:linear-gradient(90deg,#64b5f6,#1976d2)}
+    .f-sol .fam-info h2{color:#0d47a1}.f-sol .ff{background:#e3f2fd;color:#0d47a1}
+    .f-sol .fb{background:#e3f2fd}.f-sol .fb h4{color:#0d47a1}.f-sol .fb li::before{color:#42a5f5}.f-sol .ep{background:#bbdefb;color:#0d47a1}
+    /* Asteraceae */
+    .f-ast{background:linear-gradient(135deg,#fff8e1,#fff3e0)}.f-ast::before{background:linear-gradient(90deg,#ffa726,#e65100)}
+    .f-ast .fam-info h2{color:#bf360c}.f-ast .ff{background:#fff3e0;color:#bf360c}
+    .f-ast .fb{background:#fff8e1}.f-ast .fb h4{color:#bf360c}.f-ast .fb li::before{color:#ffa726}.f-ast .ep{background:#ffe0b2;color:#bf360c}
+    /* Liliaceae */
+    .f-lil{background:linear-gradient(135deg,#fce4ec,#fff3e0)}.f-lil::before{background:linear-gradient(90deg,#ff7043,#e91e63)}
+    .f-lil .fam-info h2{color:#b71c1c}.f-lil .ff{background:#fce4ec;color:#b71c1c}
+    .f-lil .fb{background:#fce4ec}.f-lil .fb h4{color:#b71c1c}.f-lil .fb li::before{color:#ef5350}.f-lil .ep{background:#ffcdd2;color:#b71c1c}
+    /* Poaceae */
+    .f-poa{background:linear-gradient(135deg,#e8f5e9,#f1f8e9)}.f-poa::before{background:linear-gradient(90deg,#66bb6a,#2e7d32)}
+    .f-poa .fam-info h2{color:#1b5e20}.f-poa .ff{background:#e8f5e9;color:#1b5e20}
+    .f-poa .fb{background:#e8f5e9}.f-poa .fb h4{color:#1b5e20}.f-poa .fb li::before{color:#66bb6a}.f-poa .ep{background:#c8e6c9;color:#1b5e20}
+
+    /* FOOTER */
+    footer{text-align:center;padding:40px 20px;font-size:.95rem;color:#9c6ea0;font-weight:600}
+
+    /* hover hint */
+    .hint{text-align:center;font-size:.8rem;color:#b39ddb;margin-top:6px;font-style:italic}
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+  <div class="bg-f" style="left:5%;top:15%;animation-duration:7s">🌸</div>
+  <div class="bg-f" style="left:18%;top:55%;animation-duration:9s;animation-delay:1s">🌼</div>
+  <div class="bg-f" style="left:78%;top:18%;animation-duration:8s;animation-delay:2s">🌺</div>
+  <div class="bg-f" style="left:88%;top:65%;animation-duration:6s;animation-delay:3s">🌻</div>
+  <div class="bg-f" style="left:50%;top:42%;animation-duration:10s;animation-delay:1.5s">🌿</div>
+  <div class="bg-f" style="left:68%;top:48%;animation-duration:7.5s;animation-delay:.5s">🪷</div>
+  <div class="bg-f" style="left:28%;top:28%;animation-duration:8.5s;animation-delay:2.5s">🌾</div>
+  <h1>🌿 Plant Classification &amp; Families 🌸</h1>
+  <p>✨ your pookie botany study guide with 3D flowers ✨</p>
+</header>
+
+<div class="container">
+
+  <!-- intro bento stickers -->
+  <div class="sticker-row">
+    <div class="sticker sp"><div class="em">🌸</div>9 Families</div>
+    <div class="sticker sm"><div class="em">🔬</div>3D Flowers</div>
+    <div class="sticker su"><div class="em">📚</div>Full Notes</div>
+    <div class="sticker sy"><div class="em">✨</div>Study Hard!</div>
+    <div class="sticker sb"><div class="em">🧬</div>Phylogeny</div>
+    <div class="sticker sc"><div class="em">🌿</div>Bentham &amp; Hooker</div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 1: TYPES OF CLASSIFICATION
+  ═══════════════════════════════════════ -->
+  <h2 class="sec-title">🌿 Types of Classification 🌿</h2>
+
+  <div class="class-grid">
+    <!-- ARTIFICIAL -->
+    <div class="cc cc-art">
+      <h3>🎭 Artificial Classification</h3>
+      <p>Based on <strong>one or very few morphological characters</strong>, chosen for convenience rather than natural relationships. Often groups unrelated plants together.</p>
+      <ul>
+        <li>Proposed by early botanists like <strong>Theophrastus</strong> (habit — tree/shrub/herb) and <strong>Linnaeus</strong> (sexual system — number of stamens)</li>
+        <li>Linnaeus grouped plants into 24 classes based solely on stamen number (e.g., <em>Monandria</em> = 1 stamen, <em>Diandria</em> = 2 stamens…)</li>
+        <li>Simple &amp; practical for identification, but <strong>unnatural</strong> — e.g., rose and wheat were placed together!</li>
+      </ul>
+      <div class="sticker-row" style="margin-top:14px;justify-content:flex-start">
+        <div class="sticker sp" style="min-width:unset;padding:8px 12px;font-size:.8rem"><div class="em" style="font-size:1.2rem">📌</div>Easy to use</div>
+        <div class="sticker sp" style="min-width:unset;padding:8px 12px;font-size:.8rem"><div class="em" style="font-size:1.2rem">⚠️</div>Unnatural groups</div>
+      </div>
+    </div>
+
+    <!-- NATURAL -->
+    <div class="cc cc-nat">
+      <h3>🌱 Natural Classification</h3>
+      <p>Based on <strong>overall morphological similarity</strong> — considers many characters (vegetative + floral + fruit) together. Groups plants that share the most features.</p>
+      <ul>
+        <li>Proposed by <strong>de Jussieu, de Candolle, Bentham &amp; Hooker</strong></li>
+        <li>Reflects <em>natural relationships</em> better than artificial systems</li>
+        <li>Does NOT consider evolutionary history — groups are based on shared appearance, not ancestry</li>
+        <li>Still very useful practically — most classic flora books use this</li>
+      </ul>
+      <div class="sticker-row" style="margin-top:14px;justify-content:flex-start">
+        <div class="sticker sm" style="min-width:unset;padding:8px 12px;font-size:.8rem"><div class="em" style="font-size:1.2rem">🌿</div>Many characters</div>
+        <div class="sticker sm" style="min-width:unset;padding:8px 12px;font-size:.8rem"><div class="em" style="font-size:1.2rem">📖</div>Classic floras</div>
+      </div>
+    </div>
+
+    <!-- PHYLOGENETIC -->
+    <div class="cc cc-phy">
+      <h3>🧬 Phylogenetic Classification</h3>
+      <p>Based on <strong>evolutionary relationships</strong> — groups organisms by common ancestry and shared derived characters (synapomorphies). Most scientifically accurate.</p>
+      <ul>
+        <li>Proposed by <strong>Engler &amp; Prantl, Cronquist, Takhtajan</strong>; modern version = <strong>APG system</strong></li>
+        <li>Uses molecular data (DNA sequences), shared derived characters, fossil records</li>
+        <li>Produces <strong>cladograms</strong> showing branching evolutionary history</li>
+        <li>APG IV (2016) is the current standard — completely reshuffled many families!</li>
+      </ul>
+      <div class="sticker-row" style="margin-top:14px;justify-content:flex-start">
+        <div class="sticker sb" style="min-width:unset;padding:8px 12px;font-size:.8rem"><div class="em" style="font-size:1.2rem">🧬</div>DNA based</div>
+        <div class="sticker sb" style="min-width:unset;padding:8px 12px;font-size:.8rem"><div class="em" style="font-size:1.2rem">🌳</div>Evolutionary</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- comparison table -->
+  <div class="tw">
+    <table>
+      <tr><th style="background:linear-gradient(90deg,#f06292,#9575cd)">Feature</th><th style="background:#e57373">Artificial</th><th style="background:#66bb6a">Natural</th><th style="background:#7986cb">Phylogenetic</th></tr>
+      <tr><td><strong>Basis</strong></td><td>1–2 characters</td><td>Many morphological characters</td><td>Evolutionary ancestry + DNA</td></tr>
+      <tr><td><strong>Characters used</strong></td><td>Stamens, habit</td><td>Morphology, anatomy</td><td>Synapomorphies, molecules</td></tr>
+      <tr><td><strong>Relationship shown</strong></td><td>None</td><td>Overall similarity</td><td>True evolutionary history</td></tr>
+      <tr><td><strong>Examples</strong></td><td>Linnaeus (1753)</td><td>Bentham &amp; Hooker (1862)</td><td>APG IV (2016)</td></tr>
+      <tr><td><strong>Accuracy</strong></td><td>Low</td><td>Moderate</td><td>High ✅</td></tr>
+    </table>
+  </div>
+
+  <div class="divider">🌸 ✿ 🌸 ✿ 🌸</div>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 2: BENTHAM & HOOKER
+  ═══════════════════════════════════════ -->
+  <h2 class="sec-title">📚 Bentham &amp; Hooker System 📚</h2>
+
+  <div class="bh-box">
+    <h3>🌿 Introduction</h3>
+    <p><strong>George Bentham</strong> and <strong>Joseph Dalton Hooker</strong> published their classification in the monumental work <em>"Genera Plantarum"</em> (3 volumes, 1862–1883). It is a <strong>natural system</strong> based on careful study of actual specimens, covering 202 orders and 7,569 genera.</p>
+    <p>It divides the flowering plants (Angiosperms) into <strong>Dicotyledonae</strong> and <strong>Monocotyledonae</strong>, then into series, then cohorts, then orders (= families), then genera.</p>
+
+    <div class="sticker-row">
+      <div class="sticker su"><div class="em">📅</div>1862–1883</div>
+      <div class="sticker sm"><div class="em">🌿</div>7,569 Genera</div>
+      <div class="sticker sy"><div class="em">📖</div>3 Volumes</div>
+      <div class="sticker sp"><div class="em">🔬</div>Natural System</div>
+      <div class="sticker sb"><div class="em">🌍</div>Herbarium-based</div>
+    </div>
+
+    <div class="bh-tree">
+      <div class="bh-branch d">
+        <h4>🌺 Dicotyledonae (Dicots)</h4>
+        <p style="font-size:.85rem;margin-bottom:10px;color:#555">2 cotyledons · reticulate venation · 4- or 5-merous flowers</p>
+        <div class="bh-series">
+          <div class="series-item si1"><strong>Series I — Polypetalae</strong><br><span style="font-size:.82rem">Petals free (separate) — 3 cohorts:<br>①Thalamiflorae ②Disciflorae ③Calyciflorae</span></div>
+          <div class="series-item si2"><strong>Series II — Gamopetalae</strong><br><span style="font-size:.82rem">Petals fused — 3 cohorts:<br>④Inferae ⑤Heteromerae ⑥Bicarpellatae</span></div>
+          <div class="series-item si3"><strong>Series III — Monochlamydeae</strong><br><span style="font-size:.82rem">One perianth whorl or absent<br>⑦ (e.g., Euphorbiaceae, Piperaceae)</span></div>
+        </div>
+      </div>
+      <div class="bh-branch m">
+        <h4>🌾 Monocotyledonae (Monocots)</h4>
+        <p style="font-size:.85rem;margin-bottom:10px;color:#555">1 cotyledon · parallel venation · 3-merous flowers</p>
+        <div class="bh-series">
+          <div class="series-item si4"><strong>Series IV — Microspermae</strong><br><span style="font-size:.82rem">e.g., Orchidaceae — tiny seeds</span></div>
+          <div class="series-item si5"><strong>Series V — Epigynae</strong><br><span style="font-size:.82rem">Inferior ovary — e.g., Iridaceae</span></div>
+          <div class="series-item si4"><strong>Series VI — Coronarieae</strong><br><span style="font-size:.82rem">Petaloid perianth — e.g., Liliaceae</span></div>
+          <div class="series-item si5"><strong>Series VII — Calycinae</strong><br><span style="font-size:.82rem">Sepaloid perianth — e.g., Juncaceae</span></div>
+          <div class="series-item si6"><strong>Series VIII — Nudiflorae</strong><br><span style="font-size:.82rem">Naked flowers — e.g., Araceae</span></div>
+          <div class="series-item si7"><strong>Series IX — Apocarpae</strong><br><span style="font-size:.82rem">Free carpels — e.g., Alismataceae</span></div>
+          <div class="series-item si5"><strong>Series X — Glumaceae</strong><br><span style="font-size:.82rem">Glume-bearing — e.g., Poaceae, Cyperaceae</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tw" style="margin-top:20px">
+      <table>
+        <tr><th style="background:linear-gradient(90deg,#ab47bc,#42a5f5)">Merits ✅</th><th style="background:linear-gradient(90deg,#ef5350,#ff7043)">Demerits ❌</th></tr>
+        <tr><td>Based on actual herbarium specimens — highly reliable descriptions</td><td>Does not reflect evolutionary relationships</td></tr>
+        <tr><td>Dicots placed before monocots (generally accepted)</td><td>Gymnosperms excluded from the system</td></tr>
+        <tr><td>Widely used as basis for herbarium arrangement worldwide</td><td>Gamopetalae placed after Polypetalae — not phylogenetically sound</td></tr>
+        <tr><td>Covers all known angiosperms of the time — comprehensive</td><td>Some unnatural groupings (e.g., Monochlamydeae is artificial)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="divider">🍀 ✿ 🍀 ✿ 🍀</div>
+
+  <!-- ═══════════════════════════════════════
+       SECTION 3: PLANT FAMILIES
+  ═══════════════════════════════════════ -->
+  <h2 class="sec-title">🌺 Diagnostic Features &amp; Economic Importance 🌺</h2>
+  <p style="text-align:center;font-size:.9rem;color:#b39ddb;margin-bottom:6px">👆 hover / click the 3D flowers to speed up their spin!</p>
+
+  <!-- ══ 1. RANUNCULACEAE ══ -->
+  <div class="fam-card f-ran">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-ran">
+            <div class="pt p1"></div><div class="pt p2"></div><div class="pt p3"></div>
+            <div class="pt p4"></div><div class="pt p5"></div>
+            <div class="disc"></div>
+          </div>
+        </div>
+        <div class="hint">🌼 Buttercup</div>
+      </div>
+      <div class="fam-info">
+        <h2>1. Ranunculaceae 🌼</h2>
+        <div class="sub">Buttercup Family · ~2,500 species · Cosmopolitan (mostly temperate)</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker sy" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌡️</div>Temperate</div>
+          <div class="sticker sy" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌿</div>Herbaceous</div>
+          <div class="sticker sy" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🔢</div>Polypetalae</div>
+        </div>
+        <div class="ff">⊕ K5 C5 A∞ G∞ (apocarpous)</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features</h4>
+        <ul>
+          <li>Mostly <strong>herbaceous</strong>, rarely shrubby; some aquatic (<em>Ranunculus aquatilis</em>)</li>
+          <li>Leaves <strong>alternate, simple or compound</strong>, exstipulate, with sheathing base</li>
+          <li>Flowers <strong>actinomorphic</strong> (zygomorphic in <em>Delphinium, Aconitum</em>), bisexual, hypogynous</li>
+          <li>Perianth of 5 free sepals (petaloid in some) + 5 free petals (sometimes absent)</li>
+          <li><strong>Stamens numerous, spirally arranged, free</strong> (polyandrous)</li>
+          <li><strong>Carpels numerous, free</strong> (apocarpous gynoecium) — key diagnostic feature!</li>
+          <li>Fruit: <strong>achene or follicle</strong> (rarely berry in <em>Actaea</em>)</li>
+          <li>Nectaries often present at petal base</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Ornamentals:</strong> <em>Delphinium, Anemone, Clematis, Aquilegia, Ranunculus</em> — widely grown in gardens 🌸</li>
+          <li><strong>Medicinal:</strong> <em>Aconitum napellus</em> (Monkshood) — source of aconitine (analgesic, cardiac drug in controlled doses)</li>
+          <li><em>Hydrastis canadensis</em> — goldenseal, antifungal/antibacterial</li>
+          <li><strong>Toxic plants:</strong> Many are highly poisonous — <em>Aconitum, Helleborus, Ranunculus</em> contain toxic alkaloids</li>
+          <li><em>Nigella sativa</em> — black seed / kalonji, used as spice and in Ayurveda 🌿</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🌼 <em>Ranunculus</em> (Buttercup)</span>
+      <span class="ep">💜 <em>Delphinium</em></span>
+      <span class="ep">🌸 <em>Anemone</em></span>
+      <span class="ep">🌿 <em>Clematis</em></span>
+      <span class="ep">⚗️ <em>Aconitum</em></span>
+      <span class="ep">🖤 <em>Nigella sativa</em></span>
+    </div>
+  </div>
+
+  <!-- ══ 2. BRASSICACEAE ══ -->
+  <div class="fam-card f-bra">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-bra">
+            <div class="pt p1"></div><div class="pt p2"></div><div class="pt p3"></div><div class="pt p4"></div>
+            <div class="disc"></div>
+          </div>
+        </div>
+        <div class="hint">🥦 Mustard</div>
+      </div>
+      <div class="fam-info">
+        <h2>2. Brassicaceae 🥦</h2>
+        <div class="sub">Mustard / Crucifer Family · ~3,700 species · Mostly North Temperate</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker sm" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">✚</div>Cross-shaped</div>
+          <div class="sticker sm" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">6️⃣</div>Tetradynamous</div>
+          <div class="sticker sm" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🥗</div>Veggies!</div>
+        </div>
+        <div class="ff">⊕ K2+2 C4 A2+4 G(2) — Siliqua/Silicula</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features</h4>
+        <ul>
+          <li>Mostly <strong>herbs</strong>, rarely shrubs; often with <strong>pungent smell</strong> (glucosinolates/mustard oil)</li>
+          <li>Leaves <strong>alternate, simple</strong>, exstipulate; often hairy (stellate hairs)</li>
+          <li>Inflorescence: <strong>raceme</strong> (ebracteate, elongates as flowers open)</li>
+          <li>Flowers <strong>actinomorphic, bisexual, cruciform</strong> — 4 petals arranged in a cross ✚</li>
+          <li>Sepals 4 (2+2), Petals 4 (free, with claw)</li>
+          <li>Stamens <strong>6, tetradynamous</strong> — 4 long inner + 2 short outer 🎯 KEY feature!</li>
+          <li>Gynoecium: <strong>bicarpellary, syncarpous</strong>, with a false septum (replum)</li>
+          <li>Fruit: <strong>Siliqua</strong> (long, >3× wide) or <strong>Silicula</strong> (short, ≤3× wide)</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Vegetables:</strong> Cabbage, cauliflower, broccoli, Brussels sprouts, kale (<em>Brassica oleracea</em>); Radish (<em>Raphanus sativus</em>); Turnip (<em>Brassica rapa</em>) 🥦</li>
+          <li><strong>Oils:</strong> Mustard oil (<em>Brassica nigra, B. juncea</em>) — major edible oil in India; Canola/Rapeseed oil (<em>B. napus</em>)</li>
+          <li><strong>Condiments:</strong> Mustard seeds as spice 🌶️</li>
+          <li><strong>Ornamentals:</strong> <em>Alyssum, Iberis, Matthiola, Lunaria</em></li>
+          <li><strong>Model plant:</strong> <em>Arabidopsis thaliana</em> — the "lab rat" of plant biology 🧬</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🥦 <em>Brassica oleracea</em></span>
+      <span class="ep">🌿 <em>B. juncea</em> (mustard)</span>
+      <span class="ep">🥕 <em>Raphanus sativus</em></span>
+      <span class="ep">🌸 <em>Alyssum</em></span>
+      <span class="ep">🧬 <em>Arabidopsis</em></span>
+    </div>
+  </div>
+
+  <!-- ══ 3. MALVACEAE ══ -->
+  <div class="fam-card f-mal">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-mal">
+            <div class="pt p1"></div><div class="pt p2"></div><div class="pt p3"></div>
+            <div class="pt p4"></div><div class="pt p5"></div>
+            <div class="stcol"></div><div class="disc"></div>
+          </div>
+        </div>
+        <div class="hint">🌺 Hibiscus</div>
+      </div>
+      <div class="fam-info">
+        <h2>3. Malvaceae 🌺</h2>
+        <div class="sub">Mallow / Cotton Family · ~4,300 species · Tropical &amp; Subtropical</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker sp" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🧵</div>Cotton!</div>
+          <div class="sticker sp" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌀</div>Monadelphous</div>
+          <div class="sticker sp" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">⭐</div>Epicalyx</div>
+        </div>
+        <div class="ff">⊕ Epicalyx K(5) C5 A(∞) G(5) — Loculicidal capsule</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features</h4>
+        <ul>
+          <li>Herbs, shrubs or trees; stem often with <strong>mucilaginous sap</strong></li>
+          <li>Leaves <strong>alternate, simple, palmately lobed</strong>, stipulate; <strong>stellate hairs</strong> present 🌟</li>
+          <li><strong>Epicalyx</strong> (extra calyx-like whorl of bracts) present — KEY feature!</li>
+          <li>Flowers large, showy, <strong>actinomorphic, bisexual, pentamerous</strong></li>
+          <li>Petals 5, <strong>contorted aestivation</strong> (twisted in bud)</li>
+          <li>Stamens ∞, filaments fused into a <strong>staminal tube (monadelphous)</strong> — wraps around style 🎯</li>
+          <li>Gynoecium: 5–∞ carpels, syncarpous, <strong>superior ovary</strong>, axile placentation</li>
+          <li>Fruit: <strong>loculicidal capsule</strong> (cotton) or schizocarp</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Fibre:</strong> <em>Gossypium hirsutum</em> (cotton) — most important plant fibre in the world! 🧵</li>
+          <li><strong>Vegetable:</strong> <em>Abelmoschus esculentus</em> (Okra/Bhindi/Lady's finger) 🥒</li>
+          <li><strong>Fibre &amp; food:</strong> <em>Hibiscus cannabinus</em> (Kenaf) — bast fibre</li>
+          <li><strong>Ornamentals:</strong> <em>Hibiscus rosa-sinensis</em> (Shoe flower), <em>Althaea, Lavatera</em> 🌺</li>
+          <li><strong>Medicinal:</strong> <em>Althaea officinalis</em> (Marshmallow) — mucilaginous root used for sore throat</li>
+          <li><strong>Timber:</strong> <em>Tilia</em> (Linden wood)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🧵 <em>Gossypium</em> (Cotton)</span>
+      <span class="ep">🥒 <em>Abelmoschus</em> (Bhindi)</span>
+      <span class="ep">🌺 <em>Hibiscus</em></span>
+      <span class="ep">🌸 <em>Althaea</em></span>
+      <span class="ep">🌿 <em>Abutilon</em></span>
+    </div>
+  </div>
+
+  <!-- ══ 4. LEGUMINOSAE ══ -->
+  <div class="fam-card f-leg">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-leg">
+            <div class="vex"></div>
+            <div class="wg w1"></div><div class="wg w2"></div>
+            <div class="keel"></div>
+            <div class="disc"></div>
+          </div>
+        </div>
+        <div class="hint">🫛 Pea Flower</div>
+      </div>
+      <div class="fam-info">
+        <h2>4. Leguminosae / Fabaceae 🫛</h2>
+        <div class="sub">Pea / Bean / Pulse Family · ~20,000 species · Worldwide (3rd largest family!)</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker su" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🦋</div>Papilionaceous</div>
+          <div class="sticker su" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🧬</div>N₂ Fixation</div>
+          <div class="sticker su" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">9️⃣+1️⃣</div>Diadelphous</div>
+        </div>
+        <div class="ff">% K(5) C1+2+(2) A(9)+1 G1 — Legume fruit</div>
+        <div style="font-size:.82rem;margin-top:6px;color:#7b1fa2">Subfamily Papilionoideae shown above</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features (Papilionoideae)</h4>
+        <ul>
+          <li>Herbs, shrubs, trees, or climbers; root nodules with <em>Rhizobium</em> 🦠</li>
+          <li>Leaves <strong>alternate, compound</strong> (pinnate or trifoliate), stipulate; pulvinus present</li>
+          <li>Inflorescence: raceme or panicle</li>
+          <li>Flowers <strong>zygomorphic, bisexual</strong> — <strong>papilionaceous corolla</strong>:<br>1 Standard (vexillum) + 2 Wings (alae) + 2 Keel (carina) petals 🦋</li>
+          <li>Stamens 10, <strong>diadelphous (9+1)</strong> — 9 fused + 1 free 🎯 KEY!</li>
+          <li>Gynoecium: <strong>monocarpellary, superior</strong>, marginal placentation</li>
+          <li>Fruit: <strong>Legume/Pod</strong> — dehisces along both sutures</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Food (pulses/protein):</strong> Pea (<em>Pisum</em>), Chickpea (<em>Cicer</em>), Soybean (<em>Glycine</em>), Groundnut (<em>Arachis</em>), Lentil (<em>Lens</em>), Beans (<em>Phaseolus</em>) 🫛</li>
+          <li><strong>Nitrogen fixation:</strong> Root nodules enrich soil — natural fertiliser! 🌱</li>
+          <li><strong>Timber:</strong> <em>Dalbergia</em> (Rosewood, Sheesham), <em>Tectona</em> — premium wood</li>
+          <li><strong>Dyes:</strong> <em>Indigofera tinctoria</em> (Indigo dye)</li>
+          <li><strong>Gums:</strong> <em>Acacia</em> — gum arabic; <em>Cyamopsis</em> — guar gum</li>
+          <li><strong>Ornamentals:</strong> <em>Lathyrus</em> (Sweet pea), <em>Delonix</em> (Gulmohar) 🌸</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🫛 <em>Pisum sativum</em></span>
+      <span class="ep">🥜 <em>Arachis hypogaea</em></span>
+      <span class="ep">🌿 <em>Cicer arietinum</em></span>
+      <span class="ep">🌸 <em>Delonix regia</em></span>
+      <span class="ep">🪵 <em>Dalbergia</em></span>
+      <span class="ep">💙 <em>Indigofera</em></span>
+    </div>
+  </div>
+
+  <!-- ══ 5. LAMIACEAE ══ -->
+  <div class="fam-card f-lam">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-lam">
+            <div class="upper"></div>
+            <div class="ll"></div><div class="lr"></div><div class="lc"></div>
+            <div class="disc"></div>
+          </div>
+        </div>
+        <div class="hint">🌿 Mint / Tulsi</div>
+      </div>
+      <div class="fam-info">
+        <h2>5. Lamiaceae 🌿</h2>
+        <div class="sub">Mint / Sage / Deadnettle Family · ~7,000 species · Worldwide</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker su" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">⬛</div>Square Stem</div>
+          <div class="sticker su" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">👄</div>Bilabiate</div>
+          <div class="sticker su" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌺</div>Aromatic</div>
+        </div>
+        <div class="ff">% K(5) C(2+3) A4 G(2) — 4 nutlets (schizocarp)</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features</h4>
+        <ul>
+          <li>Herbs or shrubs; stems <strong>distinctly quadrangular (4-angled/square)</strong> 🎯 KEY!</li>
+          <li>Leaves <strong>opposite or whorled, simple</strong>, exstipulate; <strong>aromatic</strong> (essential oil glands)</li>
+          <li>Inflorescence: <strong>verticillaster</strong> (false whorls = 2 cymes in axils)</li>
+          <li>Flowers <strong>zygomorphic, bisexual</strong></li>
+          <li>Corolla <strong>bilabiate (2-lipped)</strong> — 2 upper + 3 lower petals fused 👄</li>
+          <li>Stamens <strong>4, didynamous</strong> (2 long + 2 short), epipetalous</li>
+          <li>Gynoecium: <strong>bicarpellary, syncarpous</strong>, deeply 4-lobed, style gynobasic</li>
+          <li>Fruit: <strong>4 nutlets</strong> (schizocarp) — each containing 1 seed</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Culinary herbs:</strong> <em>Ocimum basilicum</em> (Basil/Tulsi), <em>Mentha</em> (Mint), <em>Rosmarinus</em> (Rosemary), <em>Thymus</em> (Thyme), <em>Salvia</em> (Sage) 🌿</li>
+          <li><strong>Essential oils:</strong> Peppermint oil (<em>Mentha piperita</em>), Lavender oil (<em>Lavandula</em>), Thymol from thyme</li>
+          <li><strong>Medicinal:</strong> Tulsi (<em>Ocimum sanctum</em>) — immunomodulator, antistress; <em>Salvia officinalis</em> — antiseptic</li>
+          <li><strong>Ornamentals:</strong> <em>Lavandula, Salvia, Nepeta</em> (Catnip) 💜</li>
+          <li><strong>Religious:</strong> Tulsi is sacred in Hinduism 🙏</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🌿 <em>Ocimum</em> (Tulsi)</span>
+      <span class="ep">🍃 <em>Mentha</em> (Mint)</span>
+      <span class="ep">💜 <em>Lavandula</em></span>
+      <span class="ep">🌸 <em>Salvia</em></span>
+      <span class="ep">🌿 <em>Thymus</em></span>
+      <span class="ep">🌺 <em>Rosmarinus</em></span>
+    </div>
+  </div>
+
+  <!-- ══ 6. SOLANACEAE ══ -->
+  <div class="fam-card f-sol">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-sol">
+            <div class="pt p1"></div><div class="pt p2"></div><div class="pt p3"></div>
+            <div class="pt p4"></div><div class="pt p5"></div>
+            <div class="sta s1"></div><div class="sta s2"></div><div class="sta s3"></div>
+            <div class="sta s4"></div><div class="sta s5"></div>
+            <div class="disc"></div>
+          </div>
+        </div>
+        <div class="hint">🍅 Tomato / Potato</div>
+      </div>
+      <div class="fam-info">
+        <h2>6. Solanaceae 🍅</h2>
+        <div class="sub">Nightshade / Potato Family · ~2,700 species · Mainly Tropical America</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker sb" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🥔</div>Potato!</div>
+          <div class="sticker sb" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🫐</div>Berry fruit</div>
+          <div class="sticker sb" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">⚡</div>Epipetalous</div>
+        </div>
+        <div class="ff">⊕ K(5) C(5) A5 G(2) — Berry / Capsule</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features</h4>
+        <ul>
+          <li>Herbs, shrubs, or small trees; often <strong>hairy or viscid</strong></li>
+          <li>Leaves <strong>alternate, simple</strong>, exstipulate (sometimes pinnately compound in potato)</li>
+          <li>Flowers <strong>actinomorphic, bisexual, pentamerous</strong></li>
+          <li>Calyx <strong>persistent</strong> in fruit (useful character!)</li>
+          <li>Corolla <strong>sympetalous (fused petals)</strong>, rotate/tubular, 5-lobed</li>
+          <li>Stamens <strong>5, epipetalous</strong>, alternating with corolla lobes; anthers connivent (cone-like)</li>
+          <li>Gynoecium: <strong>bicarpellary, syncarpous</strong>, superior, bilocular; <strong>axile placentation</strong></li>
+          <li>Fruit: <strong>berry</strong> (tomato, brinjal) or capsule (Datura, Petunia)</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Food crops:</strong> Potato (<em>Solanum tuberosum</em>), Tomato (<em>Lycopersicon esculentum</em>), Brinjal (<em>S. melongena</em>), Chilli &amp; Capsicum (<em>Capsicum annuum</em>) 🍅🥔</li>
+          <li><strong>Tobacco:</strong> <em>Nicotiana tabacum</em> — cigarettes, nicotine (also used as insecticide) 🚬</li>
+          <li><strong>Medicinal alkaloids:</strong> Atropine &amp; hyoscine from <em>Atropa belladonna</em> and <em>Datura</em> — used in ophthalmology and anaesthesia</li>
+          <li><strong>Ornamentals:</strong> <em>Petunia, Cestrum, Schizanthus</em> 🌸</li>
+          <li><strong>Spice:</strong> Paprika from <em>Capsicum</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🥔 <em>Solanum tuberosum</em></span>
+      <span class="ep">🍅 <em>Lycopersicon</em></span>
+      <span class="ep">🌶️ <em>Capsicum</em></span>
+      <span class="ep">⚗️ <em>Datura</em></span>
+      <span class="ep">🌸 <em>Petunia</em></span>
+      <span class="ep">🚬 <em>Nicotiana</em></span>
+    </div>
+  </div>
+
+  <!-- ══ 7. ASTERACEAE ══ -->
+  <div class="fam-card f-ast">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-ast">
+            <div class="ray r1"></div><div class="ray r2"></div><div class="ray r3"></div><div class="ray r4"></div>
+            <div class="ray r5"></div><div class="ray r6"></div><div class="ray r7"></div><div class="ray r8"></div>
+            <div class="ray r9"></div><div class="ray r10"></div><div class="ray r11"></div><div class="ray r12"></div>
+            <div class="ray r13"></div><div class="ray r14"></div>
+            <div class="disc">disc<br>florets</div>
+          </div>
+        </div>
+        <div class="hint">🌻 Sunflower</div>
+      </div>
+      <div class="fam-info">
+        <h2>7. Asteraceae 🌻</h2>
+        <div class="sub">Sunflower / Daisy / Composite Family · ~23,000 species · Worldwide (LARGEST dicot family!)</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker so" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌻</div>Largest!</div>
+          <div class="sticker so" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🎯</div>Capitulum</div>
+          <div class="sticker so" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌂</div>Pappus</div>
+        </div>
+        <div class="ff">Disc: ⊕ K pappus C(5) A(5) G(2̄) · Ray: ↑ K pappus C(3) A0 G(2̄)</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features</h4>
+        <ul>
+          <li>Herbs, rarely shrubs; often with <strong>latex or resin canals</strong></li>
+          <li>Leaves mostly alternate, simple, exstipulate</li>
+          <li>Inflorescence: <strong>Capitulum (head)</strong> — many small flowers (florets) on a flat/convex receptacle surrounded by involucre of bracts 🎯 KEY!</li>
+          <li><strong>Two types of florets:</strong><br>
+            • <strong>Ray florets</strong> (ligulate): strap-shaped, pistillate/neutral, at periphery 🌼<br>
+            • <strong>Disc florets</strong> (tubular): bisexual, at centre 🟤</li>
+          <li>Stamens 5, <strong>syngenesious</strong> (anthers fused into tube, filaments free)</li>
+          <li>Gynoecium: bicarpellary, inferior ovary, 1 ovule</li>
+          <li>Fruit: <strong>cypsela</strong> with persistent pappus (feathery, aids dispersal by wind 🌬️)</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Oils:</strong> Sunflower oil (<em>Helianthus annuus</em>), Safflower oil (<em>Carthamus</em>) 🌻</li>
+          <li><strong>Food:</strong> Lettuce (<em>Lactuca sativa</em>), Globe artichoke (<em>Cynara</em>), Chicory (<em>Cichorium</em> — coffee substitute)</li>
+          <li><strong>Ornamentals:</strong> Marigold (<em>Tagetes</em>), Chrysanthemum, Dahlia, Zinnia, Gerbera 🌸</li>
+          <li><strong>Medicinal:</strong> <em>Artemisia</em> (Artemisinin — malaria drug!), <em>Echinacea</em> (immune booster), Chamomile (<em>Matricaria</em>)</li>
+          <li><strong>Insecticides:</strong> Pyrethrin from <em>Tanacetum/Chrysanthemum</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🌻 <em>Helianthus</em></span>
+      <span class="ep">🌼 <em>Tagetes</em> (Marigold)</span>
+      <span class="ep">💐 <em>Dahlia</em></span>
+      <span class="ep">🥗 <em>Lactuca</em></span>
+      <span class="ep">⚕️ <em>Artemisia</em></span>
+      <span class="ep">🌸 <em>Chrysanthemum</em></span>
+    </div>
+  </div>
+
+  <!-- ══ 8. LILIACEAE ══ -->
+  <div class="fam-card f-lil">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-lil">
+            <div class="tp t1"></div><div class="tp t2"></div><div class="tp t3"></div>
+            <div class="tp t4"></div><div class="tp t5"></div><div class="tp t6"></div>
+            <div class="fil f1"></div><div class="fil f2"></div><div class="fil f3"></div>
+            <div class="fil f4"></div><div class="fil f5"></div><div class="fil f6"></div>
+            <div class="disc"></div>
+          </div>
+        </div>
+        <div class="hint">🌷 Lily</div>
+      </div>
+      <div class="fam-info">
+        <h2>8. Liliaceae 🌷</h2>
+        <div class="sub">Lily Family · ~4,000 species · Mostly Temperate &amp; Subtropical (Monocot)</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker sr" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">6️⃣</div>6 Tepals</div>
+          <div class="sticker sr" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🧅</div>Bulb/Corm</div>
+          <div class="sticker sr" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌿</div>Monocot</div>
+        </div>
+        <div class="ff">⊕ P(3+3) A(3+3) G(3̄) — Berry or Capsule</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features</h4>
+        <ul>
+          <li><strong>Perennial herbs</strong> with underground <strong>bulb, corm, or rhizome</strong></li>
+          <li>Leaves simple, often <strong>linear with parallel venation</strong> (monocot!); alternate or basal</li>
+          <li>Flowers large, showy, <strong>actinomorphic, bisexual</strong></li>
+          <li>Perianth of <strong>6 tepals in 2 whorls of 3</strong> (petals &amp; sepals alike = petaloid tepals) 🎯</li>
+          <li>Stamens <strong>6 (3+3)</strong>, free or epitepalous</li>
+          <li>Gynoecium: <strong>tricarpellary, syncarpous, superior ovary</strong> (inferior in some), <strong>axile placentation</strong></li>
+          <li>Fruit: <strong>berry</strong> (Asparagus, Smilax) or <strong>loculicidal capsule</strong> (Lilium, Allium)</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Vegetables:</strong> Onion (<em>Allium cepa</em>), Garlic (<em>A. sativum</em>), Asparagus (<em>Asparagus officinalis</em>) 🧅</li>
+          <li><strong>Medicinal:</strong> <em>Aloe vera</em> — gel for skin burns, laxative; <em>Colchicum autumnale</em> — colchicine (anti-gout, used in polyploidy breeding!)</li>
+          <li><strong>Ornamentals:</strong> <em>Lilium</em> (Lily), <em>Tulipa</em> (Tulip), <em>Hyacinthus</em> (Hyacinth), <em>Gloriosa</em>, <em>Hemerocallis</em> 🌷</li>
+          <li><strong>Spice:</strong> Garlic as flavouring &amp; antimicrobial</li>
+          <li><strong>Timber:</strong> <em>Yucca</em> — used in construction in dry areas</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🧅 <em>Allium cepa</em></span>
+      <span class="ep">🧄 <em>A. sativum</em></span>
+      <span class="ep">🌷 <em>Tulipa</em></span>
+      <span class="ep">🌸 <em>Lilium</em></span>
+      <span class="ep">💊 <em>Aloe vera</em></span>
+      <span class="ep">🌿 <em>Asparagus</em></span>
+    </div>
+  </div>
+
+  <!-- ══ 9. POACEAE ══ -->
+  <div class="fam-card f-poa">
+    <div class="fam-head">
+      <div>
+        <div class="flower-scene">
+          <div class="flower-3d fl-poa">
+            <div class="culm"></div>
+            <div class="spk sk1"></div><div class="spk sk2"></div><div class="spk sk3"></div>
+            <div class="spk sk4"></div><div class="spk sk5"></div>
+            <div class="lf"></div>
+            <div class="disc"></div>
+          </div>
+        </div>
+        <div class="hint">🌾 Grass Spikelet</div>
+      </div>
+      <div class="fam-info">
+        <h2>9. Poaceae / Gramineae 🌾</h2>
+        <div class="sub">Grass Family · ~11,000 species · Worldwide (Economically MOST important family!)</div>
+        <div class="sticker-row" style="justify-content:flex-start">
+          <div class="sticker sl" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌾</div>Rice &amp; Wheat</div>
+          <div class="sticker sl" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🔲</div>Hollow stem</div>
+          <div class="sticker sl" style="min-width:unset;padding:6px 12px;font-size:.8rem"><div class="em" style="font-size:1.1rem">🌀</div>Spikelet</div>
+        </div>
+        <div class="ff">Floret: P lodicules(2–3) A3 G(2̄) — Caryopsis (grain)</div>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="fb">
+        <h4>🔬 Diagnostic Features</h4>
+        <ul>
+          <li>Herbs (rarely woody — bamboo); stems = <strong>culm</strong>: <strong>hollow internodes, solid nodes</strong> 🎯</li>
+          <li>Leaves with sheathing base, open leaf sheath, <strong>ligule</strong> at junction of sheath &amp; blade</li>
+          <li>Inflorescence: <strong>spikelet</strong> — basic unit bearing florets between lemma &amp; palea (modified bracts)</li>
+          <li>Flowers small, wind-pollinated; perianth reduced to <strong>2–3 lodicules</strong></li>
+          <li>Stamens usually <strong>3, versatile anthers</strong> (dangling)</li>
+          <li>Gynoecium: bicarpellary, syncarpous, superior; <strong>feathery (plumose) stigma</strong> — catches airborne pollen 🌬️</li>
+          <li>Fruit: <strong>Caryopsis (grain)</strong> — pericarp fused with seed coat 🌾</li>
+        </ul>
+      </div>
+      <div class="fb">
+        <h4>💰 Economic Importance</h4>
+        <ul>
+          <li><strong>Cereals (staple food):</strong> Rice (<em>Oryza sativa</em>), Wheat (<em>Triticum</em>), Maize (<em>Zea mays</em>), Sorghum, Barley, Oats, Millet — feed most of humanity! 🌾</li>
+          <li><strong>Sugar:</strong> Sugarcane (<em>Saccharum officinarum</em>) — world's main sugar source 🍬</li>
+          <li><strong>Bamboo:</strong> <em>Bambusa</em> — construction, furniture, paper, food (bamboo shoots)</li>
+          <li><strong>Fodder:</strong> <em>Cynodon</em> (Bermuda grass), <em>Pennisetum</em> — livestock feed</li>
+          <li><strong>Biofuel:</strong> Switchgrass (<em>Panicum virgatum</em>), Sugarcane bagasse</li>
+          <li><strong>Lawn &amp; Sports turf:</strong> <em>Cynodon, Festuca, Poa</em></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ex-row">
+      <span class="ep">🌾 <em>Oryza sativa</em> (Rice)</span>
+      <span class="ep">🍞 <em>Triticum</em> (Wheat)</span>
+      <span class="ep">🌽 <em>Zea mays</em> (Maize)</span>
+      <span class="ep">🍬 <em>Saccharum</em></span>
+      <span class="ep">🎋 <em>Bambusa</em></span>
+      <span class="ep">🍺 <em>Hordeum</em> (Barley)</span>
+    </div>
+  </div>
+
+  <!-- ══ QUICK SUMMARY TABLE ══ -->
+  <div class="divider">🌈 ✿ 🌈 ✿ 🌈</div>
+  <h2 class="sec-title">📊 Quick Reference — All 9 Families 📊</h2>
+
+  <div class="sticker-row">
+    <div class="sticker sp"><div class="em">🎀</div>Summary</div>
+    <div class="sticker sm"><div class="em">📌</div>Pin this!</div>
+    <div class="sticker sy"><div class="em">💡</div>Key features</div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <tr>
+        <th style="background:linear-gradient(90deg,#f48fb1,#ce93d8)">Family</th>
+        <th style="background:linear-gradient(90deg,#ce93d8,#80cbc4)">Key Feature</th>
+        <th style="background:linear-gradient(90deg,#80cbc4,#fff176)">Fruit</th>
+        <th style="background:linear-gradient(90deg,#fff176,#ffab40)">Top Example</th>
+      </tr>
+      <tr><td>🌼 Ranunculaceae</td><td>Numerous free stamens &amp; carpels (apocarpous)</td><td>Achene / Follicle</td><td><em>Ranunculus</em></td></tr>
+      <tr><td>🥦 Brassicaceae</td><td>4 petals (cruciform) + tetradynamous stamens (2+4)</td><td>Siliqua / Silicula</td><td><em>Brassica</em></td></tr>
+      <tr><td>🌺 Malvaceae</td><td>Monadelphous stamens + epicalyx + stellate hairs</td><td>Capsule / Schizocarp</td><td><em>Gossypium</em></td></tr>
+      <tr><td>🫛 Leguminosae</td><td>Papilionaceous corolla + diadelphous (9+1) stamens</td><td>Legume (pod)</td><td><em>Pisum</em></td></tr>
+      <tr><td>🌿 Lamiaceae</td><td>Square stem + bilabiate corolla + 4 nutlets</td><td>Schizocarp (4 nutlets)</td><td><em>Ocimum</em></td></tr>
+      <tr><td>🍅 Solanaceae</td><td>Epipetalous stamens + persistent calyx + berry</td><td>Berry / Capsule</td><td><em>Solanum</em></td></tr>
+      <tr><td>🌻 Asteraceae</td><td>Capitulum inflorescence + syngenesious stamens + cypsela</td><td>Cypsela + pappus</td><td><em>Helianthus</em></td></tr>
+      <tr><td>🌷 Liliaceae</td><td>6 petaloid tepals (3+3) + 6 stamens + bulb</td><td>Berry / Capsule</td><td><em>Lilium</em></td></tr>
+      <tr><td>🌾 Poaceae</td><td>Culm (hollow stem) + spikelet + ligule + caryopsis</td><td>Caryopsis (grain)</td><td><em>Oryza</em></td></tr>
+    </table>
+  </div>
+
+  <div class="sticker-row" style="margin-top:30px">
+    <div class="sticker sp"><div class="em">💕</div>Good luck pookie!</div>
+    <div class="sticker sm"><div class="em">🌿</div>You've got this!</div>
+    <div class="sticker su"><div class="em">✨</div>Study smart!</div>
+    <div class="sticker sy"><div class="em">🌸</div>Botany bestie</div>
+    <div class="sticker sb"><div class="em">🎓</div>Ace the exam!</div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>Made with 💕 for pookie botanists 🌸 | Hover the 3D flowers to spin faster! ✨</p>
+  <p style="margin-top:8px;font-size:.85rem;opacity:.7">Plant Classification &amp; Families — Bentham &amp; Hooker System 🌿</p>
+</footer>
+
+</body>
+</html>

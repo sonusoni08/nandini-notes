@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🌸 Fertilization, Seeds & Fruits</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap');
+
+    :root {
+      --pink:       #f9a8c9;
+      --pink-dark:  #d63f82;
+      --pink-light: #fdeef6;
+      --rose:       #f5c6d8;
+      --blue:       #90caf9;
+      --blue-dark:  #1565c0;
+      --blue-light: #e3f0fd;
+      --bg:         #f7fbff;
+      --card-bg:    #ffffff;
+      /* ── READABILITY: dark text on light bg ── */
+      --text:       #12263a;   /* near-black navy */
+      --sub:        #1e3a52;   /* dark navy, replaces washed-out blue-grey */
+      --muted:      #344f65;
+      --shadow:     rgba(100,160,210,.15);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      font-weight: 600;          /* semi-bold baseline */
+      line-height: 1.85;
+      letter-spacing: 0.012em;
+    }
+
+    /* ── Very subtle bg tint — not distracting ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: -1;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(144,202,249,.08) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(249,168,201,.07) 0%, transparent 45%);
+    }
+
+    /* ══════════════ HEADER ══════════════ */
+    header {
+      background: linear-gradient(135deg, #5ba8e0 0%, #b07fcf 50%, #e87aaa 100%);
+      text-align: center;
+      padding: 56px 20px 46px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '🌸🌺🌷🌸🌺🌷🌸🌺🌷🌸🌺🌷🌸🌺🌷';
+      position: absolute; top: 8px; left: 0; right: 0;
+      font-size: 20px; letter-spacing: 6px; opacity: .18;
+    }
+    header::after {
+      content: '🌷🌺🌸🌷🌺🌸🌷🌺🌸🌷🌺🌸🌷🌺🌸';
+      position: absolute; bottom: 8px; left: 0; right: 0;
+      font-size: 20px; letter-spacing: 6px; opacity: .18;
+    }
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,.35);
+      position: relative;
+    }
+    header p {
+      color: #fff;
+      font-size: 1.05rem;
+      margin-top: 10px;
+      font-weight: 700;
+      opacity: .95;
+      position: relative;
+    }
+    .header-quote {
+      display: inline-block;
+      background: rgba(0,0,0,.18);
+      border-radius: 30px;
+      padding: 8px 24px;
+      margin-top: 18px;
+      color: #fff;
+      font-size: .95rem;
+      font-weight: 600;
+      font-style: italic;
+      position: relative;
+    }
+
+    /* ══════════════ NAV ══════════════ */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      padding: 14px 20px;
+      background: #fff;
+      border-bottom: 2px solid #e3f0fd;
+      box-shadow: 0 2px 10px var(--shadow);
+      position: sticky; top: 0; z-index: 100;
+    }
+    nav a {
+      text-decoration: none;
+      background: var(--blue-light);
+      color: #0d4a8a;
+      border: 2px solid #90caf9;
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      transition: all .2s;
+    }
+    nav a:hover {
+      background: linear-gradient(135deg, #5ba8e0, #e87aaa);
+      color: #fff;
+      border-color: #5ba8e0;
+    }
+
+    /* ══════════════ LAYOUT ══════════════ */
+    html { scroll-padding-top: 68px; }
+    main { max-width: 1100px; margin: 0 auto; padding: 44px 20px 90px; }
+    section { scroll-margin-top: 68px; margin-bottom: 72px; }
+
+    /* ══════════════ QUOTE BANNER ══════════════ */
+    .quote-banner {
+      background: #fff;
+      border: 2px solid var(--rose);
+      border-radius: 18px;
+      padding: 20px 32px;
+      text-align: center;
+      margin-bottom: 52px;
+      box-shadow: 0 2px 10px var(--shadow);
+      font-style: italic;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .quote-banner::before { content: '❝'; font-size: 2.6rem; color: var(--pink); line-height: 1; margin-right: 6px; vertical-align: middle; }
+    .quote-banner::after  { content: '❞'; font-size: 2.6rem; color: var(--pink); line-height: 1; margin-left: 6px; vertical-align: middle; }
+
+    /* ══════════════ SECTION HEADER ══════════════ */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+    .section-title .icon {
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #5ba8e0, #e87aaa);
+      color: #fff;
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px var(--shadow);
+    }
+    .section-title h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.6rem;
+      color: #0d4a8a;
+      border-bottom: 3px solid var(--pink);
+      padding-bottom: 4px;
+    }
+
+    /* ══════════════ CARDS ══════════════ */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1.5px solid #d4e8f8;
+      padding: 24px 22px;
+      box-shadow: 0 2px 10px var(--shadow);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 5px;
+      background: linear-gradient(90deg, #5ba8e0, #e87aaa);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      color: #0d4a8a;
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    /* ── KEY FIX: body text dark + semi-bold ── */
+    .card p  { font-size: .97rem; color: var(--sub); font-weight: 600; line-height: 1.8; }
+    .card li { font-size: .97rem; color: var(--sub); font-weight: 600; line-height: 1.85; }
+    .card ul { padding-left: 20px; }
+    .card ul li { margin-bottom: 6px; }
+    .card strong { color: var(--text); font-weight: 700; }
+
+    /* colour variants — pure white bg, only accent border changes */
+    .card.lavender { border-color: #f9a8c9; }
+    .card.lavender::before { background: linear-gradient(90deg, #f9a8c9, #d63f82); }
+    .card.lavender h3 { color: #9c1a5c; }
+
+    .card.peach { border-color: #81d4fa; }
+    .card.peach::before { background: linear-gradient(90deg, #64b5f6, #0288d1); }
+    .card.peach h3 { color: #01579b; }
+
+    .card.mint { border-color: #b0c4de; }
+    .card.mint::before { background: linear-gradient(90deg, #7ba7cc, #1a5276); }
+    .card.mint h3 { color: #1a3a52; }
+
+    /* ══════════════ TABLE ══════════════ */
+    .table-wrap { overflow-x: auto; margin-top: 12px; }
+    table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+    thead th {
+      background: linear-gradient(90deg, #5ba8e0, #e87aaa);
+      color: #fff;
+      padding: 11px 15px;
+      text-align: left;
+      font-weight: 700;
+      font-size: .95rem;
+      letter-spacing: 0.02em;
+    }
+    tbody tr:nth-child(odd)  { background: #f5faff; }
+    tbody tr:nth-child(even) { background: #fff; }
+    tbody tr:hover           { background: #edf5ff; }
+    /* ── dark text in table cells ── */
+    tbody td {
+      padding: 11px 15px;
+      border-bottom: 1px solid #d4e8f8;
+      color: var(--sub);
+      font-weight: 600;
+      font-size: .93rem;
+    }
+
+    /* ══════════════ CALLOUT ══════════════ */
+    .callout {
+      border-left: 5px solid #5ba8e0;
+      background: #eef6ff;
+      border-radius: 0 14px 14px 0;
+      padding: 15px 22px;
+      margin-top: 24px;
+      font-size: .97rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.8;
+    }
+    .callout strong { color: #0d4a8a; font-weight: 700; }
+
+    /* ══════════════ CUTE QUOTE INLINE ══════════════ */
+    .cute-quote {
+      text-align: center;
+      font-style: italic;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      background: #fff;
+      border: 2px solid var(--rose);
+      border-radius: 14px;
+      padding: 14px 26px;
+      margin: 28px 0 12px;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+
+    /* ══════════════ FRUIT CARD GRID ══════════════ */
+    .fruit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .fruit-card {
+      background: #fff;
+      border: 1.5px solid #d4e8f8;
+      border-radius: 16px;
+      padding: 18px 14px;
+      text-align: center;
+      box-shadow: 0 2px 8px var(--shadow);
+      transition: transform .2s;
+    }
+    .fruit-card:hover { transform: scale(1.04); }
+    .fruit-card .emoji { font-size: 2rem; display: block; margin-bottom: 7px; }
+    .fruit-card h4 { color: #0d4a8a; font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+    .fruit-card p  { font-size: .88rem; color: var(--sub); font-weight: 600; }
+
+    /* ══════════════ STEPS ══════════════ */
+    .steps { counter-reset: step; display: flex; flex-direction: column; gap: 14px; }
+    .step {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: #fff; border-radius: 14px; padding: 16px 18px;
+      border: 1.5px solid #d4e8f8;
+      box-shadow: 0 2px 8px var(--shadow);
+    }
+    .step-num {
+      counter-increment: step;
+      background: linear-gradient(135deg, #5ba8e0, #e87aaa);
+      color: #fff;
+      font-weight: 700;
+      font-size: .95rem;
+      min-width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-body h4 { color: #0d4a8a; font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .step-body p  { font-size: .95rem; color: var(--sub); font-weight: 600; line-height: 1.8; }
+
+    /* ══════════════ BADGE ══════════════ */
+    .badge {
+      display: inline-block;
+      background: var(--blue-light);
+      color: #0d4a8a;
+      border: 1.5px solid #90caf9;
+      border-radius: 20px;
+      padding: 3px 12px;
+      font-size: .82rem;
+      font-weight: 700;
+      margin: 3px 2px;
+    }
+
+    /* ══════════════ FOOTER ══════════════ */
+    footer {
+      background: linear-gradient(135deg, #5ba8e0, #b07fcf, #e87aaa);
+      color: #fff;
+      text-align: center;
+      padding: 26px 20px;
+      font-size: .95rem;
+      font-weight: 600;
+    }
+    footer p { opacity: 1; text-shadow: 0 1px 4px rgba(0,0,0,.25); }
+    footer .footer-quote { margin-top: 8px; font-style: italic; opacity: .92; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <h1>🌸 Seeds, Fruits & Fertilization 🌸</h1>
+  <p>Biology of Embryo · Endosperm · Germination · Apomixis</p>
+  <div class="header-quote">✨ "Every seed is a flower in waiting — trust the process of growth!" ✨</div>
+</header>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <a href="#double-fert">💞 Double Fertilization</a>
+  <a href="#seed-structure">🌱 Seed Structure</a>
+  <a href="#endosperm-types">🍬 Endo/Non-Endo Seeds</a>
+  <a href="#fruits">🍒 Types of Fruits</a>
+  <a href="#dispersal">🌬️ Seed Dispersal</a>
+  <a href="#endosperm-bio">🔬 Endosperm Biology</a>
+  <a href="#embryo">🐣 Embryo</a>
+  <a href="#polyembryony">💫 Polyembryony</a>
+  <a href="#germination">🌿 Germination</a>
+  <a href="#apomixis">🧬 Apomixis</a>
+</nav>
+
+<main>
+
+<!-- Top quote banner -->
+<div class="quote-banner">
+  "Nature's greatest miracle is a tiny seed that holds an entire forest inside it 🌳"
+</div>
+
+<!-- ══════════ 1. DOUBLE FERTILIZATION ══════════ -->
+<section id="double-fert">
+  <div class="section-title">
+    <div class="icon">💞</div>
+    <h2>Double Fertilization</h2>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>🌸 What is Double Fertilization?</h3>
+      <p>A unique process in angiosperms where <strong>two sperms</strong> are involved in two separate fusion events inside the embryo sac. First discovered by <strong>S.G. Nawaschin (1898)</strong>.</p>
+      <ul style="margin-top:10px;">
+        <li>Pollen tube delivers 2 sperms into the embryo sac</li>
+        <li>Tube bursts inside a synergid</li>
+        <li>Two distinct fusion events occur simultaneously</li>
+      </ul>
+    </div>
+    <div class="card lavender">
+      <h3>🌺 Syngamy (Generative Fertilization)</h3>
+      <ul>
+        <li><strong>Sperm 1 (n) + Egg cell (n)</strong> → Zygote (2n)</li>
+        <li>Zygote → develops into the <strong>embryo</strong></li>
+        <li>Also called <em>true fertilization</em></li>
+        <li>Gives rise to the next generation sporophyte</li>
+      </ul>
+    </div>
+    <div class="card peach">
+      <h3>🍑 Triple Fusion</h3>
+      <ul>
+        <li><strong>Sperm 2 (n) + 2 Polar nuclei (n+n)</strong> → Primary Endosperm Nucleus (3n)</li>
+        <li>PEN → divides to form <strong>endosperm</strong></li>
+        <li>Endosperm nourishes the developing embryo</li>
+        <li>This 3n nature is unique to flowering plants</li>
+      </ul>
+    </div>
+    <div class="card mint">
+      <h3>🌿 Significance</h3>
+      <ul>
+        <li>Ensures every fertilized egg is provisioned with food</li>
+        <li>Endosperm forms only when fertilization occurs → no resource waste</li>
+        <li>Triploid endosperm = nutritional innovation of angiosperms</li>
+        <li>Basis of economic crops — rice, wheat, maize endosperm</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>💡 Remember:</strong> Double fertilization = Syngamy (egg + sperm₁ → 2n zygote) + Triple fusion (2 polar nuclei + sperm₂ → 3n PEN). It is <em>exclusive to angiosperms</em>!
+  </div>
+</section>
+
+<!-- ══════════ 2. SEED STRUCTURE ══════════ -->
+<section id="seed-structure">
+  <div class="section-title">
+    <div class="icon">🌱</div>
+    <h2>Seed Structure — Monocot & Dicot</h2>
+  </div>
+
+  <div class="cute-quote">🌷 "A seed is a tiny miracle — it carries the blueprint of an entire plant!" 🌷</div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>🌾 Monocot Seed (e.g., Maize/Wheat)</h3>
+      <ul>
+        <li><strong>Seed coat</strong> — fused with fruit wall (pericarp) in grains</li>
+        <li><strong>Endosperm</strong> — large, floury; main food reserve</li>
+        <li><strong>Aleurone layer</strong> — protein-rich outer endosperm layer</li>
+        <li><strong>Embryo</strong> — small, shield-shaped</li>
+        <li><strong>Scutellum</strong> (single cotyledon) — absorbs nutrients from endosperm</li>
+        <li><strong>Plumule</strong> — enclosed in coleoptile</li>
+        <li><strong>Radicle</strong> — enclosed in coleorhiza</li>
+        <li><strong>Epiblast</strong> — small flap opposite scutellum</li>
+      </ul>
+    </div>
+    <div class="card lavender">
+      <h3>🫘 Dicot Seed (e.g., Bean/Gram)</h3>
+      <ul>
+        <li><strong>Testa</strong> (outer seed coat) — protective, hard</li>
+        <li><strong>Tegmen</strong> (inner seed coat) — thin, membranous</li>
+        <li><strong>Hilum</strong> — scar of attachment to funicle</li>
+        <li><strong>Micropyle</strong> — small pore for water entry</li>
+        <li><strong>Two cotyledons</strong> — thick, fleshy food storage</li>
+        <li><strong>Embryo axis</strong>: epicotyl (above) + hypocotyl (below)</li>
+        <li><strong>Plumule</strong> — shoot tip</li>
+        <li><strong>Radicle</strong> — root tip</li>
+      </ul>
+    </div>
+    <div class="card peach">
+      <h3>📊 Monocot vs Dicot Comparison</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Feature</th><th>Monocot</th><th>Dicot</th></tr></thead>
+          <tbody>
+            <tr><td>Cotyledons</td><td>1 (scutellum)</td><td>2</td></tr>
+            <tr><td>Endosperm</td><td>Persistent, large</td><td>Absent/small</td></tr>
+            <tr><td>Food storage</td><td>Endosperm</td><td>Cotyledons</td></tr>
+            <tr><td>Radicle cover</td><td>Coleorhiza</td><td>Absent</td></tr>
+            <tr><td>Plumule cover</td><td>Coleoptile</td><td>Absent</td></tr>
+            <tr><td>Example</td><td>Maize, rice</td><td>Pea, bean</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 3. ENDOSPERMIC vs NON-ENDOSPERMIC ══════════ -->
+<section id="endosperm-types">
+  <div class="section-title">
+    <div class="icon">🍬</div>
+    <h2>Endospermic & Non-Endospermic Seeds</h2>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>🍬 Endospermic (Albuminous) Seeds</h3>
+      <ul>
+        <li>Endosperm <strong>persists</strong> in the mature seed</li>
+        <li>Cotyledons thin and papery</li>
+        <li>Endosperm = main food reserve used during germination</li>
+        <li>Scutellum secretes amylases to digest endosperm starch</li>
+      </ul>
+      <p style="margin-top:10px; font-size:.93rem; color:#12263a; font-weight:600;">
+        <strong>Examples:</strong> <em>Zea mays</em> (maize), wheat, rice, barley, castor, coconut
+      </p>
+    </div>
+    <div class="card lavender">
+      <h3>🫐 Non-Endospermic (Exalbuminous) Seeds</h3>
+      <ul>
+        <li>Endosperm <strong>consumed</strong> by the embryo during development</li>
+        <li>Cotyledons become thick and swollen with stored food</li>
+        <li>Cotyledons = primary food reserve</li>
+        <li>Cotyledons photosynthesize if they emerge above ground</li>
+      </ul>
+      <p style="margin-top:10px; font-size:.93rem; color:#12263a; font-weight:600;">
+        <strong>Examples:</strong> <em>Pisum sativum</em> (pea), bean, groundnut, mustard
+      </p>
+    </div>
+    <div class="card mint">
+      <h3>🥥 Special Case — Coconut</h3>
+      <ul>
+        <li>Liquid endosperm → <strong>coconut water</strong> (free nuclear stage)</li>
+        <li>Solid white endosperm → <strong>coconut meat/kernel</strong> (cellular stage)</li>
+        <li>Both are edible endosperms at different developmental stages</li>
+        <li>The coconut "fruit" is a drupe; the "nut" is the seed</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 4. TYPES OF FRUITS ══════════ -->
+<section id="fruits">
+  <div class="section-title">
+    <div class="icon">🍒</div>
+    <h2>Types of Fruits</h2>
+  </div>
+
+  <div class="cute-quote">🍓 "Fruit is nature's way of saying: well done, you flowered beautifully!" 🍓</div>
+
+  <!-- Simple / True Fruits -->
+  <h3 style="color:#0d4a8a; margin: 20px 0 14px; font-size:1.15rem; font-weight:700;">🍑 Simple (True) Fruits — from single pistil</h3>
+  <div class="fruit-grid">
+    <div class="fruit-card">
+      <span class="emoji">🍑</span>
+      <h4>Drupe (Stone fruit)</h4>
+      <p>Fleshy pericarp; hard endocarp (stone)</p>
+      <p style="margin-top:6px; font-size:.75rem;">Mango, plum, peach, coconut</p>
+    </div>
+    <div class="fruit-card">
+      <span class="emoji">🍎</span>
+      <h4>Berry</h4>
+      <p>Entire pericarp fleshy; seeds embedded</p>
+      <p style="margin-top:6px; font-size:.75rem;">Tomato, banana, grape, brinjal</p>
+    </div>
+    <div class="fruit-card">
+      <span class="emoji">🍊</span>
+      <h4>Hesperidium</h4>
+      <p>Berry with leathery rind (flavedo+albedo)</p>
+      <p style="margin-top:6px; font-size:.75rem;">Orange, lemon, lime</p>
+    </div>
+    <div class="fruit-card">
+      <span class="emoji">🍈</span>
+      <h4>Pepo</h4>
+      <p>Berry with hard outer rind; inferior ovary</p>
+      <p style="margin-top:6px; font-size:.75rem;">Cucumber, pumpkin, watermelon</p>
+    </div>
+    <div class="fruit-card">
+      <span class="emoji">🍐</span>
+      <h4>Pome (False fruit)</h4>
+      <p>Fleshy thalamus; true fruit = core</p>
+      <p style="margin-top:6px; font-size:.75rem;">Apple, pear, quince</p>
+    </div>
+    <div class="fruit-card">
+      <span class="emoji">🫘</span>
+      <h4>Legume / Pod</h4>
+      <p>Dry dehiscent; monocarpellary; splits both sides</p>
+      <p style="margin-top:6px; font-size:.75rem;">Pea, bean, Acacia</p>
+    </div>
+    <div class="fruit-card">
+      <span class="emoji">🌾</span>
+      <h4>Caryopsis (Grain)</h4>
+      <p>Pericarp fused with seed coat</p>
+      <p style="margin-top:6px; font-size:.75rem;">Wheat, rice, maize</p>
+    </div>
+    <div class="fruit-card">
+      <span class="emoji">🌿</span>
+      <h4>Capsule</h4>
+      <p>Dry, dehiscent, pluricarpellary</p>
+      <p style="margin-top:6px; font-size:.75rem;">Cotton, poppy, <em>Datura</em></p>
+    </div>
+  </div>
+
+  <!-- Aggregate / Multiple -->
+  <h3 style="color:#1565c0; margin: 28px 0 14px; font-size:1.1rem;">🍓 Aggregate & Composite (False) Fruits</h3>
+  <div class="grid">
+    <div class="card">
+      <h3>🍓 Aggregate Fruit (Etaerio)</h3>
+      <p>Develops from a <strong>polycarpellary apocarpous</strong> flower; collection of fruitlets.</p>
+      <ul style="margin-top:8px;">
+        <li><em>Etaerio of achenes</em> — Strawberry (thalamus fleshy), Rose</li>
+        <li><em>Etaerio of drupes</em> — Raspberry, <em>Rubus</em></li>
+        <li><em>Etaerio of berries</em> — <em>Annona</em> (custard apple)</li>
+        <li><em>Etaerio of follicles</em> — Magnolia</li>
+      </ul>
+    </div>
+    <div class="card lavender">
+      <h3>🍍 Composite (Multiple) Fruit — Sorosis & Syconus</h3>
+      <ul>
+        <li><strong>Sorosis</strong> — develops from catkin inflorescence<br>
+          <em>Mulberry, pineapple, jackfruit</em></li>
+        <li><strong>Syconus</strong> — develops from hypanthodium inflorescence; hollow receptacle with flowers inside<br>
+          <em>Fig (Ficus)</em></li>
+        <li>Both involve the entire inflorescence, not just one flower</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 5. SEED DISPERSAL ══════════ -->
+<section id="dispersal">
+  <div class="section-title">
+    <div class="icon">🌬️</div>
+    <h2>Seed Dispersal Mechanisms</h2>
+  </div>
+
+  <div class="cute-quote">🌼 "Every journey begins with being carried somewhere new — just like seeds!" 🌼</div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>💨 Anemochory — Wind Dispersal</h3>
+      <p><strong>Adaptations:</strong></p>
+      <ul>
+        <li>Wings — <em>Acer</em> (maple), <em>Shorea</em></li>
+        <li>Hairs/pappus — <em>Calotropis</em>, dandelion, <em>Gossypium</em></li>
+        <li>Inflated/light fruits — <em>Colutea</em></li>
+        <li>Dust-like seeds — orchids</li>
+        <li>Ballooning — <em>Physalis</em></li>
+      </ul>
+    </div>
+    <div class="card lavender">
+      <h3>💧 Hydrochory — Water Dispersal</h3>
+      <ul>
+        <li>Fibrous mesocarp for buoyancy — coconut</li>
+        <li>Spongy pericarp — <em>Nelumbo</em> (lotus)</li>
+        <li>Air chambers — water lilies</li>
+        <li>Cork-like seed coat — <em>Entada</em></li>
+        <li>Seeds of riparian plants have watertight coats</li>
+      </ul>
+    </div>
+    <div class="card peach">
+      <h3>🐦 Zoochory — Animal Dispersal</h3>
+      <ul>
+        <li><strong>Epizoochory</strong> — hooks/spines stick to fur<br><em>Xanthium</em>, <em>Urena</em>, bur grasses</li>
+        <li><strong>Endozoochory</strong> — eaten & excreted<br>Berries, drupes (birds, mammals)</li>
+        <li><strong>Synzoochory</strong> — hoarded by animals<br>Acorns, nuts (squirrels)</li>
+        <li><strong>Myrmecochory</strong> — ants carry elaiosome-bearing seeds</li>
+      </ul>
+    </div>
+    <div class="card mint">
+      <h3>💥 Autochory — Self Dispersal</h3>
+      <ul>
+        <li><strong>Explosive dehiscence</strong> — <em>Impatiens</em>, <em>Ecballium</em> (squirting cucumber)</li>
+        <li><strong>Geocarpy</strong> — fruit buried underground — groundnut</li>
+        <li><strong>Lomentum</strong> — breaks into segments</li>
+        <li><em>Hura crepitans</em> — seeds shot up to 14 m!</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>🌸 Fun fact:</strong> Coconut can travel thousands of kilometres across oceans and still germinate — one of nature's greatest travellers!
+  </div>
+</section>
+
+<!-- ══════════ 6. ENDOSPERM BIOLOGY ══════════ -->
+<section id="endosperm-bio">
+  <div class="section-title">
+    <div class="icon">🔬</div>
+    <h2>Biology of Endosperm — Structure, Types & Functions</h2>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>📖 What is Endosperm?</h3>
+      <p>A triploid (3n) nutritive tissue formed after triple fusion. It develops from the <strong>Primary Endosperm Nucleus (PEN)</strong> and nourishes the embryo.</p>
+      <ul style="margin-top:10px;">
+        <li>Found only in angiosperms</li>
+        <li>Can be starchy, oily, or proteinaceous</li>
+        <li>May persist in mature seed (endospermic) or be consumed (non-endospermic)</li>
+      </ul>
+    </div>
+
+    <div class="card lavender">
+      <h3>🏷️ Types of Endosperm Development</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Feature</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Nuclear</strong></td><td>Free nuclear divisions; cell wall forms later</td><td>Coconut water, most dicots</td></tr>
+            <tr><td><strong>Cellular</strong></td><td>Cell wall after every division; no free nuclei</td><td><em>Adoxa, Peperomia</em></td></tr>
+            <tr><td><strong>Helobial</strong></td><td>First division → 2 unequal cells; then nuclear</td><td>Monocots (e.g., <em>Helobiales</em>)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card peach">
+      <h3>⚙️ Functions of Endosperm</h3>
+      <ul>
+        <li>Main nutritive tissue for embryo development</li>
+        <li>Stores starch, proteins, oils and vitamins</li>
+        <li>Provides enzymes (amylases, proteases) for seed germination</li>
+        <li>Aleurone layer in grasses — secretes GA-induced hydrolases</li>
+        <li>Commercial use: wheat flour (starchy endosperm), coconut milk</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 7. EMBRYO ══════════ -->
+<section id="embryo">
+  <div class="section-title">
+    <div class="icon">🐣</div>
+    <h2>Dicot & Monocot Embryo</h2>
+  </div>
+
+  <div class="cute-quote">🌿 "The embryo is the universe in miniature — carrying every instruction for life!" 🌿</div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>🌱 Embryogeny — General Steps</h3>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Zygote (2n)</h4><p>Undergoes first asymmetric division → apical cell + basal cell</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Proembryo</h4><p>Apical cell → embryo proper; basal cell → suspensor (haustorial)</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Globular Embryo</h4><p>Spherical mass of cells; protoderm differentiates</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Heart-shaped (Dicot)</h4><p>Two cotyledon primordia appear; embryo axis visible</p></div></div>
+        <div class="step"><div class="step-num">5</div><div class="step-body"><h4>Torpedo / Mature Embryo</h4><p>Cotyledons elongate; radicle, plumule, hypocotyl fully formed</p></div></div>
+      </div>
+    </div>
+
+    <div class="card lavender">
+      <h3>🫘 Dicot Embryo (e.g., Capsella)</h3>
+      <ul>
+        <li><strong>Two cotyledons</strong> — large, fleshy food reserves</li>
+        <li><strong>Epicotyl</strong> — above cotyledon node → forms shoot</li>
+        <li><strong>Plumule</strong> — embryonic shoot tip</li>
+        <li><strong>Hypocotyl</strong> — between cotyledons & radicle</li>
+        <li><strong>Radicle</strong> — embryonic root; enclosed by root cap</li>
+        <li>Suspensor: large basal cell (hypophysis) → forms root cap</li>
+      </ul>
+    </div>
+
+    <div class="card peach">
+      <h3>🌾 Monocot Embryo (e.g., Grass)</h3>
+      <ul>
+        <li><strong>One cotyledon</strong> = scutellum (shield-shaped)</li>
+        <li><strong>Coleoptile</strong> — sheath protecting plumule</li>
+        <li><strong>Coleorhiza</strong> — sheath protecting radicle</li>
+        <li><strong>Epiblast</strong> — small projection opposite scutellum</li>
+        <li>No hypocotyl; mesocotyl = internode between scutellum and coleoptile</li>
+        <li>Scutellum absorbs nutrients from endosperm</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 8. POLYEMBRYONY ══════════ -->
+<section id="polyembryony">
+  <div class="section-title">
+    <div class="icon">💫</div>
+    <h2>Polyembryony</h2>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>💡 Definition</h3>
+      <p>The occurrence of <strong>more than one embryo</strong> in a single seed. First observed by <strong>Leeuwenhoek (1719)</strong> in citrus.</p>
+      <ul style="margin-top:10px;">
+        <li>Common in: <em>Citrus, Mangifera, Opuntia</em></li>
+        <li>Extra embryos = <strong>nucellar embryos</strong> (most common source)</li>
+      </ul>
+    </div>
+    <div class="card lavender">
+      <h3>🌸 Causes of Polyembryony</h3>
+      <ul>
+        <li><strong>Cleavage polyembryony</strong> — zygote splits into multiple embryos</li>
+        <li><strong>Nucellar polyembryony</strong> — nucellar cells develop into embryos (adventive)</li>
+        <li><strong>Synergid embryos</strong> — synergid develops parthenogenetically</li>
+        <li><strong>Multiple embryo sacs</strong> — each may be fertilized</li>
+      </ul>
+    </div>
+    <div class="card mint">
+      <h3>🌿 Significance</h3>
+      <ul>
+        <li>Nucellar embryos are <strong>genetically identical to mother</strong> (clonal)</li>
+        <li>Used in horticulture to propagate true-to-type plants (e.g., mango, citrus)</li>
+        <li>Nucellar seedlings are virus-free</li>
+        <li>Tool in plant breeding for obtaining homozygous lines</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ 9. SEED GERMINATION ══════════ -->
+<section id="germination">
+  <div class="section-title">
+    <div class="icon">🌿</div>
+    <h2>Seed Germination — Epigeal & Hypogeal</h2>
+  </div>
+
+  <div class="cute-quote">🌱 "Germination is the seed's act of pure courage — choosing to reach for the light!" 🌱</div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>📋 Conditions for Germination</h3>
+      <ul>
+        <li><strong>Water (Imbibition)</strong> — activates enzymes, swells seed</li>
+        <li><strong>Oxygen</strong> — for aerobic respiration (energy)</li>
+        <li><strong>Suitable temperature</strong> — optimum varies by species</li>
+        <li><strong>Viable seed</strong> — embryo must be alive</li>
+        <li>Some seeds need light (<em>Lactuca</em>) or cold stratification (<em>Rosa</em>)</li>
+        <li>Dormancy must be broken (mechanical/chemical)</li>
+      </ul>
+    </div>
+
+    <div class="card lavender">
+      <h3>☀️ Epigeal Germination</h3>
+      <p>Cotyledons <strong>emerge above ground</strong> due to rapid elongation of the <strong>hypocotyl</strong>.</p>
+      <ul style="margin-top:10px;">
+        <li>Hypocotyl elongates and bends into a hook (plumular hook)</li>
+        <li>Cotyledons pulled above soil → turn green → photosynthesise</li>
+        <li>Cotyledons become first photosynthetic organs</li>
+      </ul>
+      <p style="margin-top:10px; font-size:.93rem; color:#12263a; font-weight:600;"><strong>Examples:</strong> Bean (<em>Phaseolus</em>), castor, onion, cotton, gourd</p>
+    </div>
+
+    <div class="card peach">
+      <h3>🌙 Hypogeal Germination</h3>
+      <p>Cotyledons <strong>remain below ground</strong>; <strong>epicotyl</strong> elongates, carrying the plumule above soil.</p>
+      <ul style="margin-top:10px;">
+        <li>Epicotyl forms an arch and pulls plumule upward</li>
+        <li>Cotyledons stay underground as food reserves</li>
+        <li>First green structure = foliage leaves (not cotyledons)</li>
+      </ul>
+      <p style="margin-top:10px; font-size:.93rem; color:#12263a; font-weight:600;"><strong>Examples:</strong> Pea (<em>Pisum</em>), maize, wheat, gram, mango</p>
+    </div>
+
+    <div class="card mint">
+      <h3>📊 Epigeal vs Hypogeal</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Feature</th><th>Epigeal</th><th>Hypogeal</th></tr></thead>
+          <tbody>
+            <tr><td>Part elongating</td><td>Hypocotyl</td><td>Epicotyl</td></tr>
+            <tr><td>Cotyledons</td><td>Above ground</td><td>Below ground</td></tr>
+            <tr><td>1st green organ</td><td>Cotyledons</td><td>Foliage leaves</td></tr>
+            <tr><td>Hook formed by</td><td>Hypocotyl</td><td>Epicotyl</td></tr>
+            <tr><td>Example</td><td>Bean, castor</td><td>Pea, maize</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>🌸 Vivipary:</strong> A special type of germination where seeds germinate while still attached to the parent plant (e.g., mangroves like <em>Rhizophora</em>). The seedling (propagule) drops into the mud and anchors itself — an amazing adaptation to tidal habitats!
+  </div>
+</section>
+
+<!-- ══════════ 10. APOMIXIS ══════════ -->
+<section id="apomixis">
+  <div class="section-title">
+    <div class="icon">🧬</div>
+    <h2>Apomixis</h2>
+  </div>
+
+  <div class="cute-quote">✨ "Apomixis is nature's way of cloning perfection — no fertilization needed!" ✨</div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>📖 Definition</h3>
+      <p><strong>Apomixis</strong> is the production of seeds <em>without fertilization</em>. The embryo forms without syngamy — a form of asexual reproduction in seeds.</p>
+      <ul style="margin-top:10px;">
+        <li>Term coined by <strong>Winkler (1908)</strong></li>
+        <li>Produces offspring <strong>genetically identical</strong> to the mother</li>
+        <li>Common in: <em>Citrus, Mangifera, Taraxacum, Poa</em>, grasses</li>
+      </ul>
+    </div>
+
+    <div class="card lavender">
+      <h3>🌸 Types of Apomixis</h3>
+      <ul>
+        <li><strong>Agamospermy</strong> — seeds formed without fertilization
+          <ul>
+            <li><em>Diplospory</em> — unreduced embryo sac from MMC</li>
+            <li><em>Apospory</em> — embryo sac from somatic (nucellar) cells</li>
+            <li><em>Adventive embryony</em> — embryo from nucellus/integument cells</li>
+          </ul>
+        </li>
+        <li><strong>Vegetative apomixis</strong> — vegetative propagules (bulbils) instead of seeds</li>
+        <li><strong>Parthenogenesis</strong> — development of egg without fertilization</li>
+      </ul>
+    </div>
+
+    <div class="card peach">
+      <h3>🌾 Agricultural Importance</h3>
+      <ul>
+        <li>Hybrid varieties lose vigour on selfing (F₂ breakdown)</li>
+        <li>Apomictic hybrids → <strong>fix hybrid vigour permanently</strong></li>
+        <li>Farmers can save and replant seeds without losing trait quality</li>
+        <li>Reduces the cost of hybrid seed production</li>
+        <li>Active research area: introducing apomixis into crop plants (rice, wheat)</li>
+      </ul>
+    </div>
+
+    <div class="card mint">
+      <h3>🔬 Apomixis vs Normal Seed</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Feature</th><th>Normal</th><th>Apomictic</th></tr></thead>
+          <tbody>
+            <tr><td>Fertilization</td><td>Required</td><td>Absent</td></tr>
+            <tr><td>Genetic variation</td><td>Present</td><td>Absent (clonal)</td></tr>
+            <tr><td>Ploidy of embryo</td><td>2n (from zygote)</td><td>2n (from somatic cell)</td></tr>
+            <tr><td>Hybrid vigour</td><td>Lost in F₂</td><td>Fixed permanently</td></tr>
+            <tr><td>Example</td><td>Most plants</td><td>Citrus, dandelion</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>💡 Key distinction:</strong> <em>Parthenogenesis</em> = egg develops without fertilization (haploid, unless unreduced egg). <em>Adventive embryony</em> = embryo from nucellus/integument (diploid, genetically identical to mother). The latter is most common and agriculturally useful.
+  </div>
+</section>
+
+<!-- Final quote -->
+<div class="quote-banner" style="margin-top:40px;">
+  "From a tiny seed to a towering tree — life is just a beautiful series of germinations 🌸🌿🌳"
+</div>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p>🌸 Botany Notes — Fertilization, Seeds, Fruits & Embryology 🌸</p>
+  <p class="footer-quote">"Biology is the most beautiful love story ever written — by nature itself 💕"</p>
+</footer>
+
+<script>
+  function fixScrollOffset() {
+    const navH = document.querySelector('nav').offsetHeight;
+    document.documentElement.style.scrollPaddingTop = navH + 'px';
+    document.querySelectorAll('section').forEach(s => s.style.scrollMarginTop = navH + 'px');
+  }
+  fixScrollOffset();
+  window.addEventListener('resize', fixScrollOffset);
+</script>
+</body>
+</html>

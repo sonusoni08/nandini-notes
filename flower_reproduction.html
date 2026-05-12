@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flower Reproduction — Structural Organization & Pollination</title>
+  <style>
+    :root {
+      --green:  #2e7d32;
+      --teal:   #00796b;
+      --amber:  #f57f17;
+      --rose:   #c62828;
+      --bg:     #f1f8e9;
+      --card:   #ffffff;
+      --text:   #1b1b1b;
+      --sub:    #4e4e4e;
+      --border: #c8e6c9;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── Hero ── */
+    header {
+      background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #43a047 100%);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '🌸';
+      font-size: 120px;
+      position: absolute;
+      top: -20px; left: -20px;
+      opacity: .12;
+      transform: rotate(-20deg);
+    }
+    header::after {
+      content: '🌼';
+      font-size: 100px;
+      position: absolute;
+      bottom: -10px; right: 10px;
+      opacity: .12;
+      transform: rotate(15deg);
+    }
+    header h1 { font-size: 2.4rem; letter-spacing: 1px; }
+    header p  { font-size: 1.05rem; margin-top: 10px; opacity: .85; }
+
+    /* ── Nav pills ── */
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav a {
+      text-decoration: none;
+      background: var(--bg);
+      color: var(--green);
+      border: 2px solid var(--green);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: .88rem;
+      font-weight: 600;
+      transition: all .2s;
+    }
+    nav a:hover { background: var(--green); color: #fff; }
+
+    /* ── Layout ── */
+    html { scroll-padding-top: 70px; }
+    main { max-width: 1100px; margin: 0 auto; padding: 40px 20px 80px; }
+
+    section { scroll-margin-top: 70px; margin-bottom: 60px; }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .section-title .icon {
+      font-size: 2rem;
+      background: var(--green);
+      color: #fff;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(46,125,50,.35);
+    }
+    .section-title h2 {
+      font-size: 1.7rem;
+      color: var(--green);
+      border-bottom: 3px solid var(--amber);
+      padding-bottom: 4px;
+    }
+
+    /* ── Cards grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 24px;
+      box-shadow: 0 3px 10px rgba(0,0,0,.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+    }
+    .card h3 {
+      font-size: 1.1rem;
+      color: var(--teal);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card li { font-size: .93rem; color: var(--sub); }
+    .card ul { padding-left: 18px; }
+    .card ul li { margin-bottom: 6px; }
+
+    /* ── Accent colours per section ── */
+    .accent-rose  .section-title h2 { color: var(--rose); border-color: var(--rose); }
+    .accent-rose  .section-title .icon { background: var(--rose); }
+    .accent-rose  .card h3 { color: var(--rose); }
+
+    .accent-teal  .section-title h2 { color: var(--teal); border-color: var(--teal); }
+    .accent-teal  .section-title .icon { background: var(--teal); }
+    .accent-teal  .card h3 { color: var(--teal); }
+
+    .accent-amber .section-title h2 { color: var(--amber); border-color: #ef6c00; }
+    .accent-amber .section-title .icon { background: var(--amber); }
+    .accent-amber .card h3 { color: #e65100; }
+
+    /* ── Diagram-like table ── */
+    .table-wrap { overflow-x: auto; margin-top: 10px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+    thead th {
+      background: var(--green);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    tbody tr:nth-child(odd) { background: #f9fbe7; }
+    tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+
+    /* ── Callout boxes ── */
+    .callout {
+      border-left: 5px solid var(--amber);
+      background: #fffde7;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-top: 20px;
+      font-size: .93rem;
+      color: #4e4e4e;
+    }
+    .callout strong { color: #e65100; }
+
+    /* ── Diagram SVG placeholder ── */
+    .diagram {
+      background: #fff;
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: .9rem;
+      color: #888;
+      margin-top: 20px;
+    }
+
+    /* labeled diagram */
+    .labeled-diagram {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
+      margin-top: 16px;
+    }
+    .labeled-diagram svg { flex-shrink: 0; }
+    .labeled-diagram .labels {
+      flex: 1;
+      min-width: 200px;
+    }
+    .label-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: .88rem;
+      color: var(--sub);
+    }
+    .label-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    footer {
+      background: var(--green);
+      color: #c8e6c9;
+      text-align: center;
+      padding: 20px;
+      font-size: .85rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ HEADER -->
+<header>
+  <h1>Flower Reproduction</h1>
+  <p>Structural Organization of Flowers &nbsp;|&nbsp; Pollination Mechanisms</p>
+</header>
+
+<!-- ══════════════════════════════════════════ NAV -->
+<nav>
+  <a href="#anther">Anther & Pollen</a>
+  <a href="#ovule">Ovules</a>
+  <a href="#embryo-sac">Embryo Sac</a>
+  <a href="#placentation">Placentation</a>
+  <a href="#pollination">Pollination</a>
+  <a href="#pollen-pistil">Pollen–Pistil</a>
+  <a href="#incompatibility">Self-Incompatibility</a>
+  <a href="#significance">Self vs Cross</a>
+</nav>
+
+<main>
+
+<!-- ══════════════════════════════════════════ SECTION 1: ANTHER & POLLEN -->
+<section id="anther">
+  <div class="section-title">
+    <div class="icon">🌿</div>
+    <h2>Structure &amp; Development of Anther and Pollen Grain</h2>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🔬 Anther Structure</h3>
+      <p>The anther is a bilobed, tetrasporangiate structure borne on the filament. Each lobe contains <strong>two microsporangia</strong> arranged in a dithecous pattern.</p>
+      <ul>
+        <li><strong>Epidermis</strong> — outermost protective layer</li>
+        <li><strong>Endothecium</strong> — fibrous thickening aids dehiscence</li>
+        <li><strong>Middle layers</strong> (2–3) — ephemeral, nutritive during early development</li>
+        <li><strong>Tapetum</strong> — innermost nutritive layer; secretes enzymes, callase, and sporopollenin precursors</li>
+        <li><strong>Sporogenous tissue</strong> — microspore mother cells (MMCs)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🌱 Microsporogenesis</h3>
+      <p>The process of formation of microspores from the microspore mother cell (2n) by meiosis.</p>
+      <ul>
+        <li>MMC (2n) undergoes <strong>meiosis I &amp; II</strong></li>
+        <li>Produces a <strong>tetrad</strong> of four haploid microspores</li>
+        <li>Tetrads are usually <strong>tetrahedral</strong> or <strong>isobilateral</strong></li>
+        <li>Tapetum provides nutrition via orbicules (Ubisch bodies)</li>
+        <li>Microspores separate after callase dissolves callose wall</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🪐 Pollen Grain Structure</h3>
+      <p>A mature pollen grain (microgametophyte) consists of:</p>
+      <ul>
+        <li><strong>Exine</strong> — outer, sculptured wall of sporopollenin (extremely resistant)</li>
+        <li><strong>Intine</strong> — inner, pectic-cellulosic layer</li>
+        <li><strong>Apertures</strong> (colpi/pores) — sites for germination and water exchange</li>
+        <li><strong>Generative cell</strong> (n) — divides to form two male gametes</li>
+        <li><strong>Vegetative (tube) cell</strong> (n) — forms the pollen tube</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>⚙️ Microgametogenesis</h3>
+      <p>Development from microspore → mature male gametophyte:</p>
+      <ul>
+        <li>Microspore nucleus divides (mitosis I) → <strong>vegetative &amp; generative nuclei</strong></li>
+        <li>Cell wall forms between them; generative cell floats in vegetative cytoplasm</li>
+        <li>Generative cell undergoes mitosis II <em>in tube or in pollen</em> → <strong>2 sperms</strong></li>
+        <li>2-celled pollen is shed in most angiosperms; 3-celled in grasses</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Tapetum callout -->
+  <div class="callout">
+    <strong>Key point — Tapetum:</strong> The tapetum is the most important nutritive layer of the anther wall. It supplies sporopollenin, pollen-kitt (sticky coating), and recognition proteins to the developing pollen grains. Loss of tapetal function leads to male sterility.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SECTION 2: OVULES -->
+<section id="ovule">
+  <div class="section-title">
+    <div class="icon">🥚</div>
+    <h2>Structure and Types of Ovules</h2>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>📐 General Structure of an Ovule</h3>
+      <ul>
+        <li><strong>Funicle</strong> — stalk attaching ovule to placenta</li>
+        <li><strong>Hilum</strong> — junction of funicle and ovule body</li>
+        <li><strong>Raphe</strong> — fused portion of funicle in anatropous ovules</li>
+        <li><strong>Integuments</strong> — one (unitegmic) or two (bitegmic) protective coats</li>
+        <li><strong>Micropyle</strong> — pore at the apex through which pollen tube enters</li>
+        <li><strong>Chalaza</strong> — basal region where integuments attach to nucellus</li>
+        <li><strong>Nucellus</strong> — nutritive tissue; surrounds the embryo sac</li>
+        <li><strong>Embryo sac</strong> (female gametophyte) — located inside the nucellus</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🔄 Types of Ovules</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Orientation</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Orthotropous</strong> (atropous)</td><td>Straight; micropyle, chalaza &amp; funicle in one line</td><td>Polygonum, Piper</td></tr>
+            <tr><td><strong>Anatropous</strong></td><td>Inverted 180°; most common</td><td>Sunflower, most dicots</td></tr>
+            <tr><td><strong>Hemitropous</strong></td><td>Half-inverted (90°)</td><td>Ranunculus</td></tr>
+            <tr><td><strong>Campylotropous</strong></td><td>Curved body; embryo sac curved</td><td>Leguminosae</td></tr>
+            <tr><td><strong>Amphitropous</strong></td><td>Both nucellus &amp; embryo sac curved</td><td>Allismaceae</td></tr>
+            <tr><td><strong>Circinotropous</strong></td><td>Funicle coiled 360°</td><td>Cactaceae</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SECTION 3: EMBRYO SAC -->
+<section id="embryo-sac" class="accent-teal">
+  <div class="section-title">
+    <div class="icon">🔬</div>
+    <h2>Types of Embryo Sacs &amp; Ultrastructure of Mature Embryo Sac</h2>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>🌀 Megasporogenesis</h3>
+      <ul>
+        <li>Megaspore mother cell (MMC, 2n) in the nucellus</li>
+        <li>Undergoes meiosis → linear tetrad of <strong>4 haploid megaspores</strong></li>
+        <li>Usually chalazal megaspore is functional; 3 others degenerate</li>
+        <li>Functional megaspore develops into the <strong>female gametophyte (embryo sac)</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📊 Classification of Embryo Sac Types</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Megaspores used</th><th>Nuclei</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Monosporic</strong> (Polygonum type)</td><td>1</td><td>8 (3+2+3)</td><td>Most angiosperms</td></tr>
+            <tr><td><strong>Bisporic</strong> (Allium type)</td><td>2</td><td>8</td><td>Allium, Endymion</td></tr>
+            <tr><td><strong>Tetrasporic</strong> (Adoxa type)</td><td>4</td><td>16</td><td>Adoxa, Peperomia</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🏗️ Ultrastructure — Mature Embryo Sac (Polygonum type)</h3>
+      <p>The 7-celled, 8-nucleate mature embryo sac consists of:</p>
+      <ul>
+        <li><strong>Egg apparatus (micropylar end):</strong>
+          <ul>
+            <li>1 Egg cell (n) — the female gamete</li>
+            <li>2 Synergids (n) — with filiform apparatus; guide pollen tube; secrete chemotropic substances</li>
+          </ul>
+        </li>
+        <li><strong>Central cell:</strong> 2 polar nuclei (later fuse → secondary nucleus 2n)</li>
+        <li><strong>Antipodals (chalazal end):</strong> 3 cells (n) — nutritive function</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🧬 Megagametogenesis (Polygonum Type)</h3>
+      <ul>
+        <li>Functional megaspore → <strong>3 mitotic divisions</strong></li>
+        <li>1 → 2 → 4 → 8 free nuclei</li>
+        <li>4 nuclei migrate to micropylar end, 4 to chalazal end</li>
+        <li>One nucleus from each pole → polar nuclei in center</li>
+        <li>Cell walls form → 7-celled embryo sac</li>
+        <li>Synergids develop <strong>filiform apparatus</strong> (invaginated cell wall) for tube guidance</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SVG Diagram -->
+  <div class="card" style="margin-top:24px;">
+    <h3>📌 Embryo Sac Diagram</h3>
+    <div class="labeled-diagram">
+      <!-- Simple SVG of embryo sac -->
+      <svg width="220" height="320" viewBox="0 0 220 320" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer wall -->
+        <ellipse cx="110" cy="160" rx="90" ry="140" fill="#f9fbe7" stroke="#2e7d32" stroke-width="2.5"/>
+        <!-- Micropyle end label line -->
+        <text x="105" y="18" font-size="11" fill="#c62828" text-anchor="middle">Micropyle</text>
+        <line x1="110" y1="22" x2="110" y2="38" stroke="#c62828" stroke-width="1.5" stroke-dasharray="3"/>
+        <!-- Egg cell -->
+        <ellipse cx="110" cy="70" rx="24" ry="18" fill="#ffccbc" stroke="#e64a19" stroke-width="1.5"/>
+        <text x="110" y="74" font-size="10" fill="#bf360c" text-anchor="middle">Egg cell</text>
+        <!-- Synergid L -->
+        <ellipse cx="78" cy="58" rx="15" ry="20" fill="#ffe082" stroke="#f57f17" stroke-width="1.5"/>
+        <text x="78" y="62" font-size="9" fill="#e65100" text-anchor="middle">Syn</text>
+        <!-- Synergid R -->
+        <ellipse cx="142" cy="58" rx="15" ry="20" fill="#ffe082" stroke="#f57f17" stroke-width="1.5"/>
+        <text x="142" y="62" font-size="9" fill="#e65100" text-anchor="middle">Syn</text>
+        <!-- Polar nuclei -->
+        <ellipse cx="110" cy="165" rx="40" ry="30" fill="#c8e6c9" stroke="#2e7d32" stroke-width="1.5"/>
+        <text x="110" y="160" font-size="9" fill="#1b5e20" text-anchor="middle">Polar</text>
+        <text x="110" y="172" font-size="9" fill="#1b5e20" text-anchor="middle">nuclei</text>
+        <!-- Antipodals -->
+        <ellipse cx="88" cy="252" rx="16" ry="14" fill="#b2ebf2" stroke="#00796b" stroke-width="1.5"/>
+        <text x="88" y="256" font-size="9" fill="#004d40" text-anchor="middle">Anti</text>
+        <ellipse cx="120" cy="265" rx="16" ry="14" fill="#b2ebf2" stroke="#00796b" stroke-width="1.5"/>
+        <text x="120" y="269" font-size="9" fill="#004d40" text-anchor="middle">Anti</text>
+        <ellipse cx="138" cy="248" rx="14" ry="12" fill="#b2ebf2" stroke="#00796b" stroke-width="1.5"/>
+        <text x="138" y="252" font-size="9" fill="#004d40" text-anchor="middle">Anti</text>
+        <!-- Chalaza -->
+        <text x="110" y="308" font-size="11" fill="#00796b" text-anchor="middle">Chalaza</text>
+        <line x1="110" y1="295" x2="110" y2="302" stroke="#00796b" stroke-width="1.5" stroke-dasharray="3"/>
+      </svg>
+
+      <div class="labels">
+        <div class="label-item"><span class="label-dot" style="background:#e64a19"></span><div><strong>Egg cell</strong> — female gamete; participates in syngamy with sperm 1</div></div>
+        <div class="label-item"><span class="label-dot" style="background:#f57f17"></span><div><strong>Synergids (2)</strong> — filiform apparatus at micropylar end; secrete chemotropics</div></div>
+        <div class="label-item"><span class="label-dot" style="background:#2e7d32"></span><div><strong>Polar nuclei (2)</strong> — fuse with sperm 2 → triploid (3n) endosperm nucleus</div></div>
+        <div class="label-item"><span class="label-dot" style="background:#00796b"></span><div><strong>Antipodals (3)</strong> — chalazal end; nutritive role; may degenerate early</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SECTION 4: PLACENTATION -->
+<section id="placentation" class="accent-rose">
+  <div class="section-title">
+    <div class="icon">🪴</div>
+    <h2>Types of Placentation</h2>
+  </div>
+
+  <div class="callout" style="border-color:#c62828; background:#ffebee;">
+    <strong>Definition:</strong> Placentation is the arrangement of ovules inside the ovary on the placenta (region of ovary wall/axis where ovules are attached).
+  </div>
+
+  <div class="grid" style="margin-top:24px;">
+
+    <div class="card">
+      <h3>🔹 Marginal</h3>
+      <p>Ovules borne along the ventral suture (margin) of a monocarpellary ovary. Placenta forms a ridge.</p>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Example: <em>Pisum sativum</em> (pea), Leguminosae</p>
+    </div>
+
+    <div class="card">
+      <h3>🔹 Axile</h3>
+      <p>Multilocular ovary; ovules attached to the central axis (fused walls of carpels). Most common type.</p>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Example: <em>Hibiscus, Citrus, Tomato</em></p>
+    </div>
+
+    <div class="card">
+      <h3>🔹 Parietal</h3>
+      <p>Ovules borne on the inner walls (peripheral) of a unilocular syncarpous ovary. Placentae on wall.</p>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Example: <em>Cucurbita, Argemone, Brassica</em></p>
+    </div>
+
+    <div class="card">
+      <h3>🔹 Free Central</h3>
+      <p>Unilocular ovary; ovules borne on a central column arising from the base with no septa.</p>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Example: <em>Dianthus, Primula</em></p>
+    </div>
+
+    <div class="card">
+      <h3>🔹 Basal</h3>
+      <p>Single ovule borne at the base of a unilocular ovary.</p>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Example: <em>Compositae (sunflower), Polygonaceae</em></p>
+    </div>
+
+    <div class="card">
+      <h3>🔹 Superficial</h3>
+      <p>Ovules borne all over the inner surface of locular walls in multilocular ovaries.</p>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Example: <em>Nymphaea</em> (water lily)</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SECTION 5: POLLINATION -->
+<section id="pollination" class="accent-amber">
+  <div class="section-title">
+    <div class="icon">🐝</div>
+    <h2>Pollination: Mechanisms and Adaptations</h2>
+  </div>
+
+  <div class="callout" style="border-color:#f57f17; background:#fff8e1;">
+    <strong>Pollination</strong> is the transfer of pollen grains from the anther to the stigma of the same or different flower of the same species.
+  </div>
+
+  <div class="grid" style="margin-top:24px;">
+
+    <div class="card">
+      <h3>💨 Anemophily (Wind Pollination)</h3>
+      <p><strong>Adaptations:</strong></p>
+      <ul>
+        <li>Flowers small, inconspicuous, no scent/nectar</li>
+        <li>Pollen grains: dry, light, smooth, non-sticky, abundant</li>
+        <li>Stigma large, feathery, exserted to catch pollen</li>
+        <li>Anthers versatile (oscillate freely)</li>
+        <li>Flowers often unisexual, arranged in catkins</li>
+      </ul>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Examples: Grasses, <em>Pinus</em>, <em>Betula</em>, wheat, maize</p>
+    </div>
+
+    <div class="card">
+      <h3>🐝 Entomophily (Insect Pollination)</h3>
+      <p><strong>Adaptations:</strong></p>
+      <ul>
+        <li>Flowers large, brightly coloured, scented</li>
+        <li>Nectar and nectaries present</li>
+        <li>Pollen: sticky, spiny, with pollen-kitt</li>
+        <li>Stigma sticky, positioned to contact insect body</li>
+        <li>Elaborate floral shapes for specific insects</li>
+      </ul>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Examples: <em>Rosa, Brassica, Salvia</em>, orchids</p>
+    </div>
+
+    <div class="card">
+      <h3>🦅 Ornithophily (Bird Pollination)</h3>
+      <p><strong>Adaptations:</strong></p>
+      <ul>
+        <li>Flowers large, tubular, red/orange (birds see red)</li>
+        <li>Copious, dilute nectar</li>
+        <li>No scent (birds lack strong olfaction)</li>
+        <li>Robust floral structure to bear bird weight</li>
+        <li>Protandry/protogyny to encourage cross-pollination</li>
+      </ul>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Examples: <em>Strelitzia, Bombax, Erythrina</em></p>
+    </div>
+
+    <div class="card">
+      <h3>🦇 Chiropterophily (Bat Pollination)</h3>
+      <p><strong>Adaptations:</strong></p>
+      <ul>
+        <li>Flowers dull-coloured (white/cream), open at night</li>
+        <li>Strong musty/fruity scent</li>
+        <li>Large, sturdy flowers with exposed stamens</li>
+        <li>Nectar-rich</li>
+      </ul>
+      <p style="margin-top:8px; color:#888; font-size:.85rem;">Examples: <em>Kigelia, Baobab, Agave</em></p>
+    </div>
+
+    <div class="card">
+      <h3>💧 Hydrophily (Water Pollination)</h3>
+      <p><strong>Adaptations:</strong></p>
+      <ul>
+        <li>Pollen: long, ribbon-like, water-proof</li>
+        <li>Flowers small, inconspicuous</li>
+        <li>No periath or much reduced</li>
+        <li><em>Epihydrophily</em>: transfer at water surface (<em>Vallisneria</em>)</li>
+        <li><em>Hypohydrophily</em>: transfer below water (<em>Ceratophyllum</em>)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🐌 Other Agents</h3>
+      <ul>
+        <li><strong>Malacophily</strong> — snails/slugs (<em>Arum</em>)</li>
+        <li><strong>Myrmecophily</strong> — ants</li>
+        <li><strong>Cantharophily</strong> — beetles (primitive flowers)</li>
+        <li><strong>Cleistogamy</strong> — self-pollination in closed flowers (<em>Viola, Commelina</em>)</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SECTION 6: POLLEN-PISTIL INTERACTION -->
+<section id="pollen-pistil">
+  <div class="section-title">
+    <div class="icon">🔗</div>
+    <h2>Pollen–Pistil Interaction</h2>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>1. Pollen Landing on Stigma</h3>
+      <ul>
+        <li>Stigma surface: wet (with stigmatic exudate) or dry</li>
+        <li>Pollen hydrates and swells on compatible stigma</li>
+        <li>Stigmatic proteins recognize compatible/incompatible pollen</li>
+        <li>Recognition involves <strong>S-gene products</strong> on pollen wall and stigma surface</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>2. Pollen Tube Germination</h3>
+      <ul>
+        <li>Compatible pollen germinates → pollen tube emerges through aperture</li>
+        <li>Tube grows through stigma → style → ovary</li>
+        <li>Growth: apical (tip) growth driven by Ca²⁺ gradient</li>
+        <li>Nutrients from style (transmitting tissue)</li>
+        <li>Generative cell divides → 2 sperms in tube</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>3. Tube Guidance to Ovule</h3>
+      <ul>
+        <li>Chemotropic guidance by <strong>γ-amino butyric acid (GABA)</strong> and other signals</li>
+        <li>Synergids secrete <strong>LURE peptides</strong> to attract the tube to micropyle</li>
+        <li>Tube enters ovule through micropyle (<em>porogamy</em>)</li>
+        <li>Rarely through chalaza (<em>chalazogamy</em>) or integument (<em>mesogamy</em>)</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>4. Double Fertilization</h3>
+      <ul>
+        <li>Pollen tube bursts in synergid → releases 2 sperms</li>
+        <li><strong>Sperm 1 + Egg (n)</strong> → Zygote (2n) → embryo (<em>syngamy</em>)</li>
+        <li><strong>Sperm 2 + 2 polar nuclei (2n)</strong> → Primary endosperm nucleus (3n) → endosperm (<em>triple fusion</em>)</li>
+        <li>Double fertilization is unique to angiosperms</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    <strong>Note:</strong> Double fertilization was first discovered by <strong>S.G. Nawaschin (1898)</strong> in <em>Lilium</em> and <em>Fritillaria</em>.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SECTION 7: SELF-INCOMPATIBILITY -->
+<section id="incompatibility" class="accent-teal">
+  <div class="section-title">
+    <div class="icon">🚫</div>
+    <h2>Self-Incompatibility (SI)</h2>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>📖 Definition</h3>
+      <p>A genetically controlled mechanism that prevents self-fertilization by inhibiting pollen germination or tube growth when genetically identical pollen lands on the stigma.</p>
+      <p style="margin-top:10px;">Controlled by a single, highly polymorphic <strong>S-locus</strong> with multiple alleles.</p>
+    </div>
+
+    <div class="card">
+      <h3>🏷️ Types of Self-Incompatibility</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Type</th><th>Control</th><th>Inhibition site</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sporophytic SI (SSI)</strong></td><td>Sporophyte (diploid) genotype of pollen parent</td><td>Stigma surface</td><td><em>Brassica, Ipomoea</em></td></tr>
+            <tr><td><strong>Gametophytic SI (GSI)</strong></td><td>Gametophyte (haploid) genotype of pollen</td><td>Style</td><td><em>Nicotiana, Petunia, Prunus</em></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🧪 Molecular Mechanism (GSI — RNase-based)</h3>
+      <ul>
+        <li>Pistil expresses <strong>S-RNases</strong> encoded by S-locus</li>
+        <li>Matching S-RNase enters compatible pollen tube → not neutralized → <strong>RNA degradation → tube dies</strong></li>
+        <li>Non-matching S-RNase → neutralized by <strong>SLF (S-locus F-box)</strong> proteins → tube survives</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🌾 Overcoming SI</h3>
+      <ul>
+        <li><strong>Bud pollination</strong> — stigma not yet mature, SI not established</li>
+        <li><strong>Irradiation</strong> of pollen (weakens S-gene expression)</li>
+        <li><strong>Mentor pollen</strong> technique</li>
+        <li><strong>Stub pollination</strong> — stylar grafting</li>
+        <li>Important in plant breeding to produce hybrids from SI parents</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ SECTION 8: SELF vs CROSS POLLINATION -->
+<section id="significance" class="accent-rose">
+  <div class="section-title">
+    <div class="icon">⚖️</div>
+    <h2>Significance of Self and Cross Pollination</h2>
+  </div>
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>✅ Self-Pollination (Autogamy)</h3>
+      <p><strong>Significance:</strong></p>
+      <ul>
+        <li>Maintains <strong>genetic purity</strong> of the variety</li>
+        <li>Useful in regions with no pollinators</li>
+        <li>Economical — no need for elaborate floral structures</li>
+        <li>Ensures seed set even in isolation</li>
+        <li>Useful for producing <strong>true-breeding lines</strong> in plant breeding</li>
+      </ul>
+      <p style="margin-top:10px;"><strong>Disadvantages:</strong></p>
+      <ul>
+        <li>Leads to <strong>inbreeding depression</strong> (reduced vigour)</li>
+        <li>Reduces genetic variability → poor adaptability</li>
+        <li>Accumulates deleterious recessive alleles</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🔀 Cross-Pollination (Allogamy/Xenogamy)</h3>
+      <p><strong>Significance:</strong></p>
+      <ul>
+        <li>Introduces <strong>genetic variability</strong> → raw material for evolution</li>
+        <li>Produces <strong>hybrid vigour (heterosis)</strong></li>
+        <li>Eliminates deleterious alleles over generations</li>
+        <li>Increases adaptability to environmental change</li>
+        <li>Basis of commercial <strong>hybrid seed production</strong></li>
+      </ul>
+      <p style="margin-top:10px;"><strong>Disadvantages:</strong></p>
+      <ul>
+        <li>Dependent on external agents — unreliable</li>
+        <li>Wastage of large amounts of pollen</li>
+        <li>Useful genes may be lost in recombination</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>🌿 Devices Promoting Cross-Pollination</h3>
+      <ul>
+        <li><strong>Dicliny</strong> (unisexuality) — monoecious (<em>Cucurbita</em>), dioecious (<em>Carica</em>)</li>
+        <li><strong>Dichogamy</strong> — maturation of stamens &amp; pistils at different times
+          <ul>
+            <li><em>Protandry</em>: stamens mature first (<em>Helianthus</em>)</li>
+            <li><em>Protogyny</em>: pistil matures first (<em>Aristolochia</em>)</li>
+          </ul>
+        </li>
+        <li><strong>Heterostyly</strong> — different style/stamen lengths (<em>Primula</em>)</li>
+        <li><strong>Herkogamy</strong> — physical barrier between anther &amp; stigma</li>
+        <li><strong>Self-incompatibility</strong> — genetic barrier</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📊 Comparison at a Glance</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Feature</th><th>Self-Pollination</th><th>Cross-Pollination</th></tr></thead>
+          <tbody>
+            <tr><td>Genetic variation</td><td>Low</td><td>High</td></tr>
+            <tr><td>Vigour</td><td>Reduced over time</td><td>Maintained/increased</td></tr>
+            <tr><td>Adaptability</td><td>Low</td><td>High</td></tr>
+            <tr><td>Agent required</td><td>No</td><td>Yes</td></tr>
+            <tr><td>Pollen wastage</td><td>Minimal</td><td>Large</td></tr>
+            <tr><td>Seed set certainty</td><td>High</td><td>Depends on agent</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Botany Notes &mdash; Structural Organization of Flowers &amp; Pollination &nbsp;|&nbsp; For Educational Use</p>
+</footer>
+
+<script>
+  function fixScrollOffset() {
+    const navH = document.querySelector('nav').offsetHeight;
+    document.documentElement.style.scrollPaddingTop = navH + 'px';
+    document.querySelectorAll('section').forEach(s => s.style.scrollMarginTop = navH + 'px');
+  }
+  fixScrollOffset();
+  window.addEventListener('resize', fixScrollOffset);
+</script>
+</body>
+</html>

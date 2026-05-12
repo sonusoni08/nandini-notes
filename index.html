@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nandini's Biology Notes 🌸</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Pacifico&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #f4f9ff;
+      color: #12263a;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, #5ba8e0 0%, #b07fcf 50%, #e87aaa 100%);
+      text-align: center;
+      padding: 60px 20px 50px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '🌸🌺🌷🌸🌺🌷🌸🌺🌷🌸🌺🌷🌸🌺🌷';
+      position: absolute; top: 8px; left: 0; right: 0;
+      font-size: 20px; letter-spacing: 8px; opacity: .18;
+    }
+    header::after {
+      content: '🌷🌺🌸🌷🌺🌸🌷🌺🌸🌷🌺🌸🌷🌺🌸';
+      position: absolute; bottom: 8px; left: 0; right: 0;
+      font-size: 20px; letter-spacing: 8px; opacity: .18;
+    }
+    header h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2rem, 6vw, 3.4rem);
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,.3);
+      position: relative;
+    }
+    header p {
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-top: 12px;
+      opacity: .95;
+      position: relative;
+    }
+    .header-tag {
+      display: inline-block;
+      background: rgba(0,0,0,.18);
+      border-radius: 30px;
+      padding: 6px 20px;
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 600;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 50px 20px 80px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #5ba8e0;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 26px;
+    }
+
+    .note-card {
+      background: #fff;
+      border-radius: 20px;
+      border: 2px solid #d4e8f8;
+      padding: 28px 24px;
+      box-shadow: 0 4px 18px rgba(100,160,210,.13);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .note-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    }
+    .note-card:nth-child(1)::before { background: linear-gradient(90deg, #5ba8e0, #e87aaa); }
+    .note-card:nth-child(2)::before { background: linear-gradient(90deg, #e87aaa, #5ba8e0); }
+    .note-card:nth-child(3)::before { background: linear-gradient(90deg, #81d4fa, #a5d6a7); }
+    .note-card:nth-child(4)::before { background: linear-gradient(90deg, #ce93d8, #5ba8e0); }
+    .note-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(100,160,210,.22);
+    }
+
+    .note-card .emoji {
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+    .note-card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0d4a8a;
+      line-height: 1.35;
+    }
+    .note-card p {
+      font-size: .92rem;
+      font-weight: 600;
+      color: #344f65;
+      line-height: 1.7;
+    }
+    .note-card .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .tag {
+      background: #eef6ff;
+      color: #0d4a8a;
+      border: 1.5px solid #90caf9;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: .76rem;
+      font-weight: 700;
+    }
+    .tag.pink {
+      background: #fdeef6;
+      color: #9c1a5c;
+      border-color: #f9a8c9;
+    }
+    .note-card .arrow {
+      align-self: flex-end;
+      font-size: .9rem;
+      font-weight: 700;
+      color: #5ba8e0;
+      margin-top: auto;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #5ba8e0, #b07fcf, #e87aaa);
+      color: #fff;
+      text-align: center;
+      padding: 22px 20px;
+      font-size: .9rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🌸 Nandini's Biology Notes</h1>
+  <p>Botany · Plant Science · Reproductive Biology</p>
+  <div class="header-tag">✨ Study Smart, Score High ✨</div>
+</header>
+
+<main>
+  <p class="section-label">📚 Choose a Topic</p>
+
+  <div class="cards">
+
+    <a class="note-card" href="fertilization_seeds.html">
+      <div class="emoji">🌱</div>
+      <h2>Fertilization, Seeds &amp; Fruits</h2>
+      <p>Double fertilization, seed structure (monocot &amp; dicot), endospermic seeds, types of fruits, seed dispersal, embryo biology, polyembryony, germination &amp; apomixis.</p>
+      <div class="tag-row">
+        <span class="tag">Double Fertilization</span>
+        <span class="tag pink">Embryo</span>
+        <span class="tag">Apomixis</span>
+        <span class="tag pink">Germination</span>
+      </div>
+      <div class="arrow">Open Notes →</div>
+    </a>
+
+    <a class="note-card" href="flower_reproduction.html">
+      <div class="emoji">🌸</div>
+      <h2>Flower Reproduction &amp; Pollination</h2>
+      <p>Anther &amp; pollen structure, microsporogenesis, ovule types, embryo sac ultrastructure, placentation, pollination mechanisms, pollen-pistil interaction &amp; self-incompatibility.</p>
+      <div class="tag-row">
+        <span class="tag">Pollen</span>
+        <span class="tag pink">Embryo Sac</span>
+        <span class="tag">Pollination</span>
+        <span class="tag pink">Placentation</span>
+      </div>
+      <div class="arrow">Open Notes →</div>
+    </a>
+
+    <a class="note-card" href="plant-families.html">
+      <div class="emoji">🌿</div>
+      <h2>Plant Families</h2>
+      <p>Key angiosperm families — floral formulae, diagnostic characters, economic importance and representative examples for major plant families.</p>
+      <div class="tag-row">
+        <span class="tag">Floral Formula</span>
+        <span class="tag pink">Taxonomy</span>
+        <span class="tag">Angiosperms</span>
+      </div>
+      <div class="arrow">Open Notes →</div>
+    </a>
+
+    <a class="note-card" href="plant-taxonomy.html">
+      <div class="emoji">🔬</div>
+      <h2>Plant Taxonomy</h2>
+      <p>Principles of plant classification, nomenclature, taxonomic hierarchy, herbarium, botanical gardens and modern taxonomic tools.</p>
+      <div class="tag-row">
+        <span class="tag">Classification</span>
+        <span class="tag pink">Nomenclature</span>
+        <span class="tag">Systematics</span>
+      </div>
+      <div class="arrow">Open Notes →</div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <p>🌸 Nandini's Biology Notes &nbsp;|&nbsp; Made with 💕 for better studying</p>
+</footer>
+
+</body>
+</html>
